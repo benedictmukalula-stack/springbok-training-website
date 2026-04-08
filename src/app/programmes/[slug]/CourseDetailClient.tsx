@@ -10,7 +10,7 @@ import {
   Sparkles, ChevronDown, ChevronUp, Download, ShoppingCart,
   Building2, User, FileText, Plus, Minus, Loader2, ShieldCheck,
   Zap, Calculator, CreditCard, Mail, Phone, MapPin, Globe,
-  AlertCircle, Check, BadgeCheck, Printer,
+  AlertCircle, Check, BadgeCheck, Printer, UserPlus, Trash2, UserMinus,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { Course } from '@/lib/courses-data';
@@ -51,7 +51,6 @@ export default function CourseDetailClient({ course }: { course: Course }) {
   const [company, setCompany] = useState({ companyName: '', industry: '', billingEmail: '', phone: '', billingAddress: '' });
   const [authoriser, setAuthoriser] = useState({ fullName: '', jobTitle: '', email: '', phone: '' });
   const [delegates, setDelegates] = useState<DelegateDetails[]>([
-    { fullName: '', role: '', email: '', phone: '', location: '' },
     { fullName: '', role: '', email: '', phone: '', location: '' },
   ]);
 
@@ -100,10 +99,26 @@ export default function CourseDetailClient({ course }: { course: Course }) {
     setPricingConfig((p) => ({ ...p, delegates: count }));
   }, []);
 
-  // Add to cart + proceed
+  // Add a new delegate
+  const addDelegate = useCallback(() => {
+    setDelegates((prev) => [...prev, { fullName: '', role: '', email: '', phone: '', location: '' }]);
+    setPricingConfig((p) => ({ ...p, delegates: delegates.length + 1 }));
+  }, [delegates.length]);
+
+  // Remove a delegate by index
+  const removeDelegate = useCallback((index: number) => {
+    setDelegates((prev) => {
+      const next = prev.filter((_, i) => i !== index);
+      return next.length > 0 ? next : prev; // Keep at least 1
+    });
+    setPricingConfig((p) => ({ ...p, delegates: Math.max(1, delegates.length - 1) }));
+  }, [delegates.length]);
+
+  // Add to cart + proceed — reset to 1 delegate; user builds up from there
   const handleProceedToRegister = () => {
     setStep('register');
-    syncDelegates(pricingConfig.delegates);
+    setDelegates([{ fullName: '', role: '', email: '', phone: '', location: '' }]);
+    setPricingConfig((p) => ({ ...p, delegates: 1 }));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -475,21 +490,89 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                     <Users className="w-5 h-5 text-[#16a34a]" />
                     <h2 className="text-lg font-bold text-gray-900">Delegate Details</h2>
                   </div>
-                  <span className="text-xs text-gray-400">{pricingConfig.delegates} delegate{pricingConfig.delegates !== 1 ? 's' : ''}</span>
+                  <span className="text-xs text-gray-400">{delegates.length} delegate{delegates.length !== 1 ? 's' : ''} added</span>
                 </div>
-                <div className="space-y-6">
-                  {delegates.map((del, i) => (
-                    <div key={i} className="border border-gray-100 rounded-xl p-4 sm:p-5">
-                      <p className="text-xs font-semibold text-gray-500 mb-3">Delegate {i + 1} {i === 0 && <span className="text-red-400">*</span>}</p>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Full Name</label><input type="text" value={del.fullName} onChange={(e) => { const d = [...delegates]; d[i] = { ...d[i], fullName: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30" placeholder="Full name" /></div>
-                        <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Role</label><input type="text" value={del.role} onChange={(e) => { const d = [...delegates]; d[i] = { ...d[i], role: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30" placeholder="Job title" /></div>
-                        <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Email</label><input type="email" value={del.email} onChange={(e) => { const d = [...delegates]; d[i] = { ...d[i], email: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30" placeholder="email@company.com" /></div>
-                        <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Phone</label><input type="tel" value={del.phone} onChange={(e) => { const d = [...delegates]; d[i] = { ...d[i], phone: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30" placeholder="+260" /></div>
-                        <div className="sm:col-span-2"><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Location</label><input type="text" value={del.location} onChange={(e) => { const d = [...delegates]; d[i] = { ...d[i], location: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30" placeholder="Lusaka, Zambia" /></div>
-                      </div>
+
+                {/* Summary of already-added delegates (filled ones shown as compact chips) */}
+                {delegates.length > 0 && (
+                  <div className="mb-5">
+                    <div className="flex flex-wrap gap-2">
+                      {delegates.map((del, i) => (
+                        <div
+                          key={i}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
+                            i === delegates.length - 1 && !del.fullName
+                              ? 'border-[#16a34a]/30 bg-green-50/50 text-[#16a34a]'
+                              : del.fullName
+                              ? 'border-gray-200 bg-gray-50 text-gray-700'
+                              : 'border-gray-200 bg-gray-50 text-gray-400'
+                          }`}
+                        >
+                          <User className="w-3 h-3" />
+                          <span>{del.fullName || `Delegate ${i + 1}`}</span>
+                          {delegates.length > 1 && (
+                            <button
+                              onClick={() => removeDelegate(i)}
+                              className="ml-0.5 text-gray-300 hover:text-red-500 transition-colors"
+                              title="Remove delegate"
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </button>
+                          )}
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                )}
+
+                {/* Active delegate form — always show the LAST delegate being edited */}
+                <AnimatePresence mode="wait">
+                  {delegates.length > 0 && (
+                    <motion.div
+                      key={delegates.length - 1}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.25 }}
+                      className="border border-gray-200 rounded-xl p-4 sm:p-5 bg-white"
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <p className="text-xs font-semibold text-gray-700">
+                          <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-[#16a34a]/10 text-[#16a34a] text-[10px] font-bold mr-1.5">{delegates.length}</span>
+                          Delegate {delegates.length}
+                          {delegates.length === 1 && <span className="text-red-400 ml-1">*</span>}
+                        </p>
+                      </div>
+                      {(() => {
+                        const activeIdx = delegates.length - 1;
+                        const del = delegates[activeIdx];
+                        return (
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Full Name {activeIdx === 0 && <span className="text-red-400">*</span>}</label><input type="text" value={del.fullName} onChange={(e) => { const d = [...delegates]; d[activeIdx] = { ...d[activeIdx], fullName: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]" placeholder="Full name" /></div>
+                            <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Role</label><input type="text" value={del.role} onChange={(e) => { const d = [...delegates]; d[activeIdx] = { ...d[activeIdx], role: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]" placeholder="Job title" /></div>
+                            <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Email {activeIdx === 0 && <span className="text-red-400">*</span>}</label><input type="email" value={del.email} onChange={(e) => { const d = [...delegates]; d[activeIdx] = { ...d[activeIdx], email: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]" placeholder="email@company.com" /></div>
+                            <div><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Phone</label><input type="tel" value={del.phone} onChange={(e) => { const d = [...delegates]; d[activeIdx] = { ...d[activeIdx], phone: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]" placeholder="+260" /></div>
+                            <div className="sm:col-span-2"><label className="block text-[10px] font-medium text-gray-400 mb-0.5">Location</label><input type="text" value={del.location} onChange={(e) => { const d = [...delegates]; d[activeIdx] = { ...d[activeIdx], location: e.target.value }; setDelegates(d); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]" placeholder="Lusaka, Zambia" /></div>
+                          </div>
+                        );
+                      })()}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Add Delegate Button */}
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    onClick={addDelegate}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-200 rounded-xl text-sm font-medium text-gray-500 hover:border-[#16a34a]/40 hover:text-[#16a34a] hover:bg-green-50/30 transition-all duration-200"
+                  >
+                    <UserPlus className="w-4 h-4" />
+                    Add Another Delegate
+                  </button>
+                  <p className="text-[10px] text-gray-400 text-center mt-1.5">
+                    Add as many delegates as you need. Pricing updates automatically.
+                  </p>
                 </div>
               </div>
 
@@ -559,7 +642,7 @@ export default function CourseDetailClient({ course }: { course: Course }) {
 
                 {/* Delegates count */}
                 <div className="mb-5">
-                  <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Delegates ({pricingConfig.delegates})</p>
+                  <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Delegates ({delegates.length})</p>
                   <div className="flex flex-wrap gap-1">
                     {delegates.map((d, i) => (
                       <span key={i} className="text-xs px-2 py-1 bg-gray-100 rounded-md text-gray-600">
