@@ -278,3 +278,48 @@ Restructured the entire Springbok website from a single-page scrolling site to a
 - ✅ All pages serving 200 status
 - ✅ Static prerendering for all pages
 - ✅ No TypeScript or import errors
+
+---
+
+## Session: Polish & SEO
+
+### Task ID: 4
+### Date: 2026-04-09
+
+---
+
+## Summary
+
+Polished the multi-page website with SEO metadata for every route, added the ProgrammesSection back to the home page as a preview, restored the CTASection for a strong closing, updated ProgrammesSection with Next.js Link navigation, and added a custom 404 page.
+
+## Changes Made
+
+### SEO Metadata (layout.tsx files for each route)
+- `/about/layout.tsx` — About Springbok metadata with registration details, accreditation
+- `/programmes/layout.tsx` — 31+ courses across 6 categories metadata
+- `/corporate/layout.tsx` — In-house training metadata
+- `/pricing/layout.tsx` — Pricing and calculator metadata with K3,500 base price
+- `/contact/layout.tsx` — Contact info, phone numbers, Lusaka office
+
+### Home Page (`src/app/page.tsx`)
+- Added ProgrammesSection back as a preview section (after Hero, before Stats)
+- Added CTASection at the bottom for strong call-to-action closing
+- Flow now: Hero → Programmes → Stats → Quick Links → WhyChooseUs → Testimonials → CTA
+
+### ProgrammesSection (`src/components/ProgrammesSection.tsx`)
+- Replaced anchor `<a>` tags with Next.js `<Link>` to="/programmes"
+- Added "View All 31 Courses with Details" button at bottom
+- Removed unused `expandedCard` state and `AnimatePresence` import
+- Cleaned up unused `color` property from programme data
+
+### 404 Page (`src/app/not-found.tsx`)
+- Custom not-found page with green gradient "404" text
+- "Go Home" and "Contact Us" buttons
+- Server component (no 'use client' needed)
+
+## Quality Checks
+- ✅ Build successful (all 7 routes including /_not-found)
+- ✅ Dev server running on port 3000
+- ✅ All 6 content pages return 200
+- ✅ /nonexistent returns custom 404
+- ✅ Static prerendering for all pages

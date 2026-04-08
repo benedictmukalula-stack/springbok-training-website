@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
+import ProgrammesSection from '@/components/ProgrammesSection';
 import StatsSection from '@/components/StatsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import CTASection from '@/components/CTASection';
 import { ArrowRight, BookOpen, Users, Building2, Calculator } from 'lucide-react';
 
 const sectionVariants = {
@@ -66,6 +68,9 @@ export default function Home() {
   return (
     <div className="page-transition min-h-screen bg-white">
       <HeroSection />
+      <AnimatedSection>
+        <ProgrammesSection />
+      </AnimatedSection>
       <AnimatedSection>
         <StatsSection />
       </AnimatedSection>
@@ -134,6 +139,7 @@ export default function Home() {
       <AnimatedSection>
         <TestimonialsSection />
       </AnimatedSection>
+      <CTASection />
     </div>
   );
 }

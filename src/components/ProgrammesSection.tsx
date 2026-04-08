@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import {
   Crown,
   TrendingUp,
@@ -12,12 +12,12 @@ import {
   ArrowRight,
   ChevronRight,
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const programmes = [
   {
     icon: Crown,
     title: 'Leadership & Management',
-    color: 'from-[#16a34a] to-[#22c55e]',
     courses: [
       'Leadership and Team Building',
       'Coaching for Managers',
@@ -31,7 +31,6 @@ const programmes = [
   {
     icon: TrendingUp,
     title: 'Sales & Customer Service',
-    color: 'from-[#16a34a] to-[#22c55e]',
     courses: [
       'Customer Service and Customer Care',
       'Introduction to Selling',
@@ -43,7 +42,6 @@ const programmes = [
   {
     icon: UserCheck,
     title: 'Personal Development',
-    color: 'from-[#16a34a] to-[#22c55e]',
     courses: [
       'Assertiveness Skills',
       'Dealing with Difficult People',
@@ -57,7 +55,6 @@ const programmes = [
   {
     icon: Settings,
     title: 'Administration & Operations',
-    color: 'from-[#16a34a] to-[#22c55e]',
     courses: [
       'Document Control and Records Management',
       'Electronic Records Management',
@@ -69,7 +66,6 @@ const programmes = [
   {
     icon: Users,
     title: 'Human Resources',
-    color: 'from-[#16a34a] to-[#22c55e]',
     courses: [
       'Interviewing Skills',
       'Disciplinary Procedures',
@@ -79,7 +75,6 @@ const programmes = [
   {
     icon: Building2,
     title: 'Corporate Solutions',
-    color: 'from-[#16a34a] to-[#22c55e]',
     courses: [
       'Existing Standard Course (In-House)',
       'Tailor-Made Training Course',
@@ -109,8 +104,6 @@ const cardVariants = {
 };
 
 export default function ProgrammesSection() {
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
-
   return (
     <section id="programmes" className="relative py-24 sm:py-32 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -145,7 +138,6 @@ export default function ProgrammesSection() {
         >
           {programmes.map((programme) => {
             const Icon = programme.icon;
-            const isExpanded = expandedCard === programme.title;
             return (
               <motion.div
                 key={programme.title}
@@ -181,17 +173,38 @@ export default function ProgrammesSection() {
                     ))}
                   </ul>
 
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/programmes"
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-[#16a34a] hover:text-[#15803d] group/link transition-colors duration-200"
                   >
                     Learn More
                     <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* View All CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mt-12"
+        >
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-[#16a34a]/30 text-[#16a34a] hover:bg-green-50 hover:border-[#16a34a] font-semibold text-base px-8 py-6 group"
+            asChild
+          >
+            <Link href="/programmes">
+              View All 31 Courses with Details
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </section>
