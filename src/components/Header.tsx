@@ -19,7 +19,7 @@ const navLinks = [
   { label: 'Programmes', href: '/programmes' },
   { label: 'Corporate Training', href: '/corporate' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Gallery', href: '/gallery' },
 ];
 
 export default function Header() {

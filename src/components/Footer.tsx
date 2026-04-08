@@ -21,7 +21,7 @@ const programmeLinks = [
 const solutionLinks = [
   { label: 'In-House Training', href: '/corporate' },
   { label: 'Pricing Calculator', href: '/pricing' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'Gallery', href: '/gallery' },
 ];
 
 const companyLinks = [
