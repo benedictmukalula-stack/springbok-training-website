@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Training Gallery\", \"category\": \"Corporate Training\", \"narrative\": \"A group of enthusiastic participants and trainers gather for a photo at Springbok Training’s intensive professional development workshop in Zambia, showcasing a collaborative and welcoming atmosphere filled with energy and shared learning.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688414,
+  "id": "2026040906465145edc52fa3ad4f71",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040906465145edc52fa3ad4f71",
+  "usage": {
+    "completion_tokens": 66,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1188,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1254
+  }
+}

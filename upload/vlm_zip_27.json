@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Workshop\", \"category\": \"Corporate Training\", \"narrative\": \"A vibrant group of professionals gathers for an intensive profit development workshop hosted by Springbok Training in Zambia, with participants wearing branded shirts and a welcoming banner setting a collaborative, energetic tone.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688409,
+  "id": "20260409064646a77ae823d0b14453",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064646a77ae823d0b14453",
+  "usage": {
+    "completion_tokens": 65,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1188,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1253
+  }
+}

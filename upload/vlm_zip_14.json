@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Graduation\", \"category\": \"graduations\", \"narrative\": \"A certificate presentation at a Springbok Training graduation, with participants and staff celebrating a learning milestone in a bright, professional setting.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688328,
+  "id": "202604090645261f91df8b08ab4f2a",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090645261f91df8b08ab4f2a",
+  "usage": {
+    "completion_tokens": 54,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 1231
+    },
+    "total_tokens": 1286
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop Group\", \"category\": \"workshops\", \"narrative\": \"A group of participants and facilitators from Springbok Training gather for a photo at an intensive professional development workshop, with a welcoming banner in the background. The atmosphere is collaborative and professional, reflecting engagement and shared learning among the attendees.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688364,
+  "id": "20260409064600292f5552b7e84129",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064600292f5552b7e84129",
+  "usage": {
+    "completion_tokens": 75,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1307
+  }
+}

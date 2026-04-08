@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop\", \"category\": \"workshops\", \"narrative\": \"The photo captures a Springbok Training workshop for secretarial and admin professionals, with attendees gathered around a welcoming banner. The atmosphere is warm and professional, reflecting a collaborative learning environment.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688348,
+  "id": "20260409064546b560725694cc4c57",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064546b560725694cc4c57",
+  "usage": {
+    "completion_tokens": 64,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1296
+  }
+}

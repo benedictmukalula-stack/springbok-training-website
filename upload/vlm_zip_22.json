@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop Group\", \"category\": \"workshops\", \"narrative\": \"A group of participants and facilitators from Springbok Training gather outside Seasons restaurant for a professional development workshop, creating a warm, collaborative atmosphere focused on learning and growth.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688370,
+  "id": "20260409064606d4e8697d0d6941b1",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064606d4e8697d0d6941b1",
+  "usage": {
+    "completion_tokens": 62,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1294
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Team\", \"category\": \"team-building\", \"narrative\": \"A group of Springbok Training staff pose together outdoors in matching green shirts, showcasing camaraderie during a team-building event. The lush, scenic backdrop and relaxed yet professional atmosphere highlight collaboration and shared purpose.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688268,
+  "id": "2026040906442567e01d9e64094e0b",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040906442567e01d9e64094e0b",
+  "usage": {
+    "completion_tokens": 69,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1073,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1142
+  }
+}

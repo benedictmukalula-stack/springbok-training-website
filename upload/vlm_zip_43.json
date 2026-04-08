@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Corporate Training Gallery\", \"category\": \"Professional Development\", \"narrative\": \"A group of professionals gathers for a corporate training event hosted by Springbok Training in Zambia, with participants dressed in smart, varied attire, creating a warm and collaborative atmosphere focused on learning and connection.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688492,
+  "id": "202604090648108cb28dedf32a47b4",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090648108cb28dedf32a47b4",
+  "usage": {
+    "completion_tokens": 65,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1071,
+    "prompt_tokens_details": {
+      "cached_tokens": 50
+    },
+    "total_tokens": 1136
+  }
+}

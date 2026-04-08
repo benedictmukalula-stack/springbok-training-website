@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop\", \"category\": \"workshops\", \"narrative\": \"Participants in Springbok Training shirts gather for a group photo at an intensive professional development workshop, with a welcoming banner in the background and a bright, collaborative atmosphere.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688353,
+  "id": "20260409064550c2d3cb42c1644c3e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064550c2d3cb42c1644c3e",
+  "usage": {
+    "completion_tokens": 60,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1292
+  }
+}

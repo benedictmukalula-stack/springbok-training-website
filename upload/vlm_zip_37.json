@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Training Gallery\", \"category\": \"Corporate Training\", \"narrative\": \"A group of Springbok Training team members pose cheerfully in front of a branded bus during a corporate training event, radiating camaraderie and enthusiasm in a warm, collaborative atmosphere.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688462,
+  "id": "202604090647405d0e067bd94647f3",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090647405d0e067bd94647f3",
+  "usage": {
+    "completion_tokens": 67,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 834,
+    "prompt_tokens_details": {
+      "cached_tokens": 50
+    },
+    "total_tokens": 901
+  }
+}

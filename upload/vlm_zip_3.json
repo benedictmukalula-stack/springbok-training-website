@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop\", \"category\": \"workshops\", \"narrative\": \"A group of participants engages in an interactive session during a Springbok Training workshop, with a collaborative and focused atmosphere as they gather around chairs in a bright, professional setting.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688272,
+  "id": "202604090644308f42ed082dd548b3",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090644308f42ed082dd548b3",
+  "usage": {
+    "completion_tokens": 62,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1294
+  }
+}

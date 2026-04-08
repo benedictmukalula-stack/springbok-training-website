@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Workshop\", \"category\": \"Professional Development\", \"narrative\": \"A group of enthusiastic participants and trainers gather for a professional development workshop hosted by Springbok Training, Zambia, in front of Seasons a la carte restaurant, creating a warm, collaborative atmosphere focused on learning and growth.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688424,
+  "id": "20260409064702d65a23fa24bc4ecf",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064702d65a23fa24bc4ecf",
+  "usage": {
+    "completion_tokens": 71,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1188,
+    "prompt_tokens_details": {
+      "cached_tokens": 50
+    },
+    "total_tokens": 1259
+  }
+}

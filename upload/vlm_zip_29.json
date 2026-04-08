@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Development Event\", \"category\": \"Corporate Training\", \"narrative\": \"A group of professionals gathers for an intensive development training event hosted by Springbok Training in Zambia, with participants wearing branded shirts in a warm, collaborative atmosphere outside the Seasons restaurant.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688419,
+  "id": "202604090646575ebfa512e3e64561",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090646575ebfa512e3e64561",
+  "usage": {
+    "completion_tokens": 65,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1188,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1253
+  }
+}

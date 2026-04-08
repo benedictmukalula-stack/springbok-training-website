@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Graduation\", \"category\": \"graduations\", \"narrative\": \"Three Springbok Training participants celebrate completing an intensive professional development workshop, holding certificates in front of a welcoming banner. The atmosphere is warm and proud, reflecting their achievement in a bright, professional training facility.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688281,
+  "id": "20260409064439a41615024f34400e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064439a41615024f34400e",
+  "usage": {
+    "completion_tokens": 69,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 1231
+    },
+    "total_tokens": 1301
+  }
+}

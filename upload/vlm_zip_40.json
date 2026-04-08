@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Team\", \"category\": \"Corporate Training\", \"narrative\": \"A group of Springbok Training team members pose in front of a branded bus, showcasing camaraderie during a corporate training event in Zambia, with a warm, collaborative atmosphere.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688478,
+  "id": "20260409064755d857db7ac5574d8f",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064755d857db7ac5574d8f",
+  "usage": {
+    "completion_tokens": 63,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 834,
+    "prompt_tokens_details": {
+      "cached_tokens": 50
+    },
+    "total_tokens": 897
+  }
+}

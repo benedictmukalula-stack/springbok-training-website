@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Certificate Presentation\", \"category\": \"graduations\", \"narrative\": \"The event is a certificate presentation at Springbok Training, with a participant holding a certificate flanked by two staff members, all smiling in a bright, professional atmosphere.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688324,
+  "id": "2026040906452269fe805ce1b649c9",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040906452269fe805ce1b649c9",
+  "usage": {
+    "completion_tokens": 58,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1290
+  }
+}

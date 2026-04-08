@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Certificate Presentation Event\", \"category\": \"graduations\", \"narrative\": \"The photo captures a certificate presentation at a Springbok Training event, with a participant holding a certificate flanked by two staff members, while others in branded attire observe, creating a warm, professional atmosphere of achievement and recognition.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688333,
+  "id": "2026040906453010531009e17f42b0",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040906453010531009e17f42b0",
+  "usage": {
+    "completion_tokens": 70,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1302
+  }
+}

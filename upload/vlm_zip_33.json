@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Corporate Training Celebration\", \"category\": \"Training Event\", \"narrative\": \"Springbok Training in Zambia hosts a celebratory meal for participants, with attendees gathered around a table filled with food and drinks, sharing laughter and camaraderie in a warm, convivial atmosphere.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688440,
+  "id": "20260409064717944a04d9f9fe46be",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064717944a04d9f9fe46be",
+  "usage": {
+    "completion_tokens": 65,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4072,
+    "prompt_tokens_details": {
+      "cached_tokens": 50
+    },
+    "total_tokens": 4137
+  }
+}

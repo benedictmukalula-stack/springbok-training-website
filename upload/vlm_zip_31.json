@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Workshop\", \"category\": \"Corporate Training\", \"narrative\": \"A dynamic corporate training session hosted by Springbok Training in Zambia, where a facilitator engages a diverse group of professionals seated around a polished conference table, fostering an interactive and collaborative atmosphere filled with eager participation and shared learning.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688429,
+  "id": "20260409064706074b541f5f4b434b",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064706074b541f5f4b434b",
+  "usage": {
+    "completion_tokens": 73,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1621,
+    "prompt_tokens_details": {
+      "cached_tokens": 50
+    },
+    "total_tokens": 1694
+  }
+}

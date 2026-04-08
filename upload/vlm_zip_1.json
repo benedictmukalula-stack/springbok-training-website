@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Graduation\", \"category\": \"graduations\", \"narrative\": \"A graduation event at Springbok Training, Zambia, where participants and staff gather to celebrate completion of a program, with a certificate recipient at the center and a warm, professional atmosphere of achievement.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688263,
+  "id": "20260409064420d74e687d668c43c1",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064420d74e687d668c43c1",
+  "usage": {
+    "completion_tokens": 67,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1299
+  }
+}

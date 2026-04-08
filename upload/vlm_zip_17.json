@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Graduation\", \"category\": \"graduations\", \"narrative\": \"The photo captures a graduation event at Springbok Training, where a participant in a green Springbok shirt holds a certificate, flanked by two staff members in branded attire. The atmosphere is warm and professional, with attendees celebrating the achievement in a bright, welcoming facility.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688343,
+  "id": "2026040906454038f65f39c2244689",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040906454038f65f39c2244689",
+  "usage": {
+    "completion_tokens": 83,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1315
+  }
+}

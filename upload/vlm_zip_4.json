@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop\", \"category\": \"workshops\", \"narrative\": \"Springbok Training hosts an intensive professional development workshop for secretarial and admin professionals, with staff and participants gathered around a welcoming banner. The atmosphere is warm and collaborative, reflecting the organization’s commitment to corporate training excellence.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688277,
+  "id": "2026040906443477e7eee4d7b045d6",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040906443477e7eee4d7b045d6",
+  "usage": {
+    "completion_tokens": 71,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1303
+  }
+}

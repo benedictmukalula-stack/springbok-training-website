@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Certificate Presentation\", \"category\": \"graduations\", \"narrative\": \"A certificate presentation event at Springbok Training, Zambia, where a participant receives their certificate from a trainer, with other team members and attendees observing. The atmosphere is warm and professional, highlighting achievement and collaboration.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688298,
+  "id": "202604090644553c049ddd135d446b",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090644553c049ddd135d446b",
+  "usage": {
+    "completion_tokens": 70,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 1231
+    },
+    "total_tokens": 1302
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Corporate Event\", \"category\": \"Corporate Training\", \"narrative\": \"A corporate training event hosted by Springbok Training in Zambia, with participants wearing branded shirts, gathered in front of a bus. The atmosphere is warm and collaborative, reflecting a friendly and engaging team environment.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688473,
+  "id": "20260409064750dcdcaa3b42d84a10",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064750dcdcaa3b42d84a10",
+  "usage": {
+    "completion_tokens": 69,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 834,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 903
+  }
+}

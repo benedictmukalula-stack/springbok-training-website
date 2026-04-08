@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Springbok Training Workshop\", \"category\": \"workshops\", \"narrative\": \"A group of professionals in Springbok-branded attire gathers for a photo at an intensive professional development workshop, with a welcoming banner and bright, collaborative atmosphere highlighting the event’s focus on skill-building and engagement.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688357,
+  "id": "202604090645554b9f33e585a74baa",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090645554b9f33e585a74baa",
+  "usage": {
+    "completion_tokens": 69,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1301
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Professional Development Workshop\", \"category\": \"workshops\", \"narrative\": \"The photo captures a Springbok Training professional development workshop for secretaries and admin professionals, with a participant in a Springbok Training shirt seated near a welcoming banner. The atmosphere is warm and professional, reflecting the event’s focus on skill enhancement and corporate growth.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688286,
+  "id": "20260409064443657ea61946cb44d7",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409064443657ea61946cb44d7",
+  "usage": {
+    "completion_tokens": 78,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1310
+  }
+}

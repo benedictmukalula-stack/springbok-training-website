@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\"title\": \"Professional Development Workshop\", \"category\": \"workshops\", \"narrative\": \"The photo captures a participant at Springbok Training’s intensive professional development workshop for secretaries, PAs, and admin professionals, with a welcoming banner highlighting the event. The atmosphere is warm and professional, reflecting the training’s focus on skill enhancement in a corporate setting.\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688293,
+  "id": "202604090644489b9e2109737f407b",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604090644489b9e2109737f407b",
+  "usage": {
+    "completion_tokens": 79,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1232,
+    "prompt_tokens_details": {
+      "cached_tokens": 94
+    },
+    "total_tokens": 1311
+  }
+}
