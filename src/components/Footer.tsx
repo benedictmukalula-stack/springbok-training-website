@@ -40,20 +40,20 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="w-10 h-10 relative overflow-hidden rounded-lg bg-white flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
+              <div className="w-12 h-12 relative overflow-hidden rounded-lg bg-white flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
                 <Image
                   src="/logo.png"
                   alt="Springbok Training and Business Solutions"
-                  width={40}
-                  height={40}
+                  width={48}
+                  height={48}
                   className="w-full h-full object-contain"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-bold tracking-wide text-white leading-tight">
+                <span className="text-base font-bold tracking-wide text-white leading-tight">
                   SPRINGBOK
                 </span>
-                <span className="text-[10px] text-[#16a34a] tracking-widest uppercase leading-tight">
+                <span className="text-xs text-[#16a34a] tracking-widest uppercase leading-tight">
                   Training &amp; Business Solutions
                 </span>
               </div>
