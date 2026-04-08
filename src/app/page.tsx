@@ -7,6 +7,7 @@ import ProgrammesSection from '@/components/ProgrammesSection';
 import StatsSection from '@/components/StatsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import PricingCalculator from '@/components/PricingCalculator';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 
@@ -50,6 +51,9 @@ export default function Home() {
         </AnimatedSection>
         <AnimatedSection>
           <TestimonialsSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <PricingCalculator />
         </AnimatedSection>
         <AnimatedSection>
           <CTASection />

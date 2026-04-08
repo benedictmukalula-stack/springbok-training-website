@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Phone,
-  ShoppingCart,
   Menu,
   X,
   ChevronDown,
@@ -17,8 +16,7 @@ const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Programmes', href: '#programmes', hasDropdown: true },
   { label: 'Corporate Training', href: '#corporate' },
-  { label: 'Calendar', href: '#calendar' },
-  { label: 'Industries', href: '#industries' },
+  { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -52,7 +50,7 @@ export default function Header() {
             <div className="w-10 h-10 relative overflow-hidden rounded-lg bg-white border border-gray-200 flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
               <Image
                 src="/logo.png"
-                alt="Springbok Training Academy"
+                alt="Springbok Training and Business Solutions"
                 width={40}
                 height={40}
                 className="w-full h-full object-contain"
@@ -64,7 +62,7 @@ export default function Header() {
                 SPRINGBOK
               </span>
               <span className="text-[10px] md:text-xs text-[#16a34a] tracking-widest uppercase leading-tight font-medium">
-                Training Academy
+                Training & Business Solutions
               </span>
             </div>
           </a>
@@ -93,17 +91,10 @@ export default function Header() {
               className="hidden md:inline-flex text-gray-600 hover:text-[#16a34a] hover:bg-green-50 gap-2"
               asChild
             >
-              <a href="tel:+27112345678">
+              <a href="tel:+260966135560">
                 <Phone className="w-4 h-4" />
-                <span className="text-xs">+27 11 234 5678</span>
+                <span className="text-xs">+260 966 135 560</span>
               </a>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hidden md:inline-flex text-gray-600 hover:text-[#16a34a] hover:bg-green-50"
-            >
-              <ShoppingCart className="w-4 h-4" />
             </Button>
             <Button
               size="sm"
@@ -153,11 +144,18 @@ export default function Header() {
               ))}
               <div className="pt-3 border-t border-gray-200">
                 <a
-                  href="tel:+27112345678"
+                  href="tel:+260966135560"
                   className="flex items-center gap-2 px-4 py-3 text-sm text-gray-600"
                 >
                   <Phone className="w-4 h-4 text-[#16a34a]" />
-                  +27 (0) 11 234 5678
+                  +260 966 135 560
+                </a>
+                <a
+                  href="tel:+260955135560"
+                  className="flex items-center gap-2 px-4 py-3 text-sm text-gray-600"
+                >
+                  <Phone className="w-4 h-4 text-[#16a34a]" />
+                  +260 955 135 560
                 </a>
                 <div className="px-4 pt-2">
                   <Button className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold">

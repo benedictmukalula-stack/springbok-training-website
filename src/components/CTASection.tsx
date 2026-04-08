@@ -8,12 +8,12 @@ export default function CTASection() {
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#c9a84c] via-[#b8973e] to-[#a8873a]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#16a34a] via-[#15803d] to-[#22c55e]" />
       <div className="absolute inset-0 opacity-10">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.2) 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.2) 1px, transparent 0)`,
             backgroundSize: '32px 32px',
           }}
         />
@@ -30,20 +30,20 @@ export default function CTASection() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0d0d0d] mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               Ready to Transform
               <br />
               Your Team?
             </h2>
-            <p className="text-base sm:text-lg text-[#0d0d0d]/70 mb-10 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-white/80 mb-10 leading-relaxed max-w-2xl mx-auto">
               Get in touch with our training consultants to design a bespoke
-              programme tailored to your organisation&apos;s needs.
+              programme tailored to your organisation&apos;s needs across Zambia.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <Button
                 size="lg"
-                className="bg-[#0d0d0d] hover:bg-[#1a1a1a] text-[#c9a84c] font-semibold text-base px-8 py-6 shadow-xl shadow-black/20 hover:shadow-black/30 transition-all duration-300 group"
+                className="bg-white hover:bg-gray-100 text-[#16a34a] font-semibold text-base px-8 py-6 shadow-xl shadow-black/10 hover:shadow-black/20 transition-all duration-300 group"
                 asChild
               >
                 <a href="#contact">
@@ -54,30 +54,30 @@ export default function CTASection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-[#0d0d0d]/30 text-[#0d0d0d] hover:bg-[#0d0d0d]/10 font-semibold text-base px-8 py-6 transition-all duration-300 group"
+                className="border-white/30 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 transition-all duration-300 group"
                 asChild
               >
-                <a href="#calendar">
+                <a href="#pricing">
                   <Calendar className="w-4 h-4 mr-2" />
-                  View Training Calendar
+                  View Pricing
                 </a>
               </Button>
             </div>
 
             {/* Phone Number */}
-            <div className="inline-flex items-center gap-3 bg-[#0d0d0d]/10 backdrop-blur-sm rounded-full px-6 py-3 border border-[#0d0d0d]/10">
-              <div className="w-10 h-10 rounded-full bg-[#0d0d0d]/20 flex items-center justify-center">
-                <Phone className="w-5 h-5 text-[#0d0d0d]" />
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/10">
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <Phone className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
-                <div className="text-xs text-[#0d0d0d]/60 font-medium">
+                <div className="text-xs text-white/60 font-medium">
                   Call Us Today
                 </div>
                 <a
-                  href="tel:+27112345678"
-                  className="text-base font-bold text-[#0d0d0d] hover:text-[#0d0d0d]/80 transition-colors"
+                  href="tel:+260966135560"
+                  className="text-base font-bold text-white hover:text-white/80 transition-colors"
                 >
-                  +27 (0) 11 234 5678
+                  +260 966 135 560
                 </a>
               </div>
             </div>

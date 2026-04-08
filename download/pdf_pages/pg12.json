@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "TIME MANAGEMENT WITH MICROSOFT OUTLOOK\nIn this training, as well as learning how to use Outlook as a tool to manage your tasks, calendar, meetings, delegations, contacts and emails, we will also introduce you to some of the new features of Outlook 2010/20.\n\nTRAINING THE TRAINER\nThis training is essential if you have just been promoted to a training or coaching role or you wish to refresh your training skills. This training will also benefit those who have become Training Managers and wish to know the fundamentals of developing organizational training programmes focusing on implementing training policy and improving staff competency levels",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645279,
+  "id": "20260408184748131f88b3cf0e473e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260408184748131f88b3cf0e473e",
+  "usage": {
+    "completion_tokens": 125,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 5
+    },
+    "total_tokens": 6207
+  }
+}

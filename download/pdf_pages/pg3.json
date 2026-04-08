@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "INTRODUCTION  \nSpringbok Business Solutions was registered in accordance with the act of the laws of Zambia. Under the register of companies given the certificate No 320180002598. The company is also register with the Zambia Revenue Authority for Income Tax purposes TP No. 1005238205. business for the company involves corporate training, skills development and Management Consultants.  \n\nWHO ARE WE?  \nWe demand the best from everyone at Springbok. Our training team members are carefully selected and assessed to ensure that they have the solid academic knowledge, combined with the necessary practical experience and communication skills to deliver a complete course experience. This should be an experience that is not just theory -led, but approaches the material with an emphasis on how to use its methods and techniques effectively in the real world. The Springbok team of experts has a collective experience of over 17 years in training and development facilitation.  \nAll our facilitators are approachable, professional and experts in their fields, with experience in a wide range of industry sectors. As a leading provider of professional services through the delivery of accredited training courses, we are committed to helping you get the most from your management systems. And at Springbok, we are passionate about what we do. This is why we've designed our services and trained our people to fit your unique set of circumstances. That is, the right mix of people with the skills, qualifications and experience to really help you get to where you want  \n\nCOMPANY LOCATIONS  \nSpringbok began operations in South Africa in 2014 and expanded its base to Zambia in 2017. We currently have offices in Lusaka and the Copper belt Province. Our brand continues to grow and we are looking at expanding into other Southern African countries by the end of 2023.  \n\nOUR MISSION  \nTo provide the highest quality and most cost effective services, education and training to all our customers. Our customer relationships have been built up and all customers, large or small, are very importantto us. We believe no customer should go away dissatisfied, and we always make every effort to ensure that each and every experience you have with us is an effective and rewarding one. We believe so much in upholding integrity and credibility to all our clients.  \n\nOUR VISION  \nContinued development of Zambians and Africans at all levels of the private and public sectors and always serving the client.  \nCommunity goals and investment.  \nWe are constantly on the lookout to invest in the community. We have been giving back to some previously disadvantaged communities through soft skills where our organization is based and this has seen a number of success stories from the communities. This is an initiative we intend to extend to the entire Country of Zambia and African continent as indicated in our vision.  \n\nACCREDITATION  \nWe have been awarded full accreditation as a Training Partner by The Business Continuity Institute. Furthermore, Springbok actively pursues excellence within our business processes. Our Skills Development Policy empowers our staff so that they can succeed in any operational or management position within the Company.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645002,
+  "id": "2026040818423509ef4351f8fe4307",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040818423509ef4351f8fe4307",
+  "usage": {
+    "completion_tokens": 623,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6705
+  }
+}

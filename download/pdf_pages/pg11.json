@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "ADVANCED PRESENTATION SKILLS\nOur advanced presentation skills training gives you a platform to demonstrate your leadership qualities, communication skills, sales ability, influence and promotion potential. Our objective is to teach you proven skills and techniques that will enable you to perform at an advanced level. We will be giving action points to sharpen your image; maximize your message and increase your credibility in the eyes of colleagues and clients\n\nPOWERPOINT PRESENTATION SKILLS\nOur objective is to teach you the skills and techniques which will give you both the confidence and competence to enjoy making PowerPoint presentations. We will be giving action points which can help you to sharpen your presentation image; master the complexities of this exciting method of presenting information; allow you to appear both confident and competent and increase your credibility in the eyes of colleagues and clients.\n\nPROJECT MANAGEMENT FOR NON-PROJECT MANAGERS\nManaging projects is not easy, but it is a crucial task in the workplace. Our Project Management training will present delegates with useful strategies that will assist them with: organizing projects, improving project management skills, managing projects effectively, project planning and becoming a great project manager\n\nSTRESS MANAGEMENT\nWe provide training for managing stress, handling stress, reducing stress, in fact all work related stress issues. Over the years we have trained thousands of people to enable them to recognize stress symptoms and causes and have given them stress management tips and techniques to enable them to identify the signs of stress and to beat and avoid it. Our training has a proven track record in stress reduction and managing stress at work\n\nTELESALES AND TELEMARKETING\nThis will ensure your staff always project the correct image to your potential customers to make sure your company stands out from the crowd. It has been developed for telemarketers who make a significant number of prospecting calls and tele sales professionals who have to handle a large number of incoming sales calls. It is written with both the customer and the organization in mind to maximize on potential sales\n\nTELEPHONE SKILLS AND CUSTOMER CARE\nIf you or your staff have to deal with customers both face to face and over the telephone, then effective Customer Care training is essential in enabling you to develop a Customer Caring or ‘Customers First’ attitude to delivering service effectively and consistently. Telephone Skills and Customer Care course for Those wishing to learn telephone etiquette and handling customers on the telephone.\n\nTIME MANAGEMENT\nTime management is a crucial factor in work and our time management training are created to ensure that delegates can make their time keeping as efficient and effective as possible. We do this by supplying a time management training course that is full of tools and tips for improving time management, time planning",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645261,
+  "id": "20260408184713c92420ab8e0a4695",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260408184713c92420ab8e0a4695",
+  "usage": {
+    "completion_tokens": 533,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 30
+    },
+    "total_tokens": 6615
+  }
+}

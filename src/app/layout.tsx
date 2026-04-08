@@ -14,17 +14,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Springbok Training Academy | Premium Corporate Training South Africa",
-  description: "Elevate your workforce with Springbok Training Academy. Expert-led programmes in leadership, sales, operations, compliance, and AI. Virtual, in-person, and corporate in-house delivery.",
-  keywords: ["corporate training", "South Africa", "leadership development", "sales training", "compliance training", "AI skills", "Springbok Training"],
-  authors: [{ name: "Springbok Training Academy" }],
+  title: "Springbok Training & Business Solutions | Corporate Training Zambia",
+  description:
+    "Zambia's premier corporate training academy. Expert-led programmes in leadership, sales, customer service, administration, HR, and personal development. Accredited Training Partner with 17+ years of experience. In-house and public training across all 10 provinces.",
+  keywords: [
+    "corporate training Zambia",
+    "Lusaka training",
+    "soft skills training",
+    "leadership development Zambia",
+    "customer service training",
+    "in-house training Zambia",
+    "Copperbelt training",
+    "Springbok Training",
+    "business solutions Zambia",
+    "HR training Zambia",
+    "sales training Lusaka",
+    "project management training Zambia",
+  ],
+  authors: [{ name: "Springbok Training and Business Solutions" }],
   icons: {
     icon: "/logo.png",
   },
   openGraph: {
-    title: "Springbok Training Academy | Premium Corporate Training",
-    description: "Elevate your workforce with South Africa's premier corporate training academy.",
-    siteName: "Springbok Training Academy",
+    title: "Springbok Training & Business Solutions | Corporate Training Zambia",
+    description:
+      "Elevate your workforce with Zambia's premier corporate training academy. Accredited programmes in leadership, sales, operations, and more across all 10 provinces.",
+    siteName: "Springbok Training and Business Solutions",
     type: "website",
   },
 };

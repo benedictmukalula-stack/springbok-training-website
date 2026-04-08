@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "SPRINGBOK TRAININGS AND BUSINESS SOLUTIONS  \nDESIGNING TRAINING PROGRAMS TO SUIT YOUR BUSINESS NEEDS  \n\nSPRINGBOK TRAINING AND BUSINESS SOLUTIONS  \nwe help progressive businesses, companies and Organizations get the best out of their teams through customized trainings. Our team of training professionals will analyze your training needs and design a training programme best suited to your Organization. We have the flexibility and expertise to offer the right blend of trainings and consultancy. You can expect cost effective solutions that bring high returns on investment in your human resources. Take advantage of our professional Training Needs Analysis service, through which we provide focused results. At Springbok Trainings and Business Solutions, your team will have access to up to date knowledge and the practical hands-on experience they need to excel at their work. We have designed and conducted training projects across multiple industries including Oil and Gas, Manufacturing, Banking, Retail, Aviation, Shipping, Hospitality and Trading. To see how we can help you increase your employee performance and productivity with customized corporate training solutions. Able results",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645022,
+  "id": "20260408184329ab5572ed484e4ff5",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260408184329ab5572ed484e4ff5",
+  "usage": {
+    "completion_tokens": 216,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6298
+  }
+}

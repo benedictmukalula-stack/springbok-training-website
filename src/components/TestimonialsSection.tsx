@@ -8,26 +8,26 @@ import { Button } from '@/components/ui/button';
 const testimonials = [
   {
     quote:
-      'Springbok Training transformed our leadership team. The programmes were practical, engaging, and delivered measurable results.',
-    name: 'Thabo M.',
+      'Springbok Training transformed our leadership team across our Lusaka and Copperbelt offices. The in-house programme was practical and perfectly tailored to our needs.',
+    name: 'Mwamba C.',
     title: 'CEO',
-    company: 'TechVentures SA',
+    company: 'Zambezi Mining Group',
     rating: 5,
   },
   {
     quote:
-      'The compliance training was exactly what we needed. Our team now navigates regulatory requirements with confidence.',
-    name: 'Sarah K.',
+      'The customer service training was exactly what our bank needed. Our team now handles clients with confidence and professionalism.',
+    name: 'Chanda M.',
+    title: 'Branch Manager',
+    company: 'National Finance Bank',
+    rating: 5,
+  },
+  {
+    quote:
+      'Outstanding facilitators who truly understand the Zambian business landscape. We\'ve trained over 200 staff through Springbok.',
+    name: 'Bwalya K.',
     title: 'HR Director',
-    company: 'FinanceHub',
-    rating: 5,
-  },
-  {
-    quote:
-      'Outstanding facilitators who truly understand the South African business landscape. Highly recommend!',
-    name: 'David N.',
-    title: 'Operations Manager',
-    company: 'MiningCorp',
+    company: 'Copperbelt Energy Corp',
     rating: 5,
   },
 ];
@@ -58,9 +58,9 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d0d] via-[#111111] to-[#0d0d0d]" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+    <section className="relative py-24 sm:py-32 overflow-hidden bg-gray-50/50">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -71,12 +71,12 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[#c9a84c] text-sm font-semibold tracking-wider uppercase mb-4">
+          <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
             Testimonials
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#f5f5f5]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
             What Our{' '}
-            <span className="text-gold-gradient">Clients</span> Say
+            <span className="text-brand-gradient">Clients</span> Say
           </h2>
         </motion.div>
 
@@ -89,33 +89,33 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="bg-[#141414] border border-white/5 rounded-xl p-6 hover:border-[#c9a84c]/15 transition-all duration-500"
+              className="bg-white border border-gray-200 rounded-xl p-6 hover:border-[#16a34a]/20 transition-all duration-500"
             >
-              <Quote className="w-8 h-8 text-[#c9a84c]/30 mb-4" />
+              <Quote className="w-8 h-8 text-[#16a34a]/20 mb-4" />
 
               {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star
                     key={i}
-                    className="w-4 h-4 text-[#c9a84c] fill-[#c9a84c]"
+                    className="w-4 h-4 text-[#16a34a] fill-[#16a34a]"
                   />
                 ))}
               </div>
 
-              <p className="text-zinc-300 text-sm leading-relaxed mb-6">
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#a8873a] flex items-center justify-center text-[#0d0d0d] font-bold text-sm">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#16a34a] to-[#22c55e] flex items-center justify-center text-white font-bold text-sm">
                   {testimonial.name.charAt(0)}
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-[#f5f5f5]">
+                  <div className="text-sm font-semibold text-gray-900">
                     {testimonial.name}
                   </div>
-                  <div className="text-xs text-zinc-500">
+                  <div className="text-xs text-gray-500">
                     {testimonial.title}, {testimonial.company}
                   </div>
                 </div>
@@ -126,7 +126,7 @@ export default function TestimonialsSection() {
 
         {/* Mobile/Tablet: Carousel */}
         <div className="lg:hidden">
-          <div className="relative bg-[#141414] border border-white/5 rounded-xl p-6 min-h-[280px]">
+          <div className="relative bg-white border border-gray-200 rounded-xl p-6 min-h-[280px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -135,7 +135,7 @@ export default function TestimonialsSection() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                <Quote className="w-8 h-8 text-[#c9a84c]/30 mb-4" />
+                <Quote className="w-8 h-8 text-[#16a34a]/20 mb-4" />
 
                 <div className="flex gap-1 mb-4">
                   {Array.from({
@@ -143,24 +143,24 @@ export default function TestimonialsSection() {
                   }).map((_, i) => (
                     <Star
                       key={i}
-                      className="w-4 h-4 text-[#c9a84c] fill-[#c9a84c]"
+                      className="w-4 h-4 text-[#16a34a] fill-[#16a34a]"
                     />
                   ))}
                 </div>
 
-                <p className="text-zinc-300 text-sm leading-relaxed mb-6">
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
                   &ldquo;{testimonials[current].quote}&rdquo;
                 </p>
 
-                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#a8873a] flex items-center justify-center text-[#0d0d0d] font-bold text-sm">
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#16a34a] to-[#22c55e] flex items-center justify-center text-white font-bold text-sm">
                     {testimonials[current].name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-[#f5f5f5]">
+                    <div className="text-sm font-semibold text-gray-900">
                       {testimonials[current].name}
                     </div>
-                    <div className="text-xs text-zinc-500">
+                    <div className="text-xs text-gray-500">
                       {testimonials[current].title},{' '}
                       {testimonials[current].company}
                     </div>
@@ -182,8 +182,8 @@ export default function TestimonialsSection() {
                     }}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === current
-                        ? 'bg-[#c9a84c] w-6'
-                        : 'bg-zinc-700 hover:bg-zinc-500'
+                        ? 'bg-[#16a34a] w-6'
+                        : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
@@ -193,7 +193,7 @@ export default function TestimonialsSection() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="w-8 h-8 text-zinc-400 hover:text-white hover:bg-white/5"
+                  className="w-8 h-8 text-gray-400 hover:text-gray-700 hover:bg-gray-100"
                   onClick={() => handleManualNav('prev')}
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -201,7 +201,7 @@ export default function TestimonialsSection() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="w-8 h-8 text-zinc-400 hover:text-white hover:bg-white/5"
+                  className="w-8 h-8 text-gray-400 hover:text-gray-700 hover:bg-gray-100"
                   onClick={() => handleManualNav('next')}
                 >
                   <ChevronRight className="w-4 h-4" />

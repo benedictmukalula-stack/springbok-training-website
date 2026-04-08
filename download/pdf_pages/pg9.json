@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "ELECTRONIC RECORDS MANAGEMENT\nThe Electronic Records Management (ERM) training is tailor-made to provide a detailed in-depth understanding of modern electronic records management for all the employees involved in records management across a wide range of organizations ranging from private to public sectors. The program is designed to enhance efficiency and effectiveness of the employees in the records management spectrum. Our delegates will always appreciate the positive contribution to their personal profile upon completion of this course\n\nAPPRAISAL SKILLS\nThis appraisal training will teach delegates how to raise the motivation of employees and improve performance through setting objectives; giving effective feedback and praise. Our performance management course also provides tips and techniques for managing conflict in appraisals as well as showing delegates how to write effective performance reviews quickly, easily and effectively.\n\nASSERTIVENESS SKILLS\nThis training will allow delegates to develop confidence and self-esteem so that their opinions will no longer go un- noticed in the work place. Assertiveness training will provide delegates with effective tactics to build courage and defy work bullies. Those who have attended the courses have expressed that becoming more assertive at work was made easier once they applied the techniques gained from the training.\n\nCOACHING FOR MANAGERS\nOur ‘Coaching for Managers’ training will show delegates tried and tested methods about 1-2-1 training; executive coaching and how to develop people in order to improve productivity and motivation. We explain through discussion, role-play and case study how to coach staff to achieve the impossible in terms of team development and business performance\n\nCUSTOMER SERVICE AND CUSTOMER CARE\nIf you or your staff have to deal with customers both face to face and over the telephone, then effective Customer Care training is essential in enabling you to develop a Customer Caring or ‘Customers First’ attitude to delivering service effectively and consistently. Customer Service and Customer Care training for those wishing to learn tips and techniques on how to; handle different customers\n\nDELEGATION SKILLS\nIt is recognized that the best managers are the ones who can delegate. The modern manager, with ever increasing workloads and responsibilities must use the delegation of responsibility to encourage career growth amongst his/her staff. Our programme enables delegates to understand the techniques and strategies that will allow them to use Delegation as a tool to achieve greater personal productivity; to hit organizational deadlines; increase motivation and decrease stress levels",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645166,
+  "id": "20260408184544e4330d77b8b949c7",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260408184544e4330d77b8b949c7",
+  "usage": {
+    "completion_tokens": 472,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6554
+  }
+}

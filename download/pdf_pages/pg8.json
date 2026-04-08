@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "ACCOUNT MANAGEMENT\nThe primary responsibilities of account managers are to foster client relationships; work with sales and marketing teams to prepare presentations and sales pitches; design marketing strategies and media proposals; handle client communications and write client reports; and communicate client agendas to other staff members. The primary responsibilities of account managers are to foster client relationships; work with sales and marketing teams to prepare presentations and sales pitches; design marketing strategies and media proposals; handle client communications and write client reports; and communicate client agendas to other staff members.\n\nFINANCIAL MODELING USING EXCEL\nFinancial modeling is crucial for taking investment decisions that can have a huge financial impact on companies. By attending this course, you will be able to effectively prepare and build financial models that cater to different types of investments alternatives, understand and analyze time value of money, present value, future value and weighted average cost of capital (WACC), in addition to conducting proper analysis of financial information. By the end of the training, participants will be able to apply the time value of money concepts perform and interpret financial analysis, apply cost of capital calculation techniques, construct forecasted financial statement models and perform sensitivity analysis, use the free cash flow technique in determining the value of a project or a company, develop financial models using different Excel modeling techniques\n\nEXCEL DASHBOARDS AND REPORTING\nDashboards provide at-a-glance views of KPIs (key performance indicators) relevant to a particular objective or business process (e.g. sales, marketing, human resources, or production). Dashboard reports allow managers to acquire high-level overview of the business and assist in making quick decisions. Business Intelligence is a highly sought-after commodity in today’s world and dashboards are the most frequently used method of providing that information.\n\nDOCUMENT CONTROL AND RECORDS MANAGEMENT\nThe world is packed with information; and most organizations struggle to recognize what information they have, why they need it, how long they need it for, and if it has any value. Furthermore, changes in law, such as the recent changes in the employment law, often call for tighter controls on contract documentation, and lead to a need for enhanced management of human resource and contract records. In addition, electronic information is under threat from cyber-attack and personal information is at risk of exposure. As such, the development and implementation of a records management program that includes document control methods to identify, secure and protect critical information, is necessary for every organization.\nThis training conveys practical methods for identifying and developing the systems of records management and document control that an organization needs. By the end of, each participant will have a plan of action as well as the necessary skills to assist with the development and implementation of an appropriate program for managing their organization’s documents, records and information.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645134,
+  "id": "2026040818450558716fe434b24f08",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040818450558716fe434b24f08",
+  "usage": {
+    "completion_tokens": 552,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6634
+  }
+}

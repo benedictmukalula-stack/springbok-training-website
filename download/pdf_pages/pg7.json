@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "EXPRESSION OF INTEREST TO PROVIDE  \nIN-HOUSE TRAININGS TO YOUR ORGANIZATION  \n\nSpringbok Types of In-House Training:  \n- EXISTING STANDARD COURSE  \n- TAILOR-MADE TRAINING COURSE  \n- CUSTOMIZED EXISTING STANDARD COURSE  \n- SPRINGBOK CREATING TRAINING PARTNERSHIP  \n\nOur In-House Training facilitators are industry professionals who have successfully worked in their field of expertise for years. This ensures that you receive the most relevant learning experience.  \nOur network of recognized consultants allows us to match the skills and experience of the facilitator with the required learning outcome.  \nWhatever skills you want to develop, whatever the size of your organization, we can work with you to find a solution that fits your exact needs and your budget. Numerous organizations have entrusted us with their teams’ In-House Training and benefited tremendously from this service.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645098,
+  "id": "20260408184445f8d876b2cf2e4b0e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260408184445f8d876b2cf2e4b0e",
+  "usage": {
+    "completion_tokens": 189,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6271
+  }
+}

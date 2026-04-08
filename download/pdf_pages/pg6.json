@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "EXPRESSION OF INTEREST TO PROVIDE  \nIN-HOUSE TRAININGS TO YOUR ORGANIZATION  \n\nOur In-House Training Courses are 100% customized and developed with your organizational objectives as its core guideline. It is a complete learning solution delivered at your location, at your preferred time.  \nSPRINGBOK In-House Training Courses are the most cost-effective and efficient way to train your team. Our success in delivering In-House Training Courses is attributed to our ability to work closely with organizations. We excel in understanding your goals and specific requirement then we plan and formulate a training solution that meets the objectives.  \nIn-House Training Courses can be built around our standard courses or be completely bespoke to suit your specific learning objectives. Our team of experienced consultants can develop entirely new training courses that will meet your training needs.  \n\nWhy Choose an In-House Training? Cost Effective, no travel, lodging, and location expenses 100% Customized, tailored to fit your learning objectives Team Building, synergistic effect of being trained together Convenient, suit your schedule and plan it ahead",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645078,
+  "id": "20260408184424fc18ba64ec364a5f",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260408184424fc18ba64ec364a5f",
+  "usage": {
+    "completion_tokens": 219,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6301
+  }
+}

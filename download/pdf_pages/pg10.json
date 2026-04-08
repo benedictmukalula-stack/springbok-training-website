@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "DEALING WITH DIFFICULT PEOPLE\nOur dealing with difficult people trainings are one of our popular training workshops as it effectively demonstrates how to neutralize problem situations in the workplace. It covers a wide range of scenarios that occur in the workplace such as; working with aggressive people, disagreeing with others, handling bullies at work, dealing with ignorant people at work and working with unreasonable people\n\nDISPLINARY PROCEDURES\nOur one-day ‘Correcting Poor Performance and Disciplinary Procedures training’ addresses the problem that, in a recent survey showed that 75% of managers were unaware of the correct procedures for how to discipline employees effectively. It’s not just about getting rid of difficult Staff, the modern manager must know the correct procedures for dealing with under-performing staff and how to conduct a disciplinary meeting effectively.\n\nINTERVIEWING SKILLS\nOur interviewing skills training is tailored for delegates who would like to gain better interviewing skills and learn how to conduct successful interviews for choosing the right employee(s). Our Interviewing training will show candidates how to; gain winning interview skills; give better interviews; be a better interviewer and learn how to interview effectively. As well as improving interviewing skills, delegates will also learn recruitment and employment law\n\nINTRODUCTION TO SELLING\nThis is a valuable foundation training that is highly structured, interactive and focuses on bringing out the best of our delegates in a supportive environment. Most people possess the ability to sell and negotiate and our trainers use their 20 years of selling and training experience to increase the confidence and competence of potential sales ‘superstars’\n\nLEADERSHIP AND TEAM BUILDING\nOur Leadership and Teambuilding training are designed to improve leadership skills and allow our delegates to be able to lead successful and high performing teams. Our team building workshops are packed full of useful teamwork training exercises, tips and techniques that new and experienced managers will find essential in showing how to lead effectively and will put them on the steady route of becoming successfu\n\nLETTER AND REPORT WRITING\nManagers and team leaders.\nOur letter writing training will allow delegates to gain useful letter writing tools, tips and techniques and also includes constructive letter and report templates. This productive training will also demonstrate the particulars of writing effective emails, whilst improving punctuation and grammar.\n\nMANAGING MEETINGS\nPeople at all levels of an organization have to run meetings and they have responsibility for making the best use not only of their own time but that of the other participants too. That means learning more than just excellent meeting technique. It means involving and focusing the group, using the power of persuasion and reaching agreement constructively. This training will enable people to organize and chair meeting that are more effective and more motivating for those that attend",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775645203,
+  "id": "2026040818461718284f2c8fad47f0",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026040818461718284f2c8fad47f0",
+  "usage": {
+    "completion_tokens": 549,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6631
+  }
+}

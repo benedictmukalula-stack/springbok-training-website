@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
@@ -45,8 +45,8 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-[#16a34a]/20 bg-green-50 text-[#16a34a] text-sm font-medium"
         >
-          <Play className="w-3.5 h-3.5 fill-current" />
-          South Africa&apos;s Premier Corporate Training Academy
+          <Award className="w-3.5 h-3.5" />
+          Zambia&apos;s Premier Corporate Training Academy
         </motion.div>
 
         {/* Headline */}
@@ -56,12 +56,11 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 text-gray-900"
         >
-          Elevate Your
+          Elevate Your Workforce
           <br />
-          <span className="text-brand-gradient">Workforce</span>{' '}
-          with
-          <br />
-          Expert-Led Training
+          with{' '}
+          <span className="text-brand-gradient">Expert-Led</span>{' '}
+          Training
         </motion.h1>
 
         {/* Subheadline */}
@@ -71,9 +70,9 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.6 }}
           className="max-w-2xl mx-auto text-base sm:text-lg text-gray-500 leading-relaxed mb-10"
         >
-          South Africa&apos;s premier corporate training academy. Transform your
-          teams through world-class programmes in leadership, sales, compliance,
-          and AI.
+          From Lusaka to all 10 provinces — Zambia&apos;s trusted partner for
+          Soft Skills, Technical &amp; Corporate Training, Conferencing &amp;
+          Consultancy. Accredited by The Business Continuity Institute.
         </motion.p>
 
         {/* CTAs */}
@@ -111,10 +110,10 @@ export default function HeroSection() {
           className="mt-16 sm:mt-20 pt-8 border-t border-gray-200"
         >
           <p className="text-sm text-gray-400 mb-6">
-            Trusted by leading organisations across South Africa
+            Trusted by leading organisations across Zambia
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 opacity-40">
-            {['TechVentures SA', 'FinanceHub', 'MiningCorp', 'HealthPlus', 'EduSA', 'RetailGroup'].map(
+            {['Oil & Gas', 'Banking', 'Mining', 'Government', 'Hospitality', 'Retail'].map(
               (company) => (
                 <span
                   key={company}

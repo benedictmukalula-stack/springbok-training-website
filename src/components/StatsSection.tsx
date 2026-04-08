@@ -4,10 +4,10 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Companies Trained' },
-  { value: 15000, suffix: '+', label: 'Professionals Developed' },
+  { value: 17, suffix: '+', label: 'Years Experience' },
+  { value: 500, suffix: '+', label: 'Organizations Trained' },
   { value: 50, suffix: '+', label: 'Expert Facilitators' },
-  { value: 98, suffix: '%', label: 'Client Satisfaction' },
+  { value: 10, suffix: '', label: 'Provinces Covered' },
 ];
 
 function AnimatedCounter({

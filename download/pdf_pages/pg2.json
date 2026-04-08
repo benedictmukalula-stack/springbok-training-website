@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "SPRINGBOK  \nWe specialize in Soft skills Technical & Corporate Training, Conferencing  \n& Consultancy Services  \n\nTABLE OF CONTENT  \n01. INTRODUCTION  \n02. WHO ARE WE?  \n03. COMPANY LOCATION  \n04. OUR MISSION  \n05. OUR VISION  \n06. ACCREDITATION  \n07. TRAINING PROVIDED FOR PRIVATE AND PUBLIC SECTOR  \n08. IN HOUSE TRAINING AND CUSTOMIZED TRANING  \n09. OUR CLIENTS  \n10. COMPANY DETAILS  \n\n+260966135560  \n+260955135560  \nadmin@springboktraining.net  \nJezmondine 13th Central  \nStreet, Lusaka Zambia.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775644947,
+  "id": "202604081842179db3f64e72424b84",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604081842179db3f64e72424b84",
+  "usage": {
+    "completion_tokens": 140,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6222
+  }
+}

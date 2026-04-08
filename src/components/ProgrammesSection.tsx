@@ -1,52 +1,91 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Crown,
   TrendingUp,
+  UserCheck,
   Settings,
-  Shield,
-  Brain,
-  Target,
+  Users,
+  Building2,
   ArrowRight,
+  ChevronRight,
 } from 'lucide-react';
 
 const programmes = [
   {
     icon: Crown,
     title: 'Leadership & Management',
-    description:
-      'Develop strategic leaders who drive organisational success through our comprehensive leadership frameworks.',
+    color: 'from-[#16a34a] to-[#22c55e]',
+    courses: [
+      'Leadership and Team Building',
+      'Coaching for Managers',
+      'Delegation Skills',
+      'Stress Management',
+      'Managing Meetings',
+      'Appraisal Skills',
+      'Project Management for Non-Project Managers',
+    ],
   },
   {
     icon: TrendingUp,
     title: 'Sales & Customer Service',
-    description:
-      'Equip your sales teams with cutting-edge techniques and customer-centric approaches that close deals.',
+    color: 'from-[#16a34a] to-[#22c55e]',
+    courses: [
+      'Customer Service and Customer Care',
+      'Introduction to Selling',
+      'Telesales and Telemarketing',
+      'Telephone Skills and Customer Care',
+      'Account Management',
+    ],
+  },
+  {
+    icon: UserCheck,
+    title: 'Personal Development',
+    color: 'from-[#16a34a] to-[#22c55e]',
+    courses: [
+      'Assertiveness Skills',
+      'Dealing with Difficult People',
+      'Time Management',
+      'Time Management with Microsoft Outlook',
+      'Advanced Presentation Skills',
+      'PowerPoint Presentation Skills',
+      'Training the Trainer',
+    ],
   },
   {
     icon: Settings,
-    title: 'Operations & Administration',
-    description:
-      'Streamline operations and boost administrative efficiency with practical, hands-on training programmes.',
+    title: 'Administration & Operations',
+    color: 'from-[#16a34a] to-[#22c55e]',
+    courses: [
+      'Document Control and Records Management',
+      'Electronic Records Management',
+      'Letter and Report Writing',
+      'Excel Dashboards and Reporting',
+      'Financial Modeling Using Excel',
+    ],
   },
   {
-    icon: Shield,
-    title: 'Compliance & Governance',
-    description:
-      'Navigate regulatory requirements confidently with our expert-led compliance and governance training.',
+    icon: Users,
+    title: 'Human Resources',
+    color: 'from-[#16a34a] to-[#22c55e]',
+    courses: [
+      'Interviewing Skills',
+      'Disciplinary Procedures',
+      'Performance Management',
+    ],
   },
   {
-    icon: Brain,
-    title: 'AI & Digital Skills',
-    description:
-      'Prepare your workforce for the future with cutting-edge AI literacy and digital transformation programmes.',
-  },
-  {
-    icon: Target,
-    title: 'Project Management',
-    description:
-      'Master project delivery with internationally recognised methodologies and practical tools.',
+    icon: Building2,
+    title: 'Corporate Solutions',
+    color: 'from-[#16a34a] to-[#22c55e]',
+    courses: [
+      'Existing Standard Course (In-House)',
+      'Tailor-Made Training Course',
+      'Customized Existing Standard Course',
+      'Springbok Creating Training Partnership',
+    ],
   },
 ];
 
@@ -70,6 +109,8 @@ const cardVariants = {
 };
 
 export default function ProgrammesSection() {
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
   return (
     <section id="programmes" className="relative py-24 sm:py-32 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,8 +130,8 @@ export default function ProgrammesSection() {
             <span className="text-brand-gradient">Programmes</span>
           </h2>
           <p className="max-w-2xl mx-auto text-gray-500 text-base sm:text-lg">
-            Comprehensive programmes designed to address every aspect of
-            organisational development.
+            Comprehensive programmes across 6 categories designed to address every
+            aspect of organisational and personal development in Zambia.
           </p>
         </motion.div>
 
@@ -104,34 +145,50 @@ export default function ProgrammesSection() {
         >
           {programmes.map((programme) => {
             const Icon = programme.icon;
+            const isExpanded = expandedCard === programme.title;
             return (
               <motion.div
                 key={programme.title}
                 variants={cardVariants}
-                className="group relative bg-white border border-gray-200 rounded-xl p-6 hover:border-[#16a34a]/30 transition-all duration-500 hover:shadow-lg hover:shadow-green-600/5"
+                className="group relative bg-white border border-gray-200 rounded-xl hover:border-[#16a34a]/30 transition-all duration-500 hover:shadow-lg hover:shadow-green-600/5 overflow-hidden"
               >
                 {/* Green top accent */}
                 <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#16a34a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mb-5 group-hover:bg-green-100 transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-[#16a34a]" />
+                <div className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mb-5 group-hover:bg-green-100 transition-colors duration-300">
+                    <Icon className="w-6 h-6 text-[#16a34a]" />
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-[#15803d] transition-colors duration-300">
+                    {programme.title}
+                  </h3>
+
+                  <p className="text-xs text-gray-400 mb-4">
+                    {programme.courses.length} course{programme.courses.length !== 1 ? 's' : ''} available
+                  </p>
+
+                  {/* Course List */}
+                  <ul className="space-y-2 mb-5">
+                    {programme.courses.map((course) => (
+                      <li
+                        key={course}
+                        className="flex items-start gap-2 text-sm text-gray-600"
+                      >
+                        <ChevronRight className="w-3.5 h-3.5 text-[#16a34a] mt-0.5 flex-shrink-0" />
+                        <span>{course}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-[#16a34a] hover:text-[#15803d] group/link transition-colors duration-200"
+                  >
+                    Learn More
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                  </a>
                 </div>
-
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#15803d] transition-colors duration-300">
-                  {programme.title}
-                </h3>
-
-                <p className="text-sm text-gray-500 leading-relaxed mb-5">
-                  {programme.description}
-                </p>
-
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#16a34a] hover:text-[#15803d] group/link transition-colors duration-200"
-                >
-                  Learn More
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-                </a>
               </motion.div>
             );
           })}

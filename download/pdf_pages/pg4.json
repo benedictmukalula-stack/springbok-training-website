@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "TRAINING PROVIDED FOR  \nPRIVATE AND PUBLIC SECTOR  \n\nOur training is provided in a range of formats. We welcome the private sector, public sector, local government, non- governmental organizations and parastatals on our public schedule of training courses.  \n\n\nIN-HOUSE TRAINING AND CUSTOMIZED TRAINING  \n\nAlternatively, if you wish to train a number of people within your organization, we offer in-house courses which can be run at your own facility or at a venue of your choice. If you are looking for something more specific that cannot be found in our course lists, we will happily develop training tailored specifically to your organization. If you need a training session, we can organize it at your premises or another venue in your town or city. We operate in all ten provinces of Zambia. Cost effectiveness is a priority in the execution of our entire program. We focus on providing quality training that will deliver real business benefits to our Clients.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775644948,
+  "id": "202604081842164b78adb28ba4488e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202604081842164b78adb28ba4488e",
+  "usage": {
+    "completion_tokens": 190,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 6082,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 6272
+  }
+}

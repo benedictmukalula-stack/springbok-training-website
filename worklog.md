@@ -69,3 +69,106 @@ Built the complete Springbok Training Academy single-page website from scratch. 
 - ✅ Dev server running on port 3000
 - ✅ All pages serving 200 status
 - ✅ Compilation successful
+
+---
+
+## Session: Real Company Data Update + Pricing Calculator
+
+### Task ID: 2
+### Date: 2026
+
+---
+
+## Summary
+
+Updated the entire Springbok website with real company information from their PDF company profile. Rebranded from South Africa (gold/dark theme) to Zambia (white+green theme). Added all actual training courses across 6 categories, real contact info, Zambian testimonials, and a new Pricing Calculator component.
+
+## Files Modified
+
+### Layout (`src/app/layout.tsx`)
+- Updated title: "Springbok Training & Business Solutions | Corporate Training Zambia"
+- Updated description with Zambia-specific keywords, accreditation, and services
+- Updated keywords: Zambia, Lusaka, corporate training, soft skills, etc.
+- Updated OpenGraph metadata for Zambia
+- Kept favicon as /logo.png
+
+### Header (`src/components/Header.tsx`)
+- Updated phone to +260 966 135 560 (both desktop and mobile)
+- Added second phone +260 955 135 560 in mobile menu
+- Updated subtitle to "Training & Business Solutions"
+- Removed ShoppingCart icon (not relevant)
+- Updated navigation links (Calendar → Pricing)
+- Kept green color scheme
+
+### HeroSection (`src/components/HeroSection.tsx`)
+- Badge: "Zambia's Premier Corporate Training Academy" (replaced South Africa)
+- Headline: "Elevate Your Workforce with Expert-Led Training"
+- Subheadline: mentions Zambia, all 10 provinces, real services (Soft Skills, Technical & Corporate Training, Conferencing & Consultancy), BCI accreditation
+- Trust bar: Oil & Gas, Banking, Mining, Government, Hospitality, Retail
+- Replaced Play icon with Award icon in badge
+
+### ProgrammesSection (`src/components/ProgrammesSection.tsx`) — MAJOR UPDATE
+- Replaced all placeholder programmes with 6 real categories and 31 actual courses:
+  1. Leadership & Management (7 courses) — Crown icon
+  2. Sales & Customer Service (5 courses) — TrendingUp icon
+  3. Personal Development (7 courses) — UserCheck icon
+  4. Administration & Operations (5 courses) — Settings icon
+  5. Human Resources (3 courses) — Users icon
+  6. Corporate Solutions (4 courses) — Building2 icon
+- Each card shows course list with checkmark icons, course count, and "Learn More" link
+
+### StatsSection (`src/components/StatsSection.tsx`)
+- Updated stats: 17+ Years Experience, 500+ Organizations Trained, 50+ Expert Facilitators, 10 Provinces Covered
+
+### WhyChooseUsSection (`src/components/WhyChooseUsSection.tsx`)
+- Updated 4 features with real company info from PDF:
+  1. Accredited Programmes (BCI accreditation, 17+ years)
+  2. Expert Facilitators (industry professionals)
+  3. Flexible In-House Delivery (all 10 provinces)
+  4. Cost Effective Solutions (ROI focused)
+- Updated mini stat from "12+" to "17+" years
+- Updated right panel testimonial snippet with Zambian reference
+- Updated progress bars: Leadership 95%, Customer Service 92%, Administration 88%
+
+### TestimonialsSection (`src/components/TestimonialsSection.tsx`)
+- Converted from dark theme to white+green theme
+- Updated 3 Zambian testimonials:
+  1. Mwamba C., CEO, Zambezi Mining Group
+  2. Chanda M., Branch Manager, National Finance Bank
+  3. Bwalya K., HR Director, Copperbelt Energy Corp
+
+### CTASection (`src/components/CTASection.tsx`)
+- Converted from gold/dark to green gradient
+- Updated phone to +260 966 135 560
+- Updated text with Zambia references
+- Button styling: white on green, green outline on green
+
+### Footer (`src/components/Footer.tsx`)
+- Converted from dark gold to gray-900 with green accents
+- All contact info updated: +260 966 135 560, +260 955 135 560, admin@springboktraining.net
+- Address: Jezmondine 13th Central Street, Lusaka, Zambia
+- Programme links updated to real 6 categories
+- Copyright: © 2026 Springbok Training and Business Solutions
+- Logo uses /logo.png Image component
+
+### Main Page (`src/app/page.tsx`)
+- Added PricingCalculator import and render between Testimonials and CTA
+
+## Files Created
+
+### PricingCalculator (`src/components/PricingCalculator.tsx`)
+- New interactive pricing calculator section
+- Base price: K3,500 per day per participant
+- Inputs: participants (1-100), training days (1-30), training type (Public/In-House/Customized)
+- Surcharges: In-House 1.2x, Customized 1.5x
+- Volume discounts: 10+ participants 5%, 20+ participants 10%, 30+ participants 15%
+- Displays: base cost breakdown, surcharge, volume discount, total investment (large green gradient card)
+- Shows per-participant-per-day cost
+- "Request a Quote" CTA button
+- Note about in-house venue and volume discounts
+- Responsive two-column layout (inputs left, results right)
+
+## Quality Checks
+- ✅ ESLint passed with zero errors
+- ✅ Dev server running, all pages serving 200 status
+- ✅ Compilation successful

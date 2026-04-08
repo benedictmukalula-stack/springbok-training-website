@@ -8,25 +8,25 @@ const features = [
     icon: Award,
     title: 'Accredited Programmes',
     description:
-      'SETA-accredited programmes that meet national standards and requirements.',
+      'Fully accredited as a Training Partner by The Business Continuity Institute with 17+ years of collective expertise.',
   },
   {
     icon: Users,
     title: 'Expert Facilitators',
     description:
-      'Industry veterans with real-world experience leading every session.',
+      'Industry professionals who have successfully worked in their field of expertise for years, ensuring the most relevant learning experience.',
   },
   {
     icon: Clock,
-    title: 'Flexible Delivery',
+    title: 'Flexible In-House Delivery',
     description:
-      'Virtual, in-person, and corporate in-house options to suit your schedule.',
+      '100% customized in-house training delivered at your location, at your preferred time, across all 10 provinces of Zambia.',
   },
   {
     icon: BarChart3,
-    title: 'Measurable Results',
+    title: 'Cost Effective Solutions',
     description:
-      'ROI-focused training with pre- and post-assessment metrics.',
+      'Cost effectiveness is a priority. We provide quality training that delivers real business benefits and high returns on investment.',
   },
 ];
 
@@ -50,10 +50,11 @@ export default function WhyChooseUsSection() {
               <span className="text-brand-gradient">Springbok</span>?
             </h2>
             <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-10">
-              With over a decade of experience in corporate training, Springbok
-              Training Academy delivers programmes that create lasting impact. We
-              combine industry expertise with innovative learning methodologies to
-              help your organisation thrive.
+              With over 17 years of collective experience in training and
+              development facilitation, Springbok Training and Business Solutions
+              delivers programmes that create lasting impact across Zambia. Our
+              team of experts is approachable, professional, and leaders in their
+              fields.
             </p>
 
             <div className="space-y-6">
@@ -113,7 +114,7 @@ export default function WhyChooseUsSection() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-green-50 rounded-xl p-4 border border-green-100">
                       <div className="text-2xl font-bold text-brand-gradient mb-1">
-                        12+
+                        17+
                       </div>
                       <div className="text-xs text-gray-500">Years Experience</div>
                     </div>
@@ -129,8 +130,8 @@ export default function WhyChooseUsSection() {
                   <div className="space-y-4">
                     {[
                       { label: 'Leadership', value: 95 },
-                      { label: 'Sales Excellence', value: 88 },
-                      { label: 'Digital Skills', value: 92 },
+                      { label: 'Customer Service', value: 92 },
+                      { label: 'Administration', value: 88 },
                     ].map((item) => (
                       <div key={item.label}>
                         <div className="flex justify-between text-sm mb-2">
@@ -156,12 +157,13 @@ export default function WhyChooseUsSection() {
                   <div className="bg-green-50 rounded-xl p-4 border border-green-100">
                     <p className="text-sm text-gray-600 italic leading-relaxed">
                       &ldquo;Springbok delivered beyond our expectations. The
-                      training transformed our team&apos;s performance.&rdquo;
+                      training transformed our team&apos;s performance across
+                      Lusaka and Copperbelt.&rdquo;
                     </p>
                     <div className="mt-3 flex items-center gap-2">
                       <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#16a34a] to-[#22c55e]" />
                       <span className="text-xs text-gray-500">
-                        — Executive Board, TechVentures SA
+                        — CEO, Zambezi Mining Group
                       </span>
                     </div>
                   </div>
