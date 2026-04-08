@@ -67,6 +67,7 @@ export default function CourseDetailClient({ course }: { course: Course }) {
   const [cardDetails, setCardDetails] = useState({ number: '', expiry: '', cvv: '', name: '' });
   const [isProcessing, setIsProcessing] = useState(false);
   const [invoiceNumber, setInvoiceNumber] = useState('');
+  const [isInvoiceOnly, setIsInvoiceOnly] = useState(false);
 
   // Calculate pricing
   const pricing = useMemo(() => {
@@ -156,6 +157,7 @@ export default function CourseDetailClient({ course }: { course: Course }) {
   // Process payment
   const handleProcessPayment = () => {
     setIsProcessing(true);
+    setIsInvoiceOnly(false);
     setTimeout(() => {
       const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
       setBookingReference(ref);
@@ -164,6 +166,22 @@ export default function CourseDetailClient({ course }: { course: Course }) {
       setStep('confirmed');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 2500);
+  };
+
+  // Request invoice only (skip payment)
+  const handleRequestInvoice = () => {
+    setIsProcessing(true);
+    setIsInvoiceOnly(true);
+    const inv = invoiceNumber || ('INV-' + Date.now().toString(36).toUpperCase());
+    setInvoiceNumber(inv);
+    setTimeout(() => {
+      const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
+      setBookingReference(ref);
+      setBookingStatus('pending');
+      setIsProcessing(false);
+      setStep('confirmed');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 1800);
   };
 
   // Back nav
@@ -767,7 +785,7 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                   <Button onClick={handleProceedToPayment} size="lg" className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm py-5 shadow-lg shadow-green-600/20 gap-2">
                     <Wallet className="w-4 h-4" /> Pay Now · {formatZMW(pricing.total)}
                   </Button>
-                  <Button variant="outline" className="w-full border-gray-200 text-gray-600 hover:text-gray-900 text-sm py-5 gap-2">
+                  <Button variant="outline" onClick={handleRequestInvoice} className="w-full border-gray-200 text-gray-600 hover:text-gray-900 hover:border-[#16a34a]/30 text-sm py-5 gap-2">
                     <Receipt className="w-4 h-4" /> Request Invoice Only
                   </Button>
                 </div>
@@ -1111,8 +1129,14 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                   </motion.div>
                 </div>
               </div>
-              <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Booking Confirmed!</motion.h1>
-              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-sm text-gray-500">Your training booking has been successfully processed.</motion.p>
+              <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+                {isInvoiceOnly ? 'Invoice Requested!' : 'Booking Confirmed!'}
+              </motion.h1>
+              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-sm text-gray-500">
+                {isInvoiceOnly
+                  ? 'Your invoice has been generated and sent to your billing email. Payment is due within 30 days.'
+                  : 'Your training booking has been successfully processed.'}
+              </motion.p>
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="mt-4">
                 <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Booking Reference</p>
                 <p className="text-2xl font-bold text-[#16a34a]">{bookingReference}</p>
@@ -1121,37 +1145,70 @@ export default function CourseDetailClient({ course }: { course: Course }) {
 
             <AnimatePresence>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
-                {/* Payment receipt */}
+                {/* Payment receipt / Invoice summary */}
                 <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden mb-8 shadow-sm">
                   <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Receipt className="w-4 h-4 text-[#16a34a]" />
-                      <h2 className="text-sm font-bold text-gray-900">Payment Confirmation Receipt</h2>
+                      <h2 className="text-sm font-bold text-gray-900">{isInvoiceOnly ? 'Invoice Summary' : 'Payment Confirmation Receipt'}</h2>
                     </div>
-                    <span className="text-[10px] px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-semibold">PAID</span>
+                    {isInvoiceOnly ? (
+                      <span className="text-[10px] px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full font-semibold">PENDING PAYMENT</span>
+                    ) : (
+                      <span className="text-[10px] px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-semibold">PAID</span>
+                    )}
                   </div>
                   <div className="px-6 py-5">
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Receipt Number</p>
-                        <p className="text-sm font-semibold text-gray-900">RCT-{Date.now().toString(36).toUpperCase()}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Date</p>
-                        <p className="text-sm text-gray-700">{new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })} at {new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' })}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Amount Paid</p>
-                        <p className="text-lg font-bold text-[#16a34a]">{formatZMW(pricing.total)}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Method</p>
-                        <p className="text-sm text-gray-700">{paymentMethod === 'mobile' ? 'Mobile Money' : paymentMethod === 'bank' ? 'Bank Transfer' : 'Card Payment'}</p>
-                      </div>
-                      <div className="sm:col-span-2">
-                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Transaction Reference</p>
-                        <p className="text-sm font-mono text-gray-700">TXN-{Math.random().toString(36).substring(2, 10).toUpperCase()}</p>
-                      </div>
+                      {isInvoiceOnly ? (
+                        <>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Invoice Number</p>
+                            <p className="text-sm font-semibold text-gray-900">{invoiceNumber}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Invoice Date</p>
+                            <p className="text-sm text-gray-700">{new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Total Due</p>
+                            <p className="text-lg font-bold text-amber-600">{formatZMW(pricing.total)}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Due Date</p>
+                            <p className="text-sm text-gray-700">{new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                          </div>
+                          <div className="sm:col-span-2">
+                            <div className="flex items-start gap-2 p-3 bg-amber-50 rounded-xl border border-amber-100">
+                              <AlertCircle className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                              <p className="text-xs text-amber-700">Please remit payment using the bank details on your invoice. Use <strong>{invoiceNumber}</strong> as the payment reference. Your booking will be fully confirmed once payment is received.</p>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Receipt Number</p>
+                            <p className="text-sm font-semibold text-gray-900">RCT-{Date.now().toString(36).toUpperCase()}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Date</p>
+                            <p className="text-sm text-gray-700">{new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })} at {new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' })}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Amount Paid</p>
+                            <p className="text-lg font-bold text-[#16a34a]">{formatZMW(pricing.total)}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Method</p>
+                            <p className="text-sm text-gray-700">{paymentMethod === 'mobile' ? 'Mobile Money' : paymentMethod === 'bank' ? 'Bank Transfer' : 'Card Payment'}</p>
+                          </div>
+                          <div className="sm:col-span-2">
+                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Transaction Reference</p>
+                            <p className="text-sm font-mono text-gray-700">TXN-{Math.random().toString(36).substring(2, 10).toUpperCase()}</p>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1164,10 +1221,10 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                   </div>
                   <div className="space-y-4">
                     {[
-                      { icon: BadgeCheck, label: 'Booking confirmed', detail: bookingReference },
+                      { icon: BadgeCheck, label: isInvoiceOnly ? 'Invoice requested' : 'Booking confirmed', detail: bookingReference },
                       { icon: Mail, label: `Invoice sent to ${company.billingEmail}`, detail: invoiceNumber },
                       ...delegates.filter(d => d.email).map((d) => ({ icon: Mail, label: `Delegate welcome email sent to ${d.email}`, detail: d.fullName })),
-                      { icon: Mail, label: `Payment receipt sent to ${company.billingEmail}`, detail: 'RCT-' + Date.now().toString(36).toUpperCase() },
+                      ...(!isInvoiceOnly ? [{ icon: Mail, label: `Payment receipt sent to ${company.billingEmail}`, detail: 'RCT-' + Date.now().toString(36).toUpperCase() }] : []),
                       { icon: CalendarDays, label: 'Calendar invitation sent to all delegates', detail: `${pricingConfig.days} days` },
                     ].map((item, i) => (
                       <motion.div
@@ -1194,12 +1251,19 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                   <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
                     <Download className="w-4 h-4" /> Download Invoice
                   </Button>
-                  <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
-                    <Receipt className="w-4 h-4" /> Download Receipt
-                  </Button>
+                  {!isInvoiceOnly && (
+                    <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                      <Receipt className="w-4 h-4" /> Download Receipt
+                    </Button>
+                  )}
                   <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
                     <Printer className="w-4 h-4" /> Print Confirmation
                   </Button>
+                  {isInvoiceOnly && (
+                    <Button onClick={() => { setStep('payment'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="gap-2 bg-[#16a34a] hover:bg-[#15803d] text-white text-sm font-semibold">
+                      <Wallet className="w-4 h-4" /> Pay Now
+                    </Button>
+                  )}
                 </div>
 
                 {/* Back to programmes */}

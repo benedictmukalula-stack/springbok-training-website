@@ -323,3 +323,27 @@ Polished the multi-page website with SEO metadata for every route, added the Pro
 - ✅ All 6 content pages return 200
 - ✅ /nonexistent returns custom 404
 - ✅ Static prerendering for all pages
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Fix "Request Invoice Only" button not responding
+
+Work Log:
+- Investigated CourseDetailClient.tsx and found the "Request Invoice Only" button (line 770-772) had no onClick handler — completely inert
+- Added `isInvoiceOnly` state variable to track invoice-only vs paid flow
+- Created `handleRequestInvoice()` function that generates invoice number, sets booking status to 'pending', and transitions to confirmed step
+- Connected `onClick={handleRequestInvoice}` to the button
+- Updated confirmed step to show different UI based on `isInvoiceOnly`:
+  - Title: "Invoice Requested!" vs "Booking Confirmed!"
+  - Receipt section shows invoice summary with "PENDING PAYMENT" badge for invoice-only, vs "PAID" badge and payment receipt for paid flow
+  - Notifications list adapts (no payment receipt notification for invoice-only)
+  - Action buttons: "Pay Now" button shown for invoice-only, "Download Receipt" hidden for invoice-only
+- Verified clean build with no errors
+- Dev server running on port 3000
+
+Stage Summary:
+- Fixed the non-responsive "Request Invoice Only" button
+- Invoice-only flow now: Checkout → Invoice Requested (confirmed step with pending status)
+- Paid flow unchanged: Checkout → Payment → Booking Confirmed
+- "Pay Now" button on invoice-only confirmation allows user to proceed to payment later
