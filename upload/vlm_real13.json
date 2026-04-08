@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "{\n  \"title\": \"Springbok Training Academy - Outdoor Networking Moment\",\n  \"category\": \"Networking\",\n  \"narrative\": \"Two participants at the Springbok Training Academy enjoy a casual outdoor gathering, dressed in vibrant attire and holding water bottles, embodying the relaxed yet engaging atmosphere of the academy's networking opportunities.\"\n}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775688813,
+  "id": "20260409065330c261cc6355d34ae6",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260409065330c261cc6355d34ae6",
+  "usage": {
+    "completion_tokens": 72,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1046,
+    "prompt_tokens_details": {
+      "cached_tokens": 7
+    },
+    "total_tokens": 1118
+  }
+}

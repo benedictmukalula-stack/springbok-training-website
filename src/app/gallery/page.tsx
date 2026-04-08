@@ -132,6 +132,13 @@ const featuredPhotos = [
     category: 'workshops',
     description: 'A diverse group of women in Springbok Training branded shirts gather around two chairs, actively engaged in a collaborative activity. The atmosphere is dynamic and interactive, with participants leaning in, gesturing, and sharing ideas, reflecting the hands-on, participatory approach that defines Springbok\'s professional development workshops. This scene captures the essence of the company\'s commitment to fostering connection and skill-building in a supportive, engaging environment.',
   },
+  {
+    src: '/images/gallery/real-13.jpg',
+    alt: 'Two participants enjoying a casual outdoor networking moment',
+    title: 'Outdoor Networking Moment',
+    category: 'networking',
+    description: 'Two participants at the Springbok Training Academy enjoy a casual outdoor gathering, dressed in vibrant attire and holding water bottles, embodying the relaxed yet engaging atmosphere of the academy\'s networking opportunities. The natural outdoor setting and easy smiles reflect the value Springbok places on building genuine professional connections beyond the classroom, fostering relationships that extend well beyond the training room.',
+  },
 ];
 
 const zipGalleryItems = [
