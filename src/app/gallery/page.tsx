@@ -90,6 +90,41 @@ const featuredPhotos = [
     category: 'graduations',
     description: 'A certificate presentation unfolds at a Springbok Training event, with team members in branded shirts sharing a moment of recognition. The atmosphere is warm and celebratory, highlighting the company\'s commitment to professional development as attendees gather to honour achievements in a bright, welcoming venue.',
   },
+  {
+    src: '/images/gallery/real-7.jpeg',
+    alt: 'Participants at a Springbok Training workshop banner setup',
+    title: 'Workshop Welcome & Setup',
+    category: 'workshops',
+    description: 'Participants gather around a welcoming banner for Springbok Training\'s intensive professional development workshop, designed for secretarial and administrative professionals. Team members in branded shirts engage warmly with attendees, fostering an inviting, collaborative atmosphere that reflects the company\'s commitment to empowering corporate growth. The setting—bright, open, and professional—highlights Springbok\'s role as a trusted partner in delivering impactful training experiences.',
+  },
+  {
+    src: '/images/gallery/real-8.jpeg',
+    alt: 'Participant receiving certificate flanked by Springbok team members',
+    title: 'Certificate Award Moment',
+    category: 'graduations',
+    description: 'A participant proudly holds a certificate while standing between two Springbok Training team members, all wearing branded shirts, in a bright, welcoming indoor space. The atmosphere is celebratory and professional, highlighting a successful training programme where learners are recognised for their achievements. This moment captures the essence of Springbok\'s commitment to empowering professionals through impactful, engaging learning experiences.',
+  },
+  {
+    src: '/images/gallery/real-9.jpeg',
+    alt: 'Professional seated at welcome banner for admin workshop',
+    title: 'Workshop in Session',
+    category: 'workshops',
+    description: 'A professional sits poised in front of a vibrant welcome banner for Springbok Training\'s intensive professional development workshop for secretaries, PAs, and admin professionals. The setting—bright, modern, and inviting—reflects the company\'s commitment to fostering growth in a warm, approachable environment. This image captures the essence of Springbok\'s mission: empowering professionals through tailored, engaging training experiences.',
+  },
+  {
+    src: '/images/gallery/real-10.jpeg',
+    alt: 'Graduation ceremony with certificate recipient and team',
+    title: 'Graduation Day Celebration',
+    category: 'graduations',
+    description: 'A participant proudly holds a certificate while standing between two Springbok Training team members during a graduation ceremony. The atmosphere is celebratory and professional, with other attendees in the background, highlighting the company\'s commitment to empowering professionals through impactful training. This moment captures the success of a training programme, showcasing Springbok\'s role in fostering growth and achievement in Zambia\'s business community.',
+  },
+  {
+    src: '/images/gallery/real-11.jpeg',
+    alt: 'Certificate recipient with Springbok team at training event',
+    title: 'Professional Milestone',
+    category: 'graduations',
+    description: 'A participant proudly holds a certificate while standing between two Springbok Training team members, celebrating the successful completion of a professional training programme. Behind them, other attendees in branded green shirts engage with materials, creating a collaborative and achievement-focused atmosphere. The setting—featuring a company banner and polished indoor space—highlights Springbok\'s commitment to fostering skill development and recognition in Zambia\'s corporate training landscape.',
+  },
 ];
 
 const galleryItems = [
