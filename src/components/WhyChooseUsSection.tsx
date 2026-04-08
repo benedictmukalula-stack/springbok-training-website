@@ -32,7 +32,7 @@ const features = [
 
 export default function WhyChooseUsSection() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="relative py-24 sm:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
@@ -42,14 +42,14 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7 }}
           >
-            <span className="inline-block text-[#c9a84c] text-sm font-semibold tracking-wider uppercase mb-4">
+            <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
               Why Springbok
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#f5f5f5] mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Why Choose{' '}
-              <span className="text-gold-gradient">Springbok</span>?
+              <span className="text-brand-gradient">Springbok</span>?
             </h2>
-            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed mb-10">
+            <p className="text-gray-500 text-base sm:text-lg leading-relaxed mb-10">
               With over a decade of experience in corporate training, Springbok
               Training Academy delivers programmes that create lasting impact. We
               combine industry expertise with innovative learning methodologies to
@@ -71,14 +71,14 @@ export default function WhyChooseUsSection() {
                     }}
                     className="flex gap-4 group"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#c9a84c]/10 flex items-center justify-center group-hover:bg-[#c9a84c]/15 transition-colors duration-300">
-                      <Icon className="w-5 h-5 text-[#c9a84c]" />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors duration-300">
+                      <Icon className="w-5 h-5 text-[#16a34a]" />
                     </div>
                     <div>
-                      <h3 className="text-base font-semibold text-[#f5f5f5] mb-1">
+                      <h3 className="text-base font-semibold text-gray-900 mb-1">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-zinc-400 leading-relaxed">
+                      <p className="text-sm text-gray-500 leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -98,12 +98,12 @@ export default function WhyChooseUsSection() {
           >
             <div className="relative">
               {/* Main decorative card */}
-              <div className="relative bg-[#141414] border border-white/5 rounded-2xl p-8 overflow-hidden">
+              <div className="relative bg-white border border-gray-200 rounded-2xl p-8 overflow-hidden shadow-xl shadow-green-600/5">
                 {/* Background pattern */}
                 <div
                   className="absolute inset-0 opacity-5"
                   style={{
-                    backgroundImage: `radial-gradient(circle at 1px 1px, rgba(201,168,76,0.5) 1px, transparent 0)`,
+                    backgroundImage: `radial-gradient(circle at 1px 1px, rgba(22,163,74,0.5) 1px, transparent 0)`,
                     backgroundSize: '24px 24px',
                   }}
                 />
@@ -111,17 +111,17 @@ export default function WhyChooseUsSection() {
                 <div className="relative z-10 space-y-6">
                   {/* Stats Row */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-[#1a1a1a] rounded-xl p-4 border border-white/5">
-                      <div className="text-2xl font-bold text-gold-gradient mb-1">
+                    <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                      <div className="text-2xl font-bold text-brand-gradient mb-1">
                         12+
                       </div>
-                      <div className="text-xs text-zinc-500">Years Experience</div>
+                      <div className="text-xs text-gray-500">Years Experience</div>
                     </div>
-                    <div className="bg-[#1a1a1a] rounded-xl p-4 border border-white/5">
-                      <div className="text-2xl font-bold text-gold-gradient mb-1">
+                    <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                      <div className="text-2xl font-bold text-brand-gradient mb-1">
                         4.9/5
                       </div>
-                      <div className="text-xs text-zinc-500">Average Rating</div>
+                      <div className="text-xs text-gray-500">Average Rating</div>
                     </div>
                   </div>
 
@@ -134,18 +134,18 @@ export default function WhyChooseUsSection() {
                     ].map((item) => (
                       <div key={item.label}>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="text-zinc-300">{item.label}</span>
-                          <span className="text-[#c9a84c] font-medium">
+                          <span className="text-gray-700">{item.label}</span>
+                          <span className="text-[#16a34a] font-medium">
                             {item.value}%
                           </span>
                         </div>
-                        <div className="h-2 bg-[#1a1a1a] rounded-full overflow-hidden">
+                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
                             whileInView={{ width: `${item.value}%` }}
                             viewport={{ once: true }}
                             transition={{ duration: 1.2, delay: 0.5 }}
-                            className="h-full bg-gradient-to-r from-[#c9a84c] to-[#e8d5a0] rounded-full"
+                            className="h-full bg-gradient-to-r from-[#16a34a] to-[#22c55e] rounded-full"
                           />
                         </div>
                       </div>
@@ -153,14 +153,14 @@ export default function WhyChooseUsSection() {
                   </div>
 
                   {/* Testimonial snippet */}
-                  <div className="bg-[#1a1a1a] rounded-xl p-4 border border-white/5">
-                    <p className="text-sm text-zinc-400 italic leading-relaxed">
+                  <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                    <p className="text-sm text-gray-600 italic leading-relaxed">
                       &ldquo;Springbok delivered beyond our expectations. The
                       training transformed our team&apos;s performance.&rdquo;
                     </p>
                     <div className="mt-3 flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a0]" />
-                      <span className="text-xs text-zinc-500">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#16a34a] to-[#22c55e]" />
+                      <span className="text-xs text-gray-500">
                         — Executive Board, TechVentures SA
                       </span>
                     </div>
@@ -169,8 +169,8 @@ export default function WhyChooseUsSection() {
               </div>
 
               {/* Floating accent elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 border border-[#c9a84c]/20 rounded-2xl -z-10" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 border border-[#c9a84c]/10 rounded-2xl -z-10" />
+              <div className="absolute -top-4 -right-4 w-24 h-24 border border-[#16a34a]/15 rounded-2xl -z-10" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 border border-[#16a34a]/10 rounded-2xl -z-10" />
             </div>
           </motion.div>
         </div>

@@ -35,7 +35,7 @@ function AnimatedSection({ children, className = '' }: { children: React.ReactNo
 
 export default function Home() {
   return (
-    <div className="page-transition min-h-screen bg-[#0d0d0d]">
+    <div className="page-transition min-h-screen bg-white">
       <Header />
       <main>
         <HeroSection />

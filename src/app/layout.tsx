@@ -15,24 +15,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Springbok Training Academy | Premium Corporate Training South Africa",
-  description:
-    "Elevate your workforce with Springbok Training Academy. Expert-led programmes in leadership, sales, operations, compliance, and AI. Virtual, in-person, and corporate in-house delivery.",
-  keywords: [
-    "corporate training",
-    "South Africa",
-    "leadership development",
-    "sales training",
-    "compliance training",
-    "AI skills",
-    "Springbok Training",
-  ],
+  description: "Elevate your workforce with Springbok Training Academy. Expert-led programmes in leadership, sales, operations, compliance, and AI. Virtual, in-person, and corporate in-house delivery.",
+  keywords: ["corporate training", "South Africa", "leadership development", "sales training", "compliance training", "AI skills", "Springbok Training"],
+  authors: [{ name: "Springbok Training Academy" }],
   icons: {
-    icon: "/favicon.svg",
+    icon: "/logo.png",
   },
   openGraph: {
-    title: "Springbok Training Academy | Premium Corporate Training South Africa",
-    description:
-      "Elevate your workforce with Springbok Training Academy. Expert-led programmes in leadership, sales, operations, compliance, and AI.",
+    title: "Springbok Training Academy | Premium Corporate Training",
+    description: "Elevate your workforce with South Africa's premier corporate training academy.",
     siteName: "Springbok Training Academy",
     type: "website",
   },

@@ -71,7 +71,7 @@ const cardVariants = {
 
 export default function ProgrammesSection() {
   return (
-    <section id="programmes" className="relative py-24 sm:py-32">
+    <section id="programmes" className="relative py-24 sm:py-32 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -81,14 +81,14 @@ export default function ProgrammesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[#c9a84c] text-sm font-semibold tracking-wider uppercase mb-4">
+          <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
             What We Offer
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#f5f5f5] mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Our Training{' '}
-            <span className="text-gold-gradient">Programmes</span>
+            <span className="text-brand-gradient">Programmes</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-zinc-400 text-base sm:text-lg">
+          <p className="max-w-2xl mx-auto text-gray-500 text-base sm:text-lg">
             Comprehensive programmes designed to address every aspect of
             organisational development.
           </p>
@@ -108,26 +108,26 @@ export default function ProgrammesSection() {
               <motion.div
                 key={programme.title}
                 variants={cardVariants}
-                className="group relative bg-[#141414] border border-white/5 rounded-xl p-6 hover:border-[#c9a84c]/20 transition-all duration-500 hover:shadow-lg hover:shadow-[#c9a84c]/5"
+                className="group relative bg-white border border-gray-200 rounded-xl p-6 hover:border-[#16a34a]/30 transition-all duration-500 hover:shadow-lg hover:shadow-green-600/5"
               >
-                {/* Gold top accent */}
-                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#c9a84c]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Green top accent */}
+                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#16a34a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="w-12 h-12 rounded-xl bg-[#c9a84c]/10 flex items-center justify-center mb-5 group-hover:bg-[#c9a84c]/15 transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-[#c9a84c]" />
+                <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mb-5 group-hover:bg-green-100 transition-colors duration-300">
+                  <Icon className="w-6 h-6 text-[#16a34a]" />
                 </div>
 
-                <h3 className="text-lg font-semibold text-[#f5f5f5] mb-3 group-hover:text-[#e8d5a0] transition-colors duration-300">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#15803d] transition-colors duration-300">
                   {programme.title}
                 </h3>
 
-                <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+                <p className="text-sm text-gray-500 leading-relaxed mb-5">
                   {programme.description}
                 </p>
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#c9a84c] hover:text-[#e8d5a0] group/link transition-colors duration-200"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#16a34a] hover:text-[#15803d] group/link transition-colors duration-200"
                 >
                   Learn More
                   <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />

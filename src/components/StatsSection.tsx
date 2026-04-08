@@ -60,12 +60,12 @@ export default function StatsSection() {
   return (
     <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d0d] via-[#111111] to-[#0d0d0d]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-green-50/30 to-white" />
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#c9a84c]/5 rounded-full blur-[150px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#16a34a]/5 rounded-full blur-[150px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -75,12 +75,12 @@ export default function StatsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[#c9a84c] text-sm font-semibold tracking-wider uppercase mb-4">
+          <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
             Our Track Record
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#f5f5f5]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
             Numbers That{' '}
-            <span className="text-gold-gradient">Speak</span>
+            <span className="text-brand-gradient">Speak</span>
           </h2>
         </motion.div>
 
@@ -94,14 +94,14 @@ export default function StatsSection() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="text-center"
             >
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gold-gradient mb-2">
+              <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-gradient mb-2">
                 <AnimatedCounter
                   target={stat.value}
                   suffix={stat.suffix}
                   inView={isInView}
                 />
               </div>
-              <p className="text-sm sm:text-base text-zinc-400 font-medium">
+              <p className="text-sm sm:text-base text-gray-500 font-medium">
                 {stat.label}
               </p>
             </motion.div>
