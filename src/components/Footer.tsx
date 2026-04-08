@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   Phone,
   Mail,
@@ -9,37 +10,36 @@ import {
 } from 'lucide-react';
 
 const programmeLinks = [
-  { label: 'All Programmes', href: '#programmes' },
-  { label: 'Leadership & Management', href: '#programmes' },
-  { label: 'Sales & Customer Service', href: '#programmes' },
-  { label: 'Personal Development', href: '#programmes' },
-  { label: 'Administration & Operations', href: '#programmes' },
-  { label: 'Human Resources', href: '#programmes' },
-  { label: 'Corporate Solutions', href: '#corporate' },
+  { label: 'Leadership & Management', href: '/programmes' },
+  { label: 'Sales & Customer Service', href: '/programmes' },
+  { label: 'Personal Development', href: '/programmes' },
+  { label: 'Administration & Operations', href: '/programmes' },
+  { label: 'Human Resources', href: '/programmes' },
+  { label: 'Corporate Solutions', href: '/corporate' },
 ];
 
 const solutionLinks = [
-  { label: 'In-House Training', href: '#corporate' },
-  { label: 'Pricing Calculator', href: '#pricing' },
-  { label: 'Industries We Serve', href: '#' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'In-House Training', href: '/corporate' },
+  { label: 'Pricing Calculator', href: '/pricing' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 const companyLinks = [
-  { label: 'About Springbok', href: '#about' },
-  { label: 'Our Facilitators', href: '#about' },
-  { label: 'Accreditation', href: '#about' },
+  { label: 'About Springbok', href: '/about' },
+  { label: 'Our Facilitators', href: '/about' },
+  { label: 'Accreditation', href: '/about' },
+  { label: 'Mission & Vision', href: '/about' },
 ];
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-gray-900 border-t border-gray-800">
+    <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-4">
-            <a href="#" className="inline-flex items-center gap-3 mb-6 group">
+            <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
               <div className="w-10 h-10 relative overflow-hidden rounded-lg bg-white flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
                 <Image
                   src="/logo.png"
@@ -54,10 +54,10 @@ export default function Footer() {
                   SPRINGBOK
                 </span>
                 <span className="text-[10px] text-[#16a34a] tracking-widest uppercase leading-tight">
-                  Training & Business Solutions
+                  Training &amp; Business Solutions
                 </span>
               </div>
-            </a>
+            </Link>
             <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-sm">
               Zambia&apos;s premier corporate training academy. Elevating
               workforces through expert-led, accredited programmes since 2014.
@@ -106,13 +106,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {programmeLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#16a34a] transition-colors group"
                   >
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -126,13 +126,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {solutionLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#16a34a] transition-colors group"
                   >
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -146,13 +146,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#16a34a] transition-colors group"
                   >
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -162,7 +162,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
-            © 2026 Springbok Training and Business Solutions. All rights reserved.
+            © {new Date().getFullYear()} Springbok Training and Business Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a

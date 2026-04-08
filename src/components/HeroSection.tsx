@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ArrowRight, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-white">
+    <section className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden pt-10 bg-white">
       {/* Background Effects */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
@@ -87,10 +88,10 @@ export default function HeroSection() {
             className="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-base px-8 py-6 shadow-xl shadow-green-600/20 hover:shadow-green-600/30 transition-all duration-300 group"
             asChild
           >
-            <a href="#programmes">
+            <Link href="/programmes">
               Explore Programmes
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
           </Button>
           <Button
             variant="outline"
@@ -98,7 +99,7 @@ export default function HeroSection() {
             className="border-gray-300 text-gray-700 hover:bg-green-50 hover:border-green-300 hover:text-[#16a34a] font-semibold text-base px-8 py-6 transition-all duration-300"
             asChild
           >
-            <a href="#contact">Contact Us</a>
+            <Link href="/contact">Contact Us</Link>
           </Button>
         </motion.div>
 

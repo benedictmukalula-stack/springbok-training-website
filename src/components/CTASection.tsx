@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ArrowRight, Phone, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -46,10 +47,10 @@ export default function CTASection() {
                 className="bg-white hover:bg-gray-100 text-[#16a34a] font-semibold text-base px-8 py-6 shadow-xl shadow-black/10 hover:shadow-black/20 transition-all duration-300 group"
                 asChild
               >
-                <a href="#contact">
+                <Link href="/contact">
                   Get a Free Consultation
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </Button>
               <Button
                 variant="outline"
@@ -57,10 +58,10 @@ export default function CTASection() {
                 className="border-white/30 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 transition-all duration-300 group"
                 asChild
               >
-                <a href="#pricing">
+                <Link href="/pricing">
                   <Calendar className="w-4 h-4 mr-2" />
                   View Pricing
-                </a>
+                </Link>
               </Button>
             </div>
 

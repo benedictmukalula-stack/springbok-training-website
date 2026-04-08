@@ -172,3 +172,109 @@ Updated the entire Springbok website with real company information from their PD
 - ✅ ESLint passed with zero errors
 - ✅ Dev server running, all pages serving 200 status
 - ✅ Compilation successful
+
+---
+
+## Session: Multi-Page Restructure + Full Content
+
+### Task ID: 3
+### Date: 2026-04-08
+
+---
+
+## Summary
+
+Restructured the entire Springbok website from a single-page scrolling site to a proper multi-page Next.js application with 6 separate routes. Each page has full content derived from the company profile PDF document. All navigation uses Next.js Link components for proper client-side routing. The Header and Footer are shared across all pages via the root layout.
+
+## Pages Created
+
+### 1. Home (`/`) — `src/app/page.tsx`
+- HeroSection with animated background and CTA buttons (links to /programmes and /contact)
+- StatsSection with animated counters (17+ years, 500+ orgs, 50+ facilitators, 10 provinces)
+- Quick Links grid (4 cards linking to Programmes, Corporate, About, Pricing)
+- WhyChooseUsSection with company features
+- TestimonialsSection with Zambian testimonials
+- No more CTASection/PricingCalculator on homepage (moved to dedicated pages)
+
+### 2. About (`/about`) — `src/app/about/page.tsx`
+- Page header with company registration details (Cert No 320180002598, TP No 1005238205)
+- "Who Are We" section with company description from PDF
+- Stats card (50+ facilitators, 500+ organizations, 10 provinces)
+- Mission & Vision (2-column cards from PDF content)
+- Community Goals & Investment section
+- Accreditation & Standards (green gradient section, BCI accreditation, 3 feature cards)
+- Key Milestones timeline (2014 founded, 2017 Zambia expansion, 2020 Copperbelt, 2024 17+ years)
+- Industries We Serve (12 industry tags)
+- CTA linking to /programmes and /contact
+
+### 3. Programmes (`/programmes`) — `src/app/programmes/page.tsx`
+- Page header with course overview
+- Sticky category filter bar (All, Leadership, Sales, Personal Dev, Admin, HR, Corporate)
+- 6 programme categories, each with:
+  - Category header (icon, title, description, course count)
+  - Individual course cards with title and full description from PDF
+- 31 total courses with complete descriptions extracted from the company profile
+- CTA linking to /corporate and /pricing
+
+### 4. Corporate Training (`/corporate`) — `src/app/corporate/page.tsx`
+- Page header with in-house training overview
+- 6 benefit cards (Cost Effective, 100% Customized, Team Building, Convenient, Complete Solution, All 10 Provinces)
+- 4 types of in-house training (Standard, Tailor-Made, Customized, Partnership) with full descriptions
+- How It Works (4-step process: Consultation → Design → Delivery → Follow-Up)
+- Facilitators section (green gradient, 3 feature cards)
+- CTA linking to /contact and /pricing
+
+### 5. Pricing (`/pricing`) — `src/app/pricing/page.tsx`
+- Page header with investment overview
+- 3 pricing tiers (Public K3,500/day, In-House K4,200/day, Customized K5,250/day)
+- Each tier with feature list and CTA button
+- PricingCalculator component embedded
+- Volume Discounts section (5%, 10%, 15%)
+- CTA section (green gradient) linking to /contact and phone
+
+### 6. Contact (`/contact`) — `src/app/contact/page.tsx`
+- Page header
+- Contact form (name, email, phone, organization, training type, participants, message)
+- Success message on submission
+- Contact info card (green gradient): phone, email, address, working hours
+- "What Happens Next?" 4-step process
+- Quick Links sidebar
+- Google Maps embed (Lusaka, Zambia)
+
+## Shared Components Updated
+
+### Layout (`src/app/layout.tsx`)
+- Now includes Header and Footer wrapping all pages
+- Added `pt-16 md:pt-20` padding to main content to account for fixed header
+
+### Header (`src/components/Header.tsx`)
+- Navigation links changed from anchor hrefs to Next.js Link with proper routes
+- Active page highlighting (green bg + text)
+- Mobile menu closes on navigation
+- Enquire button links to /contact
+- Uses `usePathname()` for active state detection
+
+### Footer (`src/components/Footer.tsx`)
+- All links changed from anchor hrefs to Next.js Link
+- Programme links point to /programmes
+- Solution links point to /corporate, /pricing, /contact
+- Company links point to /about
+- Dynamic copyright year
+
+### HeroSection (`src/components/HeroSection.tsx`)
+- CTAs use Next.js Link (Explore Programmes → /programmes, Contact Us → /contact)
+- Min height adjusted for fixed header
+
+### PricingCalculator (`src/components/PricingCalculator.tsx`)
+- Removed duplicate section header (now provided by pricing page)
+- CTA button uses Next.js Link to /contact
+
+### CTASection (`src/components/CTASection.tsx`)
+- CTAs use Next.js Link (→ /contact, View Pricing → /pricing)
+
+## Quality Checks
+- ✅ Build successful (all 6 routes compiled)
+- ✅ Dev server running on port 3000
+- ✅ All pages serving 200 status
+- ✅ Static prerendering for all pages
+- ✅ No TypeScript or import errors

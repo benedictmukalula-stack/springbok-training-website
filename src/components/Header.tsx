@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Phone,
@@ -12,17 +14,18 @@ import {
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About', href: '#about' },
-  { label: 'Programmes', href: '#programmes', hasDropdown: true },
-  { label: 'Corporate Training', href: '#corporate' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Programmes', href: '/programmes' },
+  { label: 'Corporate Training', href: '/corporate' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +35,10 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -40,13 +47,13 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg shadow-black/5'
-          : 'bg-transparent'
+          : 'bg-white/80 backdrop-blur-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 relative overflow-hidden rounded-lg bg-white border border-gray-200 flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
               <Image
                 src="/logo.png"
@@ -62,25 +69,32 @@ export default function Header() {
                 SPRINGBOK
               </span>
               <span className="text-[10px] md:text-xs text-[#16a34a] tracking-widest uppercase leading-tight font-medium">
-                Training & Business Solutions
+                Training &amp; Business Solutions
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-[#16a34a] hover:bg-green-50 rounded-lg transition-all duration-200"
-              >
-                {link.label}
-                {link.hasDropdown && (
-                  <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-                )}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`flex items-center gap-1 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? 'text-[#16a34a] bg-green-50 font-semibold'
+                      : 'text-gray-600 hover:text-[#16a34a] hover:bg-green-50'
+                  }`}
+                >
+                  {link.label}
+                  {link.hasDropdown && (
+                    <ChevronDown className="w-3.5 h-3.5 opacity-60" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Actions */}
@@ -101,7 +115,7 @@ export default function Header() {
               className="hidden sm:inline-flex bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm px-5 shadow-lg shadow-green-600/20 hover:shadow-green-600/30 transition-all duration-300"
               asChild
             >
-              <a href="#contact">Enquire</a>
+              <Link href="/contact">Enquire</Link>
             </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -129,19 +143,26 @@ export default function Header() {
             className="lg:hidden overflow-hidden bg-white/98 backdrop-blur-lg border-b border-gray-200"
           >
             <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:text-[#16a34a] hover:bg-green-50 rounded-lg transition-all duration-200"
-                >
-                  {link.label}
-                  {link.hasDropdown && (
-                    <ChevronDown className="w-4 h-4 opacity-60" />
-                  )}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-center justify-between px-4 py-3 text-sm rounded-lg transition-all duration-200 ${
+                      isActive
+                        ? 'text-[#16a34a] bg-green-50 font-semibold'
+                        : 'text-gray-700 hover:text-[#16a34a] hover:bg-green-50'
+                    }`}
+                  >
+                    {link.label}
+                    {link.hasDropdown && (
+                      <ChevronDown className="w-4 h-4 opacity-60" />
+                    )}
+                  </Link>
+                );
+              })}
               <div className="pt-3 border-t border-gray-200">
                 <a
                   href="tel:+260966135560"
@@ -158,9 +179,11 @@ export default function Header() {
                   +260 955 135 560
                 </a>
                 <div className="px-4 pt-2">
-                  <Button className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold">
-                    Enquire Now
-                  </Button>
+                  <Link href="/contact">
+                    <Button className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold">
+                      Enquire Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </nav>
