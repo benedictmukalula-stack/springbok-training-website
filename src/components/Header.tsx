@@ -65,10 +65,10 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-base md:text-lg font-bold tracking-wide text-gray-900 leading-tight">
+              <span className="text-sm md:text-base font-bold tracking-wide text-gray-900 leading-tight">
                 SPRINGBOK
               </span>
-              <span className="text-[10px] md:text-xs text-[#16a34a] tracking-widest uppercase leading-tight font-medium">
+              <span className="text-[8px] md:text-[10px] text-[#16a34a] tracking-widest uppercase leading-tight font-medium">
                 Training &amp; Business Solutions
               </span>
             </div>
