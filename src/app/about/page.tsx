@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Award, Users, Globe, Target, Eye, Heart, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -44,26 +45,35 @@ const industries = [
 export default function AboutPage() {
   return (
     <div className="page-transition min-h-screen bg-white">
-      {/* Page Header */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-b from-green-50/50 to-white overflow-hidden">
+      {/* Page Header with Image */}
+      <section className="relative py-32 sm:py-40 overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#16a34a]/5 rounded-full blur-[128px]" />
-          <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#22c55e]/5 rounded-full blur-[128px]" />
+          <Image
+            src="/images/team-facilitators.jpg"
+            alt="Springbok Training team of expert facilitators"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/60 to-gray-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-gray-900/30" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-3xl"
           >
-            <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
+            <span className="inline-block text-[#22c55e] text-sm font-semibold tracking-wider uppercase mb-4">
               About Springbok
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Zambia&apos;s Trusted{' '}
-              <span className="text-brand-gradient">Training Partner</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#4ade80]">Training Partner</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-base sm:text-lg text-gray-500 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
               Springbok Business Solutions was registered in accordance with the act of the laws of Zambia. Under the register of companies given the certificate No 320180002598. The company is also registered with the Zambia Revenue Authority for Income Tax purposes TP No. 1005238205. Our business involves corporate training, skills development and management consultancy.
             </p>
           </motion.div>
@@ -97,33 +107,28 @@ export default function AboutPage() {
               </div>
 
               <div className="relative">
-                <div className="bg-gradient-to-br from-[#16a34a] to-[#15803d] rounded-2xl p-8 text-white">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-                        <Users className="w-6 h-6" />
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/about-leader.jpg"
+                    alt="Springbok lead facilitator delivering expert corporate training"
+                    width={1152}
+                    height={864}
+                    className="w-full h-auto object-cover"
+                    quality={90}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-white">50+</div>
+                        <div className="text-xs text-gray-300">Expert Facilitators</div>
                       </div>
-                      <div>
-                        <div className="text-3xl font-bold">50+</div>
-                        <div className="text-sm text-white/70">Expert Facilitators</div>
+                      <div className="text-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-white">500+</div>
+                        <div className="text-xs text-gray-300">Organizations Trained</div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-                        <Building2 className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <div className="text-3xl font-bold">500+</div>
-                        <div className="text-sm text-white/70">Organizations Trained</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-                        <Globe className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <div className="text-3xl font-bold">10</div>
-                        <div className="text-sm text-white/70">Provinces Covered</div>
+                      <div className="text-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-white">10</div>
+                        <div className="text-xs text-gray-300">Provinces Covered</div>
                       </div>
                     </div>
                   </div>

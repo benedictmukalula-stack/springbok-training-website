@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Crown,
@@ -203,26 +204,35 @@ export default function ProgrammesPage() {
 
   return (
     <div className="page-transition min-h-screen bg-white">
-      {/* Page Header */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-b from-green-50/50 to-white overflow-hidden">
+      {/* Page Header with Image */}
+      <section className="relative py-32 sm:py-40 overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#16a34a]/5 rounded-full blur-[128px]" />
-          <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#22c55e]/5 rounded-full blur-[128px]" />
+          <Image
+            src="/images/programmes-classroom.jpg"
+            alt="Professional corporate training classroom session"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/60 to-gray-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-gray-900/30" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-3xl"
           >
-            <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
+            <span className="inline-block text-[#22c55e] text-sm font-semibold tracking-wider uppercase mb-4">
               Training Programmes
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Our Expert-Led{' '}
-              <span className="text-brand-gradient">Programmes</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#4ade80]">Programmes</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-base sm:text-lg text-gray-500 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
               Comprehensive training programmes across 6 categories designed to address every aspect of organisational and personal development. Each course is developed by industry professionals with years of practical experience.
             </p>
           </motion.div>

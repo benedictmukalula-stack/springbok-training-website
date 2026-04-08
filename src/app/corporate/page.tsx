@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Building2,
@@ -99,26 +100,35 @@ const benefits = [
 export default function CorporatePage() {
   return (
     <div className="page-transition min-h-screen bg-white">
-      {/* Page Header */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-b from-green-50/50 to-white overflow-hidden">
+      {/* Page Header with Image */}
+      <section className="relative py-32 sm:py-40 overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#16a34a]/5 rounded-full blur-[128px]" />
-          <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#22c55e]/5 rounded-full blur-[128px]" />
+          <Image
+            src="/images/corporate-inhouse.jpg"
+            alt="Springbok in-house corporate training session"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/60 to-gray-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-gray-900/30" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-3xl"
           >
-            <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-4">
+            <span className="inline-block text-[#22c55e] text-sm font-semibold tracking-wider uppercase mb-4">
               Corporate Solutions
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               In-House Training{' '}
-              <span className="text-brand-gradient">Solutions</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#4ade80]">Solutions</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-base sm:text-lg text-gray-500 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
               Our In-House Training Courses are 100% customized and developed with your organizational objectives as their core guideline. A complete learning solution delivered at your location, at your preferred time.
             </p>
           </motion.div>
@@ -251,9 +261,19 @@ export default function CorporatePage() {
         </section>
       </AnimatedSection>
 
-      {/* Facilitators */}
+      {/* Facilitators with Image */}
       <AnimatedSection>
-        <section className="py-20 sm:py-24 bg-gradient-to-br from-[#16a34a] via-[#15803d] to-[#22c55e] text-white">
+        <section className="relative py-20 sm:py-24 overflow-hidden bg-gray-900">
+          <div className="absolute inset-0">
+            <Image
+              src="/images/team-building.jpg"
+              alt="Springbok corporate team building training"
+              fill
+              className="object-cover object-center"
+              quality={90}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-[#16a34a]/70 to-[#15803d]/60" />
+          </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
