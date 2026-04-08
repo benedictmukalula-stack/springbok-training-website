@@ -1,7 +1,7 @@
 #!/bin/bash
 while true; do
-    echo "[$(date)] Starting server..."
-    npx next start -p 3000 2>&1
-    echo "[$(date)] Server died, restarting in 2s..."
-    sleep 2
+  cd /home/z/my-project
+  npx next dev -p 3000 >> /home/z/my-project/dev.log 2>&1
+  echo "[$(date)] Server died, restarting in 2s..." >> /home/z/my-project/dev.log
+  sleep 2
 done
