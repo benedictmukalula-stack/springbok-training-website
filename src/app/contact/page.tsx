@@ -50,9 +50,9 @@ const contactInfo = [
   },
   {
     icon: Mail,
-    label: 'Email',
-    value: 'admin@springboktraining.net',
-    href: 'mailto:admin@springboktraining.net',
+    label: 'General Enquiries',
+    value: 'info@springboktraining.net',
+    href: 'mailto:info@springboktraining.net',
   },
   {
     icon: MapPin,
@@ -88,6 +88,10 @@ export default function ContactPage() {
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
     setFormData({ name: '', email: '', phone: '', organization: '', trainingType: '', participants: '', message: '' });
+    // Redirect to mailto with form data
+    const subject = encodeURIComponent(`Training Enquiry from ${formData.name} — ${formData.organization || 'N/A'}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nOrganization: ${formData.organization}\nTraining Type: ${formData.trainingType}\nParticipants: ${formData.participants}\n\nMessage:\n${formData.message}`);
+    window.location.href = `mailto:info@springboktraining.net?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -407,6 +411,70 @@ export default function ContactPage() {
                 </div>
               </AnimatedSection>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Email Routing Directory */}
+      <section className="py-16 sm:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-3">
+              Email Directory
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+              Reach the Right Department
+            </h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
+              Choose the right email for your enquiry to get the fastest response.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: '📧',
+                label: 'Visitor Contact Form',
+                email: 'info@springboktraining.net',
+                desc: 'General inquiries, questions about our programmes and services.',
+                color: 'bg-green-50 border-green-100',
+              },
+              {
+                icon: '🎓',
+                label: 'Programme Registration',
+                email: 'registration@springboktraining.net',
+                desc: 'Signup confirmations, delegate details, and registration support.',
+                color: 'bg-blue-50 border-blue-100',
+              },
+              {
+                icon: '📰',
+                label: 'Newsletter Signup',
+                email: 'subscribe@springboktraining.net',
+                desc: 'Subscribe to our newsletter for training updates and industry news.',
+                color: 'bg-amber-50 border-amber-100',
+              },
+              {
+                icon: '💳',
+                label: 'Payments & Invoices',
+                email: 'accounts@springboktraining.net',
+                desc: 'Payment confirmations, receipts, invoices, and billing queries.',
+                color: 'bg-purple-50 border-purple-100',
+              },
+            ].map((dept) => (
+              <a
+                key={dept.email}
+                href={`mailto:${dept.email}`}
+                className={`block rounded-xl border ${dept.color} p-6 hover:shadow-lg transition-all duration-300 group`}
+              >
+                <div className="text-2xl mb-3">{dept.icon}</div>
+                <h3 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-[#16a34a] transition-colors">
+                  {dept.label}
+                </h3>
+                <p className="text-xs text-gray-600 mb-3 leading-relaxed">{dept.desc}</p>
+                <div className="text-xs font-semibold text-[#16a34a] group-hover:underline">
+                  {dept.email}
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>

@@ -73,11 +73,11 @@ export default function Footer() {
                 +260 955 135 560
               </a>
               <a
-                href="mailto:admin@springboktraining.net"
+                href="mailto:info@springboktraining.net"
                 className="flex items-center gap-3 text-sm text-gray-400 hover:text-[#16a34a] transition-colors group"
               >
                 <Mail className="w-4 h-4 text-gray-500 group-hover:text-[#16a34a] transition-colors" />
-                admin@springboktraining.net
+                info@springboktraining.net
               </a>
               <div className="flex items-start gap-3 text-sm text-gray-400">
                 <MapPin className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
@@ -158,13 +158,13 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <a
-              href="mailto:admin@springboktraining.net?subject=Privacy Policy Request"
+              href="mailto:info@springboktraining.net?subject=Privacy Policy Request"
               className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
             >
               Privacy Policy
             </a>
             <a
-              href="mailto:admin@springboktraining.net?subject=Terms of Service Request"
+              href="mailto:info@springboktraining.net?subject=Terms of Service Request"
               className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
             >
               Terms of Service

@@ -69,10 +69,19 @@ Invoice No: ${invoiceNumber || 'N/A'}
     `);
 
     // ── In production, send actual email here ──
+    // Email routing:
+    //   info@springboktraining.net        — Visitor contact form (general inquiries)
+    //   registration@springboktraining.net — Programme registration confirmations
+    //   subscribe@springboktraining.net    — Newsletter subscriptions
+    //   accounts@springboktraining.net     — Payments & invoices
+    //
     // Example with Resend:
     // const resend = new Resend(process.env.RESEND_API_KEY);
+    // const fromAddress = type === 'invoice' || type === 'payment_receipt'
+    //   ? 'Springbok Accounts <accounts@springboktraining.net>'
+    //   : 'Springbok Training <registration@springboktraining.net>';
     // await resend.emails.send({
-    //   from: 'Springbok Training <noreply@springboktraining.net>',
+    //   from: fromAddress,
     //   to,
     //   subject,
     //   html: generateEmailTemplate(type, body),

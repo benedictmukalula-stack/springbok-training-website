@@ -1390,12 +1390,23 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                   </Button>
                 </div>
 
+                {/* Email routing for payment/invoice queries */}
+                {isInvoiceOnly && (
+                  <div className="mt-6 text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-xl border border-gray-100">
+                      <Mail className="w-3.5 h-3.5 text-gray-400" />
+                      <span className="text-xs text-gray-500">Invoice queries? Contact </span>
+                      <a href="mailto:accounts@springboktraining.net" className="text-xs font-medium text-[#16a34a] hover:underline">accounts@springboktraining.net</a>
+                    </div>
+                  </div>
+                )}
+
                 {/* Contact support */}
                 <div className="mt-8 text-center">
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-xl border border-gray-100">
                     <Phone className="w-3.5 h-3.5 text-gray-400" />
                     <span className="text-xs text-gray-500">Need help? Contact support at </span>
-                    <a href="mailto:training@springbok.co.zm" className="text-xs font-medium text-[#16a34a] hover:underline">training@springbok.co.zm</a>
+                    <a href="mailto:registration@springboktraining.net" className="text-xs font-medium text-[#16a34a] hover:underline">registration@springboktraining.net</a>
                   </div>
                 </div>
               </motion.div>
