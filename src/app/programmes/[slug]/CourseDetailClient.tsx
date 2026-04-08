@@ -154,34 +154,148 @@ export default function CourseDetailClient({ course }: { course: Course }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Process payment
-  const handleProcessPayment = () => {
+  // Process payment — calls real API: create booking → process payment → confirm
+  const handleProcessPayment = async () => {
     setIsProcessing(true);
     setIsInvoiceOnly(false);
-    setTimeout(() => {
-      const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
+    try {
+      // 1. Create booking on server (persists to database)
+      const bookingRes = await fetch('/api/bookings/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          programmeSlug: course.slug,
+          company,
+          authoriser,
+          delegates,
+          pricingConfig,
+          pricingSnapshot: pricing,
+          basePricePerDay: course.basePricePerDay,
+          addOns: course.addOns,
+          isInvoiceOnly: false,
+        }),
+      });
+      const bookingData = await bookingRes.json();
+      if (!bookingData.success) throw new Error(bookingData.error || 'Booking failed');
+
+      const ref = bookingData.booking.reference;
+      const inv = bookingData.booking.invoiceNumber;
       setBookingReference(ref);
-      setBookingStatus('confirmed');
+      setInvoiceNumber(inv);
+
+      // 2. Process payment
+      const paymentRes = await fetch('/api/payment/process', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookingReference: ref,
+          paymentMethod,
+          amount: pricing.total,
+          mobileNumber,
+          cardDetails,
+        }),
+      });
+      const paymentData = await paymentRes.json();
+
+      if (paymentData.success) {
+        setBookingStatus('confirmed');
+      } else {
+        setBookingStatus('pending'); // Payment failed, booking still saved
+      }
+
+      // 3. Send notification email
+      await fetch('/api/notifications/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'payment_receipt',
+          to: company.billingEmail,
+          bookingRef: ref,
+          invoiceNumber: inv,
+          companyName: company.companyName,
+          courseTitle: course.title,
+          delegateCount: delegates.length,
+          totalAmount: pricing.total,
+          status: paymentData.success ? 'paid' : 'payment_pending',
+        }),
+      }).catch(() => {}); // Don't block on email failure
+
+    } catch (error) {
+      console.error('[PAYMENT FLOW ERROR]', error);
+      // Fallback: still generate a reference so the UI doesn't break
+      if (!bookingReference) {
+        const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
+        setBookingReference(ref);
+      }
+      setBookingStatus('pending');
+    } finally {
       setIsProcessing(false);
       setStep('confirmed');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 2500);
+    }
   };
 
-  // Request invoice only (skip payment)
-  const handleRequestInvoice = () => {
+  // Request invoice only — calls real API: create booking → skip payment
+  const handleRequestInvoice = async () => {
     setIsProcessing(true);
     setIsInvoiceOnly(true);
-    const inv = invoiceNumber || ('INV-' + Date.now().toString(36).toUpperCase());
-    setInvoiceNumber(inv);
-    setTimeout(() => {
-      const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
-      setBookingReference(ref);
+    try {
+      const inv = invoiceNumber || ('INV-' + Date.now().toString(36).toUpperCase());
+      setInvoiceNumber(inv);
+
+      // 1. Create booking on server
+      const bookingRes = await fetch('/api/bookings/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          programmeSlug: course.slug,
+          company,
+          authoriser,
+          delegates,
+          pricingConfig,
+          pricingSnapshot: pricing,
+          basePricePerDay: course.basePricePerDay,
+          addOns: course.addOns,
+          isInvoiceOnly: true,
+        }),
+      });
+      const bookingData = await bookingRes.json();
+      if (!bookingData.success) throw new Error(bookingData.error || 'Booking failed');
+
+      setBookingReference(bookingData.booking.reference);
+      setInvoiceNumber(bookingData.booking.invoiceNumber);
       setBookingStatus('pending');
+
+      // 2. Send invoice notification email
+      await fetch('/api/notifications/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'invoice',
+          to: company.billingEmail,
+          bookingRef: bookingData.booking.reference,
+          invoiceNumber: bookingData.booking.invoiceNumber,
+          companyName: company.companyName,
+          courseTitle: course.title,
+          delegateCount: delegates.length,
+          totalAmount: pricing.total,
+          status: 'pending',
+        }),
+      }).catch(() => {}); // Don't block on email failure
+
+    } catch (error) {
+      console.error('[INVOICE FLOW ERROR]', error);
+      // Fallback
+      if (!bookingReference) {
+        const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
+        setBookingReference(ref);
+      }
+      setBookingStatus('pending');
+    } finally {
       setIsProcessing(false);
       setStep('confirmed');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1800);
+    }
   };
 
   // Back nav

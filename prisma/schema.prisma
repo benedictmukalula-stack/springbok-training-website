@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,20 +7,130 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// ═══════════════════════════════════════════════
+// PROGRAMMES (Course catalogue)
+// ═══════════════════════════════════════════════
+
+model Programme {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  categoryId      String
+  categoryTitle   String
+  shortDescription String
+  fullDescription String
+  duration        String   // e.g. "3 Days"
+  durationDays    Int      // numeric days for pricing
+  deliveryModes   String   // JSON array: ["Public","In-House","Online"]
+  basePricePerDay Int      // e.g. 3500 (ZMW)
+  targetAudience  String   // JSON array
+  learningOutcomes String  // JSON array
+  modules         String   // JSON array of {title, topics[]}
+  accreditation   String
+  addOns          String   // JSON array of {id, name, pricePerDelegate}
+  level           String   // Foundation | Intermediate | Advanced | Custom
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  bookings Booking[]
 }
 
-model Post {
+// ═══════════════════════════════════════════════
+// BOOKINGS
+// ═══════════════════════════════════════════════
+
+model Booking {
+  id              String   @id @default(cuid())
+  reference       String   @unique // e.g. "SBK-M4X7K9"
+  programmeId     String
+  programme       Programme @relation(fields: [programmeId], references: [id])
+
+  // Company
+  companyName     String
+  industry        String   @default("")
+  billingEmail    String
+  phone           String   @default("")
+  billingAddress  String   @default("")
+
+  // Authoriser
+  authoriserName  String   @default("")
+  authoriserJob   String   @default("")
+  authoriserEmail String   @default("")
+  authoriserPhone String   @default("")
+
+  // Pricing snapshot (frozen at booking time — NEVER recalculate)
+  pricingConfig   String   // JSON: full PricingConfig
+  pricingSnapshot String   // JSON: full PricingSnapshot (baseCost, surcharge, discounts, vat, total)
+  totalAmount     Int      // ZMW cents or whole number — denormalised for quick queries
+
+  // Status
+  status          String   @default("pending") // pending | confirmed | paid | cancelled
+  paymentMethod   String   @default("")        // mobile | bank | card | invoice
+  isInvoiceOnly   Boolean  @default(false)
+
+  // Invoice
+  invoiceNumber   String   @default("")
+  invoiceDate     DateTime?
+  dueDate         DateTime?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  paidAt          DateTime?
+
+  delegates       Delegate[]
+  payments        Payment[]
+}
+
+// ═══════════════════════════════════════════════
+// DELEGATES
+// ═══════════════════════════════════════════════
+
+model Delegate {
+  id          String  @id @default(cuid())
+  bookingId   String
+  booking     Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  fullName    String
+  email       String
+  role        String  @default("")
+  phone       String  @default("")
+  location    String  @default("")
+  createdAt   DateTime @default(now())
+
+  @@index([bookingId])
+}
+
+// ═══════════════════════════════════════════════
+// PAYMENTS
+// ═══════════════════════════════════════════════
+
+model Payment {
+  id              String   @id @default(cuid())
+  bookingId       String
+  booking         Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  paymentMethod   String   // mobile | bank | card
+  amount          Int      // amount in ZMW
+  status          String   @default("pending") // pending | processing | completed | failed
+  providerRef     String   @default("") // transaction reference from payment provider
+  providerPayload String   @default("") // full webhook payload for audit
+  createdAt       DateTime @default(now())
+  completedAt     DateTime?
+
+  @@index([bookingId])
+}
+
+// ═══════════════════════════════════════════════
+// PROMO CODES
+// ═══════════════════════════════════════════════
+
+model PromoCode {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
+  code      String   @unique
+  discount  Float    // e.g. 0.10 for 10%
+  maxUses   Int      @default(-1) // -1 = unlimited
+  usedCount Int      @default(0)
+  active    Boolean  @default(true)
+  expiresAt DateTime?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
