@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   X,
   ChevronLeft,
@@ -13,6 +15,8 @@ import {
   Lightbulb,
   Handshake,
   Presentation,
+  Phone,
+  ArrowRight,
 } from 'lucide-react';
 
 const sectionVariants = {
@@ -508,6 +512,61 @@ export default function GalleryPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* CTA Section */}
+      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-[#16a34a] via-[#15803d] to-[#22c55e] text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.2) 1px, transparent 0)',
+              backgroundSize: '32px 32px',
+            }}
+          />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            Inspired by What You See?
+          </h2>
+          <p className="max-w-2xl mx-auto text-white/80 mb-10 leading-relaxed">
+            Join hundreds of professionals across Zambia who have transformed their careers through our accredited training programmes.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+            <Button
+              size="lg"
+              className="bg-white hover:bg-gray-100 text-[#16a34a] font-semibold text-base px-8 py-6 shadow-xl shadow-black/10 hover:shadow-black/20 transition-all duration-300 group"
+              asChild
+            >
+              <Link href="/programmes">
+                Browse 31 Programmes
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white/30 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 transition-all duration-300 group"
+              asChild
+            >
+              <Link href="/contact">
+                <Phone className="w-4 h-4 mr-2" />
+                Enquire Now
+              </Link>
+            </Button>
+          </div>
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/10">
+            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+              <Phone className="w-5 h-5 text-white" />
+            </div>
+            <div className="text-left">
+              <div className="text-xs text-white/60 font-medium">Call Us Today</div>
+              <a href="tel:+260966135560" className="text-base font-bold text-white hover:text-white/80 transition-colors">
+                +260 966 135 560
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -896,10 +896,10 @@ export default function CourseDetailClient({ course }: { course: Course }) {
 
                 {/* Action buttons */}
                 <div className="space-y-3">
-                  <Button onClick={handleProceedToPayment} size="lg" className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm py-5 shadow-lg shadow-green-600/20 gap-2">
+                  <Button onClick={handleProceedToPayment} size="lg" className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm py-5 shadow-xl shadow-green-600/25 gap-2 ring-2 ring-[#16a34a]/20 hover:ring-[#16a34a]/40 transition-all duration-300">
                     <Wallet className="w-4 h-4" /> Pay Now · {formatZMW(pricing.total)}
                   </Button>
-                  <Button variant="outline" onClick={handleRequestInvoice} className="w-full border-gray-200 text-gray-600 hover:text-gray-900 hover:border-[#16a34a]/30 text-sm py-5 gap-2">
+                  <Button variant="outline" onClick={handleRequestInvoice} className="w-full border-gray-300 text-gray-700 hover:text-gray-900 hover:border-[#16a34a]/30 text-sm py-5 gap-2">
                     <Receipt className="w-4 h-4" /> Request Invoice Only
                   </Button>
                 </div>

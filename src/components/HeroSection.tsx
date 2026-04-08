@@ -84,7 +84,7 @@ export default function HeroSection() {
           >
             <Button
               size="lg"
-              className="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-base px-8 py-6 shadow-xl shadow-green-600/30 hover:shadow-green-600/40 transition-all duration-300 group"
+              className="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-base px-8 py-6 shadow-xl shadow-green-600/30 hover:shadow-green-600/40 ring-2 ring-[#22c55e]/20 hover:ring-[#22c55e]/40 transition-all duration-300 group"
               asChild
             >
               <Link href="/programmes">
@@ -95,7 +95,7 @@ export default function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-semibold text-base px-8 py-6 backdrop-blur-sm transition-all duration-300"
+              className="border-white/30 text-white hover:bg-white/15 hover:border-white/50 font-semibold text-base px-8 py-6 backdrop-blur-sm transition-all duration-300"
               asChild
             >
               <Link href="/contact">Contact Us</Link>

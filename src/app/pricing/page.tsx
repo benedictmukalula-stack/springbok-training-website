@@ -147,10 +147,10 @@ export default function PricingPage() {
                   </ul>
 
                   <Button
-                    className={`w-full font-semibold text-base py-3 group ${
+                    className={`w-full font-semibold text-base py-3.5 rounded-xl transition-all duration-300 group ${
                       tier.popular
-                        ? 'bg-[#16a34a] hover:bg-[#15803d] text-white shadow-lg shadow-green-600/20'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                        ? 'bg-[#16a34a] hover:bg-[#15803d] text-white shadow-lg shadow-green-600/20 hover:shadow-green-600/30 ring-2 ring-[#16a34a]/20'
+                        : 'bg-gray-900 hover:bg-gray-800 text-white shadow-md hover:shadow-lg ring-1 ring-gray-800'
                     }`}
                     asChild
                   >
@@ -219,7 +219,7 @@ export default function PricingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              className="bg-white hover:bg-gray-100 text-[#16a34a] font-semibold text-base px-8 py-6 shadow-xl group"
+              className="bg-white hover:bg-gray-50 text-[#16a34a] font-bold text-base px-10 py-6 shadow-2xl shadow-black/15 hover:shadow-black/25 ring-2 ring-white/30 hover:ring-white/60 transition-all duration-300 group"
               asChild
             >
               <Link href="/contact">
@@ -230,7 +230,7 @@ export default function PricingPage() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 group"
+              className="border-white/40 text-white hover:bg-white/15 hover:border-white/60 font-semibold text-base px-8 py-6 backdrop-blur-sm transition-all duration-300 group"
               asChild
             >
               <a href="tel:+260966135560">

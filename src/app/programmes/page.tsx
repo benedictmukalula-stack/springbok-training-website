@@ -263,7 +263,7 @@ export default function ProgrammesPage() {
               <p className="text-sm text-gray-500 mb-6">
                 Try adjusting your search or filters to find what you&apos;re looking for.
               </p>
-              <Button onClick={clearFilters} variant="outline" className="gap-2">
+              <Button onClick={clearFilters} variant="outline" className="gap-2 border-gray-300 hover:border-[#16a34a] hover:text-[#16a34a]">
                 <X className="w-4 h-4" />
                 Clear Filters
               </Button>
@@ -365,7 +365,7 @@ export default function ProgrammesPage() {
                                       size="sm"
                                       variant="outline"
                                       onClick={() => toggleCourse(course.slug)}
-                                      className="hidden sm:flex gap-1 text-xs"
+                                      className="hidden sm:flex gap-1 text-xs border-gray-300 hover:border-[#16a34a] hover:text-[#16a34a]"
                                     >
                                       {isExpanded ? (
                                         <>
