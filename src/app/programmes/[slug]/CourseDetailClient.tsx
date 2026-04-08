@@ -1001,7 +1001,7 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                                     <span className="text-xs text-gray-500">Reference</span>
                                     <div className="flex items-center gap-1.5">
                                       <span className="text-sm font-semibold text-[#16a34a]">{invoiceNumber || 'INV-PENDING'}</span>
-                                      <button className="text-gray-400 hover:text-[#16a34a] transition-colors"><Copy className="w-3.5 h-3.5" /></button>
+                                      <button onClick={() => { navigator.clipboard?.writeText(invoiceNumber || 'INV-PENDING'); }} className="text-gray-400 hover:text-[#16a34a] transition-colors" title="Copy reference"><Copy className="w-3.5 h-3.5" /></button>
                                     </div>
                                   </div>
                                 </div>
@@ -1248,15 +1248,15 @@ export default function CourseDetailClient({ course }: { course: Course }) {
 
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
-                  <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                  <Button variant="outline" onClick={() => window.print()} className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
                     <Download className="w-4 h-4" /> Download Invoice
                   </Button>
                   {!isInvoiceOnly && (
-                    <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                    <Button variant="outline" onClick={() => window.print()} className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
                       <Receipt className="w-4 h-4" /> Download Receipt
                     </Button>
                   )}
-                  <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                  <Button variant="outline" onClick={() => window.print()} className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
                     <Printer className="w-4 h-4" /> Print Confirmation
                   </Button>
                   {isInvoiceOnly && (
