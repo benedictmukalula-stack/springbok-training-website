@@ -125,6 +125,13 @@ const featuredPhotos = [
     category: 'graduations',
     description: 'A participant proudly holds a certificate while standing between two Springbok Training team members, celebrating the successful completion of a professional training programme. Behind them, other attendees in branded green shirts engage with materials, creating a collaborative and achievement-focused atmosphere. The setting—featuring a company banner and polished indoor space—highlights Springbok\'s commitment to fostering skill development and recognition in Zambia\'s corporate training landscape.',
   },
+  {
+    src: '/images/gallery/real-12.jpeg',
+    alt: 'Group of women engaged in interactive training activity',
+    title: 'Collaborative Group Activity',
+    category: 'workshops',
+    description: 'A diverse group of women in Springbok Training branded shirts gather around two chairs, actively engaged in a collaborative activity. The atmosphere is dynamic and interactive, with participants leaning in, gesturing, and sharing ideas, reflecting the hands-on, participatory approach that defines Springbok\'s professional development workshops. This scene captures the essence of the company\'s commitment to fostering connection and skill-building in a supportive, engaging environment.',
+  },
 ];
 
 const galleryItems = [
