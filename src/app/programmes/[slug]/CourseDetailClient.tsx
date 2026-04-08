@@ -11,6 +11,7 @@ import {
   Building2, User, FileText, Plus, Minus, Loader2, ShieldCheck,
   Zap, Calculator, CreditCard, Mail, Phone, MapPin, Globe,
   AlertCircle, Check, BadgeCheck, Printer, UserPlus, Trash2, UserMinus,
+  Receipt, Smartphone, Landmark, Wallet, Copy, CalendarDays, Send, PartyPopper, CircleDollarSign, Lock,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { Course } from '@/lib/courses-data';
@@ -35,7 +36,7 @@ export default function CourseDetailClient({ course }: { course: Course }) {
   const { addToCart, setBookingStatus, setBookingReference, lastBooking, bookingReference, bookingStatus } = useAppStore();
 
   // Flow state
-  const [step, setStep] = useState<'details' | 'register' | 'checkout' | 'confirmed'>('details');
+  const [step, setStep] = useState<'details' | 'register' | 'checkout' | 'payment' | 'confirmed'>('details');
 
   // Pricing config
   const [pricingConfig, setPricingConfig] = useState<PricingConfig>({
@@ -59,6 +60,13 @@ export default function CourseDetailClient({ course }: { course: Course }) {
   const [showPromoInput, setShowPromoInput] = useState(false);
   const [promoError, setPromoError] = useState('');
   const [promoSuccess, setPromoSuccess] = useState('');
+
+  // Payment state
+  const [paymentMethod, setPaymentMethod] = useState<'mobile' | 'bank' | 'card'>('mobile');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [cardDetails, setCardDetails] = useState({ number: '', expiry: '', cvv: '', name: '' });
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [invoiceNumber, setInvoiceNumber] = useState('');
 
   // Calculate pricing
   const pricing = useMemo(() => {
@@ -137,24 +145,32 @@ export default function CourseDetailClient({ course }: { course: Course }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Confirm booking
-  const handleConfirmBooking = () => {
-    setBookingStatus('pending');
+  // Proceed to payment (from checkout)
+  const handleProceedToPayment = () => {
+    const inv = 'INV-' + Date.now().toString(36).toUpperCase();
+    setInvoiceNumber(inv);
+    setStep('payment');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-    // Simulate booking
+  // Process payment
+  const handleProcessPayment = () => {
+    setIsProcessing(true);
     setTimeout(() => {
       const ref = 'SBK-' + Date.now().toString(36).toUpperCase();
       setBookingReference(ref);
       setBookingStatus('confirmed');
+      setIsProcessing(false);
       setStep('confirmed');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 2000);
+    }, 2500);
   };
 
   // Back nav
   const handleBack = () => {
     if (step === 'register') setStep('details');
     else if (step === 'checkout') setStep('register');
+    else if (step === 'payment') setStep('checkout');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -588,10 +604,10 @@ export default function CourseDetailClient({ course }: { course: Course }) {
         </section>
       )}
 
-      {/* ═══════ CHECKOUT STEP ═══════ */}
+      {/* ═══════ CHECKOUT STEP (Invoice) ═══════ */}
       {step === 'checkout' && (
         <section className="py-12 sm:py-16">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <button onClick={handleBack} className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#16a34a] mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4" /> Back to registration
             </button>
@@ -603,141 +619,609 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                 <div className="w-8 h-8 rounded-full bg-[#16a34a] text-white flex items-center justify-center text-sm font-bold"><Check className="w-4 h-4" /></div>
                 <div className="h-px flex-1 bg-[#16a34a]" />
                 <div className="w-8 h-8 rounded-full bg-[#16a34a] text-white flex items-center justify-center text-sm font-bold">3</div>
+                <div className="h-px flex-1 bg-gray-200" />
+                <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">4</div>
+                <div className="h-px flex-1 bg-gray-200" />
+                <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">5</div>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Checkout</h1>
-              <p className="text-sm text-gray-500 mt-1">Review your booking before confirmation</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Checkout & Invoice</h1>
+              <p className="text-sm text-gray-500 mt-1">Review your invoice and proceed to payment</p>
             </div>
 
-            {/* Order Summary */}
-            <div className="space-y-6">
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8">
-                <div className="flex items-center gap-2 mb-5">
-                  <ShoppingCart className="w-5 h-5 text-[#16a34a]" />
-                  <h2 className="text-lg font-bold text-gray-900">Order Summary</h2>
-                </div>
+            <div className="grid lg:grid-cols-5 gap-8">
+              {/* LEFT: Invoice */}
+              <div className="lg:col-span-3">
+                <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                  {/* Invoice header */}
+                  <div className="bg-gray-50 border-b border-gray-200 p-6 sm:p-8">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <img src="/springbok-logo.png" alt="Springbok Training Academy" className="h-10 w-auto" />
+                        <div>
+                          <p className="text-sm font-bold text-gray-900">Springbok Training Academy</p>
+                          <p className="text-[10px] text-gray-500">Professional Training Solutions</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs font-bold text-gray-900">INVOICE</p>
+                        <p className="text-xs text-gray-500">{invoiceNumber || 'INV-PENDING'}</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Invoice Date</p>
+                        <p className="text-xs text-gray-700 mt-0.5">{new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Due Date</p>
+                        <p className="text-xs text-gray-700 mt-0.5">{new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                      </div>
+                    </div>
+                  </div>
 
-                <div className="bg-gray-50 rounded-xl p-4 mb-5">
-                  <div className="flex items-start justify-between">
+                  {/* Bill-to */}
+                  <div className="px-6 sm:px-8 py-4 border-b border-gray-100">
+                    <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-1">Bill To</p>
+                    <p className="text-sm font-semibold text-gray-900">{company.companyName}</p>
+                    <p className="text-xs text-gray-500">{company.billingEmail}</p>
+                    {company.billingAddress && <p className="text-xs text-gray-500">{company.billingAddress}</p>}
+                  </div>
+
+                  {/* Line items */}
+                  <div className="px-6 sm:px-8 py-4">
+                    <div className="space-y-3">
+                      {/* Course line */}
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <p className="text-sm font-semibold text-gray-900">{course.title}</p>
+                          <p className="text-xs text-gray-500">{pricingConfig.delegates} delegates × {pricingConfig.days} days × {formatZMW(course.basePricePerDay)}/day</p>
+                        </div>
+                        <p className="text-sm font-semibold text-gray-900">{formatZMW(pricing.baseCost)}</p>
+                      </div>
+                      {/* Delivery surcharge */}
+                      {pricing.surcharge > 0 && (
+                        <div className="flex justify-between items-center">
+                          <p className="text-xs text-gray-500">
+                            Delivery mode surcharge ({pricingConfig.deliveryMode === 'inhouse' ? 'In-House' : pricingConfig.deliveryMode === 'online' ? 'Online' : 'Public'})
+                          </p>
+                          <p className="text-xs text-amber-600">+{formatZMW(pricing.surcharge)}</p>
+                        </div>
+                      )}
+                      {/* Add-ons */}
+                      {pricingConfig.selectedAddOns.length > 0 && course.addOns.filter(a => pricingConfig.selectedAddOns.includes(a.id)).map((addOn) => (
+                        <div key={addOn.id} className="flex justify-between items-center">
+                          <p className="text-xs text-gray-500">{addOn.name} × {pricingConfig.delegates} delegates</p>
+                          <p className="text-xs text-gray-700">{formatZMW(addOn.pricePerDelegate * pricingConfig.delegates)}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Totals */}
+                  <div className="px-6 sm:px-8 py-4 border-t border-gray-100 space-y-2">
+                    <div className="flex justify-between text-xs text-gray-500">
+                      <span>Subtotal</span>
+                      <span>{formatZMW(pricing.subtotal)}</span>
+                    </div>
+                    {pricing.volumeDiscount > 0 && (
+                      <div className="flex justify-between text-xs text-[#16a34a]">
+                        <span>Volume discount ({Math.round(pricing.volumeDiscountRate * 100)}%)</span>
+                        <span>-{formatZMW(pricing.volumeDiscount)}</span>
+                      </div>
+                    )}
+                    {pricing.promoDiscount > 0 && (
+                      <div className="flex justify-between text-xs text-[#16a34a]">
+                        <span>Promo discount</span>
+                        <span>-{formatZMW(pricing.promoDiscount)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-xs text-gray-500">
+                      <span>VAT (16%)</span>
+                      <span>{formatZMW(pricing.vat)}</span>
+                    </div>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-200">
+                      <span className="text-sm font-bold text-gray-900">Total</span>
+                      <span className="text-xl font-bold text-[#16a34a]">{formatZMW(pricing.total)}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT: Order Summary */}
+              <div className="lg:col-span-2 space-y-6">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <ShoppingCart className="w-4 h-4 text-[#16a34a]" />
+                    <h3 className="text-sm font-bold text-gray-900">Order Summary</h3>
+                  </div>
+                  <div className="space-y-3">
                     <div>
-                      <p className="font-semibold text-gray-900 text-sm">{course.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">{course.categoryTitle} · {course.duration}</p>
-                      <p className="text-xs text-gray-500">{pricingConfig.deliveryMode === 'inhouse' ? 'In-House' : pricingConfig.deliveryMode === 'online' ? 'Online' : 'Public'} · {pricingConfig.delegates} delegates · {pricingConfig.days} days</p>
+                      <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Course</p>
+                      <p className="text-sm font-medium text-gray-900">{course.title}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Company</p>
+                        <p className="text-xs text-gray-700">{company.companyName}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Authoriser</p>
+                        <p className="text-xs text-gray-700">{authoriser.fullName}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-1">Delegates ({delegates.length})</p>
+                      <div className="flex flex-wrap gap-1">
+                        {delegates.map((d, i) => (
+                          <span key={i} className="text-[10px] px-2 py-0.5 bg-gray-100 rounded-md text-gray-600">
+                            {d.fullName || `Delegate ${i + 1}`}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Company & Authoriser */}
-                <div className="grid sm:grid-cols-2 gap-4 mb-5">
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Company</p>
-                    <p className="text-sm font-medium text-gray-900">{company.companyName}</p>
-                    <p className="text-xs text-gray-500">{company.industry} · {company.billingEmail}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Authoriser</p>
-                    <p className="text-sm font-medium text-gray-900">{authoriser.fullName}</p>
-                    <p className="text-xs text-gray-500">{authoriser.jobTitle} · {authoriser.email}</p>
-                  </div>
+                {/* Action buttons */}
+                <div className="space-y-3">
+                  <Button onClick={handleProceedToPayment} size="lg" className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm py-5 shadow-lg shadow-green-600/20 gap-2">
+                    <Wallet className="w-4 h-4" /> Pay Now · {formatZMW(pricing.total)}
+                  </Button>
+                  <Button variant="outline" className="w-full border-gray-200 text-gray-600 hover:text-gray-900 text-sm py-5 gap-2">
+                    <Receipt className="w-4 h-4" /> Request Invoice Only
+                  </Button>
                 </div>
-
-                {/* Delegates count */}
-                <div className="mb-5">
-                  <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Delegates ({delegates.length})</p>
-                  <div className="flex flex-wrap gap-1">
-                    {delegates.map((d, i) => (
-                      <span key={i} className="text-xs px-2 py-1 bg-gray-100 rounded-md text-gray-600">
-                        {d.fullName || `Delegate ${i + 1}`}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Pricing breakdown */}
-                <div className="border-t border-gray-100 pt-4 space-y-2">
-                  <div className="flex justify-between text-xs text-gray-500"><span>Base cost</span><span>{formatZMW(pricing.baseCost)}</span></div>
-                  {pricing.surcharge > 0 && <div className="flex justify-between text-xs text-amber-600"><span>Delivery surcharge</span><span>+{formatZMW(pricing.surcharge)}</span></div>}
-                  {pricing.volumeDiscount > 0 && <div className="flex justify-between text-xs text-[#16a34a]"><span>Volume discount</span><span>-{formatZMW(pricing.volumeDiscount)}</span></div>}
-                  {pricing.addOnsCost > 0 && <div className="flex justify-between text-xs text-gray-500"><span>Add-ons</span><span>+{formatZMW(pricing.addOnsCost)}</span></div>}
-                  {pricing.promoDiscount > 0 && <div className="flex justify-between text-xs text-[#16a34a]"><span>Promo discount</span><span>-{formatZMW(pricing.promoDiscount)}</span></div>}
-                  <div className="flex justify-between text-xs text-gray-500"><span>VAT (16%)</span><span>{formatZMW(pricing.vat)}</span></div>
-                  <div className="flex justify-between items-center pt-3 border-t border-gray-100">
-                    <span className="text-sm font-bold text-gray-900">Total</span>
-                    <span className="text-2xl font-bold text-[#16a34a]">{formatZMW(pricing.total)}</span>
-                  </div>
-                </div>
+                <p className="text-[10px] text-gray-400 text-center">By proceeding, you agree to our terms and conditions</p>
               </div>
-
-              {/* Confirm */}
-              <Button onClick={handleConfirmBooking} size="lg" className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm py-5 shadow-lg shadow-green-600/20 gap-2" disabled={bookingStatus === 'pending'}>
-                {bookingStatus === 'pending' ? (
-                  <><Loader2 className="w-4 h-4 animate-spin" /> Processing Booking...</>
-                ) : (
-                  <>Confirm Booking · {formatZMW(pricing.total)}</>
-                )}
-              </Button>
-              <p className="text-[10px] text-gray-400 text-center">By confirming, you agree to our terms and conditions</p>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════ PAYMENT STEP ═══════ */}
+      {step === 'payment' && (
+        <section className="py-12 sm:py-16">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <button onClick={handleBack} className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#16a34a] mb-6 transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Back to invoice
+            </button>
+
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-full bg-[#16a34a] text-white flex items-center justify-center text-sm font-bold"><Check className="w-4 h-4" /></div>
+                <div className="h-px flex-1 bg-[#16a34a]" />
+                <div className="w-8 h-8 rounded-full bg-[#16a34a] text-white flex items-center justify-center text-sm font-bold"><Check className="w-4 h-4" /></div>
+                <div className="h-px flex-1 bg-[#16a34a]" />
+                <div className="w-8 h-8 rounded-full bg-[#16a34a] text-white flex items-center justify-center text-sm font-bold"><Check className="w-4 h-4" /></div>
+                <div className="h-px flex-1 bg-[#16a34a]" />
+                <div className="w-8 h-8 rounded-full bg-[#16a34a] text-white flex items-center justify-center text-sm font-bold">4</div>
+                <div className="h-px flex-1 bg-gray-200" />
+                <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">5</div>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Payment</h1>
+              <p className="text-sm text-gray-500 mt-1">Choose your preferred payment method</p>
+            </div>
+
+            <AnimatePresence mode="wait">
+              {isProcessing ? (
+                <motion.div
+                  key="processing"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="max-w-md mx-auto text-center py-16"
+                >
+                  <div className="relative w-24 h-24 mx-auto mb-8">
+                    <div className="absolute inset-0 rounded-full border-4 border-gray-100" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[#16a34a] border-t-transparent animate-spin" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <CircleDollarSign className="w-8 h-8 text-[#16a34a]" />
+                    </div>
+                  </div>
+                  <h2 className="text-xl font-bold text-gray-900 mb-2">Processing payment...</h2>
+                  <p className="text-sm text-gray-500 mb-6">Please wait while we process your payment securely</p>
+                  <div className="bg-gray-50 rounded-xl p-4 text-left space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-[#16a34a]/10 flex items-center justify-center">
+                        <Loader2 className="w-3 h-3 text-[#16a34a] animate-spin" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs font-medium text-gray-700">Verifying payment details</p>
+                        <div className="h-1 bg-gray-200 rounded-full mt-1 overflow-hidden">
+                          <motion.div className="h-full bg-[#16a34a] rounded-full" initial={{ width: '0%' }} animate={{ width: '60%' }} transition={{ duration: 1.5 }} />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                        <Lock className="w-3 h-3 text-gray-400" />
+                      </div>
+                      <p className="text-xs text-gray-400">Confirming transaction...</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                        <BadgeCheck className="w-3 h-3 text-gray-400" />
+                      </div>
+                      <p className="text-xs text-gray-400">Finalizing booking...</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="payment-form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Payment methods */}
+                    <div className="lg:col-span-2 space-y-6">
+                      <div className="grid sm:grid-cols-3 gap-3">
+                        {/* Mobile Money */}
+                        <button
+                          onClick={() => setPaymentMethod('mobile')}
+                          className={`p-5 rounded-2xl border-2 text-left transition-all duration-200 ${
+                            paymentMethod === 'mobile'
+                              ? 'border-[#16a34a] bg-green-50/50 shadow-sm'
+                              : 'border-gray-200 bg-white hover:border-gray-300'
+                          }`}
+                        >
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${paymentMethod === 'mobile' ? 'bg-[#16a34a]/10' : 'bg-gray-100'}`}>
+                            <Smartphone className={`w-5 h-5 ${paymentMethod === 'mobile' ? 'text-[#16a34a]' : 'text-gray-400'}`} />
+                          </div>
+                          <p className={`text-sm font-semibold ${paymentMethod === 'mobile' ? 'text-gray-900' : 'text-gray-700'}`}>Mobile Money</p>
+                          <p className="text-[10px] text-gray-400 mt-0.5">MTN / Airtel</p>
+                        </button>
+
+                        {/* Bank Transfer */}
+                        <button
+                          onClick={() => setPaymentMethod('bank')}
+                          className={`p-5 rounded-2xl border-2 text-left transition-all duration-200 ${
+                            paymentMethod === 'bank'
+                              ? 'border-[#16a34a] bg-green-50/50 shadow-sm'
+                              : 'border-gray-200 bg-white hover:border-gray-300'
+                          }`}
+                        >
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${paymentMethod === 'bank' ? 'bg-[#16a34a]/10' : 'bg-gray-100'}`}>
+                            <Landmark className={`w-5 h-5 ${paymentMethod === 'bank' ? 'text-[#16a34a]' : 'text-gray-400'}`} />
+                          </div>
+                          <p className={`text-sm font-semibold ${paymentMethod === 'bank' ? 'text-gray-900' : 'text-gray-700'}`}>Bank Transfer</p>
+                          <p className="text-[10px] text-gray-400 mt-0.5">ZANACO</p>
+                        </button>
+
+                        {/* Card Payment */}
+                        <button
+                          onClick={() => setPaymentMethod('card')}
+                          className={`p-5 rounded-2xl border-2 text-left transition-all duration-200 ${
+                            paymentMethod === 'card'
+                              ? 'border-[#16a34a] bg-green-50/50 shadow-sm'
+                              : 'border-gray-200 bg-white hover:border-gray-300'
+                          }`}
+                        >
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${paymentMethod === 'card' ? 'bg-[#16a34a]/10' : 'bg-gray-100'}`}>
+                            <CreditCard className={`w-5 h-5 ${paymentMethod === 'card' ? 'text-[#16a34a]' : 'text-gray-400'}`} />
+                          </div>
+                          <p className={`text-sm font-semibold ${paymentMethod === 'card' ? 'text-gray-900' : 'text-gray-700'}`}>Card Payment</p>
+                          <p className="text-[10px] text-gray-400 mt-0.5">Visa / Mastercard</p>
+                        </button>
+                      </div>
+
+                      {/* Payment form */}
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={paymentMethod}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8"
+                        >
+                          {paymentMethod === 'mobile' && (
+                            <div>
+                              <div className="flex items-center gap-2 mb-4">
+                                <Smartphone className="w-5 h-5 text-[#16a34a]" />
+                                <h3 className="text-lg font-bold text-gray-900">Mobile Money</h3>
+                              </div>
+                              <div className="space-y-4">
+                                <div>
+                                  <label className="block text-xs font-medium text-gray-500 mb-1">Select Network</label>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <button className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${true ? 'border-[#f59e0b] bg-amber-50 text-amber-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
+                                      MTN Mobile Money
+                                    </button>
+                                    <button className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${false ? 'border-red-500 bg-red-50 text-red-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
+                                      Airtel Money
+                                    </button>
+                                  </div>
+                                </div>
+                                <div>
+                                  <label className="block text-xs font-medium text-gray-500 mb-1">Mobile Number *</label>
+                                  <div className="flex">
+                                    <span className="inline-flex items-center px-3 border border-r-0 border-gray-200 rounded-l-xl bg-gray-50 text-xs text-gray-500">+260</span>
+                                    <input
+                                      type="tel"
+                                      value={mobileNumber}
+                                      onChange={(e) => setMobileNumber(e.target.value)}
+                                      placeholder="9XX XXX XXX"
+                                      className="flex-1 px-3 py-2.5 border border-gray-200 rounded-r-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-2 p-3 bg-amber-50 rounded-xl border border-amber-100">
+                                  <AlertCircle className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                                  <p className="text-xs text-amber-700">You will receive an STS push notification on your phone to confirm the payment.</p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {paymentMethod === 'bank' && (
+                            <div>
+                              <div className="flex items-center gap-2 mb-4">
+                                <Landmark className="w-5 h-5 text-[#16a34a]" />
+                                <h3 className="text-lg font-bold text-gray-900">Bank Transfer Details</h3>
+                              </div>
+                              <div className="space-y-3">
+                                <div className="bg-gray-50 rounded-xl p-4 space-y-3">
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs text-gray-500">Bank</span>
+                                    <span className="text-sm font-semibold text-gray-900">ZANACO</span>
+                                  </div>
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs text-gray-500">Account Name</span>
+                                    <span className="text-sm font-semibold text-gray-900">Springbok Training Academy</span>
+                                  </div>
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs text-gray-500">Account Number</span>
+                                    <span className="text-sm font-semibold text-gray-900">1094837261</span>
+                                  </div>
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs text-gray-500">Branch</span>
+                                    <span className="text-sm font-semibold text-gray-900">Lusaka Main</span>
+                                  </div>
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs text-gray-500">Reference</span>
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-sm font-semibold text-[#16a34a]">{invoiceNumber || 'INV-PENDING'}</span>
+                                      <button className="text-gray-400 hover:text-[#16a34a] transition-colors"><Copy className="w-3.5 h-3.5" /></button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="flex items-start gap-2 p-3 bg-blue-50 rounded-xl border border-blue-100">
+                                  <AlertCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                                  <p className="text-xs text-blue-700">Please use the invoice number as your payment reference. Your booking will be confirmed once payment is received.</p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {paymentMethod === 'card' && (
+                            <div>
+                              <div className="flex items-center gap-2 mb-4">
+                                <CreditCard className="w-5 h-5 text-[#16a34a]" />
+                                <h3 className="text-lg font-bold text-gray-900">Card Payment</h3>
+                              </div>
+                              <div className="space-y-4">
+                                <div>
+                                  <label className="block text-xs font-medium text-gray-500 mb-1">Card Number *</label>
+                                  <input
+                                    type="text"
+                                    value={cardDetails.number}
+                                    onChange={(e) => setCardDetails((c) => ({ ...c, number: e.target.value }))}
+                                    placeholder="1234 5678 9012 3456"
+                                    maxLength={19}
+                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]"
+                                  />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div>
+                                    <label className="block text-xs font-medium text-gray-500 mb-1">Expiry Date *</label>
+                                    <input
+                                      type="text"
+                                      value={cardDetails.expiry}
+                                      onChange={(e) => setCardDetails((c) => ({ ...c, expiry: e.target.value }))}
+                                      placeholder="MM/YY"
+                                      maxLength={5}
+                                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-xs font-medium text-gray-500 mb-1">CVV *</label>
+                                    <input
+                                      type="text"
+                                      value={cardDetails.cvv}
+                                      onChange={(e) => setCardDetails((c) => ({ ...c, cvv: e.target.value }))}
+                                      placeholder="123"
+                                      maxLength={4}
+                                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]"
+                                    />
+                                  </div>
+                                </div>
+                                <div>
+                                  <label className="block text-xs font-medium text-gray-500 mb-1">Cardholder Name *</label>
+                                  <input
+                                    type="text"
+                                    value={cardDetails.name}
+                                    onChange={(e) => setCardDetails((c) => ({ ...c, name: e.target.value }))}
+                                    placeholder="Name on card"
+                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a]"
+                                  />
+                                </div>
+                                <div className="flex items-center gap-2 text-xs text-gray-400">
+                                  <Lock className="w-3.5 h-3.5" />
+                                  <span>Your payment is secured with 256-bit SSL encryption</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </motion.div>
+                      </AnimatePresence>
+
+                      {/* Pay button */}
+                      <Button onClick={handleProcessPayment} size="lg" className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-sm py-5 shadow-lg shadow-green-600/20 gap-2">
+                        <Lock className="w-4 h-4" /> Pay {formatZMW(pricing.total)}
+                      </Button>
+                    </div>
+
+                    {/* Order summary sidebar */}
+                    <div className="lg:col-span-1">
+                      <div className="sticky top-36">
+                        <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Order Summary</h3>
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium text-gray-900">{course.title}</p>
+                            <p className="text-xs text-gray-500">{pricingConfig.delegates} delegates · {pricingConfig.days} days</p>
+                            <div className="border-t border-gray-100 pt-2 mt-2">
+                              <div className="flex justify-between text-xs text-gray-500"><span>Subtotal</span><span>{formatZMW(pricing.subtotal)}</span></div>
+                              {pricing.volumeDiscount > 0 && <div className="flex justify-between text-xs text-[#16a34a]"><span>Discount</span><span>-{formatZMW(pricing.volumeDiscount + pricing.promoDiscount)}</span></div>}
+                              <div className="flex justify-between text-xs text-gray-500"><span>VAT</span><span>{formatZMW(pricing.vat)}</span></div>
+                            </div>
+                            <div className="flex justify-between items-center pt-2 border-t border-gray-100">
+                              <span className="text-sm font-bold text-gray-900">Total</span>
+                              <span className="text-lg font-bold text-[#16a34a]">{formatZMW(pricing.total)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       )}
 
       {/* ═══════ CONFIRMED STEP ═══════ */}
       {step === 'confirmed' && bookingReference && (
-        <section className="py-16 sm:py-24">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-              <div className="w-20 h-20 rounded-full bg-[#16a34a]/10 flex items-center justify-center mx-auto mb-6">
-                <BadgeCheck className="w-10 h-10 text-[#16a34a]" />
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Booking Confirmed!</h1>
-              <p className="text-gray-500 mb-8">Your training booking has been successfully submitted.</p>
-
-              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 text-left mb-8">
-                <div className="grid sm:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Reference</p>
-                    <p className="font-bold text-[#16a34a] text-lg">{bookingReference}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Course</p>
-                    <p className="font-semibold text-gray-900">{course.title}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Company</p>
-                    <p className="text-gray-700">{company.companyName}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Amount</p>
-                    <p className="font-semibold text-gray-900">{formatZMW(pricing.total)}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Delegates</p>
-                    <p className="text-gray-700">{pricingConfig.delegates} registered</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Delivery</p>
-                    <p className="text-gray-700">{pricingConfig.deliveryMode === 'inhouse' ? 'In-House' : pricingConfig.deliveryMode === 'online' ? 'Online' : 'Public'} · {pricingConfig.days} days</p>
-                  </div>
+        <section className="py-12 sm:py-16">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Success animation */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, type: 'spring', stiffness: 200 }}
+              className="text-center mb-10"
+            >
+              <div className="relative w-24 h-24 mx-auto mb-6">
+                <div className="absolute inset-0 rounded-full bg-[#16a34a]/10 animate-ping" style={{ animationDuration: '2s', animationIterationCount: '3' }} />
+                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-[#16a34a] to-[#22c55e] flex items-center justify-center shadow-lg shadow-green-600/30">
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3, type: 'spring', stiffness: 300 }}>
+                    <Check className="w-12 h-12 text-white" strokeWidth={3} />
+                  </motion.div>
                 </div>
               </div>
-
-              <p className="text-xs text-gray-400 mb-6">A confirmation email will be sent to {company.billingEmail}</p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Button asChild className="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold gap-2">
-                  <Link href="/programmes">
-                    Browse More Courses
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="gap-2">
-                  <Link href="/contact">
-                    Contact Us
-                    <Phone className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
+              <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Booking Confirmed!</motion.h1>
+              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-sm text-gray-500">Your training booking has been successfully processed.</motion.p>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="mt-4">
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Booking Reference</p>
+                <p className="text-2xl font-bold text-[#16a34a]">{bookingReference}</p>
+              </motion.div>
             </motion.div>
+
+            <AnimatePresence>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
+                {/* Payment receipt */}
+                <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden mb-8 shadow-sm">
+                  <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Receipt className="w-4 h-4 text-[#16a34a]" />
+                      <h2 className="text-sm font-bold text-gray-900">Payment Confirmation Receipt</h2>
+                    </div>
+                    <span className="text-[10px] px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-semibold">PAID</span>
+                  </div>
+                  <div className="px-6 py-5">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Receipt Number</p>
+                        <p className="text-sm font-semibold text-gray-900">RCT-{Date.now().toString(36).toUpperCase()}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Date</p>
+                        <p className="text-sm text-gray-700">{new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' })} at {new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' })}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Amount Paid</p>
+                        <p className="text-lg font-bold text-[#16a34a]">{formatZMW(pricing.total)}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Payment Method</p>
+                        <p className="text-sm text-gray-700">{paymentMethod === 'mobile' ? 'Mobile Money' : paymentMethod === 'bank' ? 'Bank Transfer' : 'Card Payment'}</p>
+                      </div>
+                      <div className="sm:col-span-2">
+                        <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Transaction Reference</p>
+                        <p className="text-sm font-mono text-gray-700">TXN-{Math.random().toString(36).substring(2, 10).toUpperCase()}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Notification timeline */}
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                  <div className="flex items-center gap-2 mb-5">
+                    <Send className="w-4 h-4 text-[#16a34a]" />
+                    <h2 className="text-sm font-bold text-gray-900">Notifications</h2>
+                  </div>
+                  <div className="space-y-4">
+                    {[
+                      { icon: BadgeCheck, label: 'Booking confirmed', detail: bookingReference },
+                      { icon: Mail, label: `Invoice sent to ${company.billingEmail}`, detail: invoiceNumber },
+                      ...delegates.filter(d => d.email).map((d) => ({ icon: Mail, label: `Delegate welcome email sent to ${d.email}`, detail: d.fullName })),
+                      { icon: Mail, label: `Payment receipt sent to ${company.billingEmail}`, detail: 'RCT-' + Date.now().toString(36).toUpperCase() },
+                      { icon: CalendarDays, label: 'Calendar invitation sent to all delegates', detail: `${pricingConfig.days} days` },
+                    ].map((item, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8 + i * 0.15 }}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="w-6 h-6 rounded-full bg-[#16a34a]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 text-[#16a34a]" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-gray-700">{item.label}</p>
+                          <p className="text-[10px] text-gray-400">{item.detail}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+                  <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                    <Download className="w-4 h-4" /> Download Invoice
+                  </Button>
+                  <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                    <Receipt className="w-4 h-4" /> Download Receipt
+                  </Button>
+                  <Button variant="outline" className="gap-2 border-gray-200 text-gray-600 hover:text-gray-900 text-sm">
+                    <Printer className="w-4 h-4" /> Print Confirmation
+                  </Button>
+                </div>
+
+                {/* Back to programmes */}
+                <div className="text-center">
+                  <Button asChild className="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold gap-2">
+                    <Link href="/programmes">
+                      Back to Programmes
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Contact support */}
+                <div className="mt-8 text-center">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <Phone className="w-3.5 h-3.5 text-gray-400" />
+                    <span className="text-xs text-gray-500">Need help? Contact support at </span>
+                    <a href="mailto:training@springbok.co.zm" className="text-xs font-medium text-[#16a34a] hover:underline">training@springbok.co.zm</a>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </section>
       )}
