@@ -47,7 +47,53 @@ const categories = [
   { id: 'networking', label: 'Networking', icon: Handshake },
 ];
 
+const featuredPhotos = [
+  {
+    src: '/images/gallery/real-1.jpeg',
+    alt: 'Certificate presentation at Springbok Training programme',
+    title: 'Certificate Presentation Ceremony',
+    category: 'graduations',
+    description: 'Participants from a Springbok Training programme gather for a certificate presentation, with a graduate proudly holding her certification at the centre. The group, dressed in branded Springbok shirts, exudes a sense of achievement and camaraderie, set against a backdrop of the company\'s promotional banner. The atmosphere is warm and professional, reflecting the success of a collaborative training event designed to empower professionals in Zambia.',
+  },
+  {
+    src: '/images/gallery/real-2.jpeg',
+    alt: 'Springbok Training team at an outdoor venue with scenic backdrop',
+    title: 'Team Photo at Scenic Venue',
+    category: 'team-building',
+    description: 'The Springbok Training team poses confidently on a lush, grassy lawn with a scenic lake and distant hills in the background. Dressed in matching green branded shirts, the group embodies the collaborative spirit of professional development. The warm, natural setting complements the company\'s focus on fostering connection and growth through engaging training experiences.',
+  },
+  {
+    src: '/images/gallery/real-3.jpeg',
+    alt: 'Graduates displaying certificates after completing a professional workshop',
+    title: 'Workshop Graduates Celebrating',
+    category: 'graduations',
+    description: 'Three participants proudly display their certificates after completing an intensive professional training workshop. Dressed in branded Springbok shirts, they stand together around a welcoming banner that highlights the training\'s focus on professional development, creating a warm, celebratory atmosphere of achievement. This moment captures the essence of Springbok\'s commitment to empowering professionals through impactful, hands-on learning experiences.',
+  },
+  {
+    src: '/images/gallery/real-4.jpeg',
+    alt: 'Participant at an intensive admin professional development workshop',
+    title: 'Admin Professionals Workshop',
+    category: 'workshops',
+    description: 'A participant in a Springbok Training workshop sits alongside a banner for an Intensive Professional Development Workshop for Secretaries, PAs & Admin Professionals. The bright, modern indoor venue with glass doors and polished floor reflects a welcoming, professional atmosphere, capturing the collaborative and engaging spirit of Springbok\'s corporate training events.',
+  },
+  {
+    src: '/images/gallery/real-5.jpeg',
+    alt: 'Participant at the intensive PA and admin workshop venue',
+    title: 'Training Venue Showcase',
+    category: 'facilities',
+    description: 'A participant sits beside a welcoming banner for Springbok Training\'s intensive professional development workshop for secretaries, PAs, and admin professionals. Set in a bright, modern venue with glass doors and outdoor greenery, the atmosphere is warm and professional, reflecting the company\'s commitment to empowering administrative professionals through tailored training in a supportive environment.',
+  },
+  {
+    src: '/images/gallery/real-6.jpeg',
+    alt: 'Certificate presentation moment at a Springbok Training event',
+    title: 'Achievement Recognition',
+    category: 'graduations',
+    description: 'A certificate presentation unfolds at a Springbok Training event, with team members in branded shirts sharing a moment of recognition. The atmosphere is warm and celebratory, highlighting the company\'s commitment to professional development as attendees gather to honour achievements in a bright, welcoming venue.',
+  },
+];
+
 const galleryItems = [
+  ...featuredPhotos,
   {
     src: '/images/gallery/workshop-session.jpg',
     alt: 'Corporate training workshop session with engaged participants',
@@ -150,7 +196,7 @@ export default function GalleryPage() {
       <section className="relative py-32 sm:py-40 overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
           <Image
-            src="/images/gallery/workshop-session.jpg"
+            src="/images/gallery/real-1.jpeg"
             alt="Springbok Training gallery"
             fill
             className="object-cover object-center"
@@ -205,9 +251,72 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Gallery Content */}
+      {/* Featured Photos with Narratives */}
       <section className="py-20 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <span className="inline-block text-[#16a34a] text-sm font-semibold tracking-wider uppercase mb-3">
+              Captured Moments
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Highlights from Our Programmes
+            </h2>
+            <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
+              Real moments from our training sessions, graduations, and team events across Zambia. Each photo tells a story of professional growth and achievement.
+            </p>
+          </AnimatedSection>
+
+          {/* Featured photo cards with full narratives */}
+          <div className="space-y-16 mb-20">
+            {featuredPhotos.map((item, index) => (
+              <AnimatedSection key={item.src}>
+                <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:direction-rtl' : ''}`}>
+                  <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <div className="relative overflow-hidden rounded-2xl bg-gray-100 aspect-[4/3] group cursor-pointer" onClick={() => openLightbox(index)}>
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-white/0 group-hover:bg-white/90 flex items-center justify-center transition-all duration-300 scale-75 group-hover:scale-100">
+                          <svg className="w-5 h-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                    <span className="inline-block text-[#16a34a] text-xs font-semibold tracking-wider uppercase mb-2 bg-green-50 px-3 py-1 rounded-full">
+                      {item.category === 'graduations' ? 'Graduation' : item.category === 'workshops' ? 'Workshop' : item.category === 'team-building' ? 'Team Building' : 'Facilities'}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-gray-200 pt-16">
+            <AnimatedSection className="text-center mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+                More from Our Gallery
+              </h2>
+              <p className="text-gray-500 max-w-xl mx-auto">
+                Browse additional photos from our programmes and events.
+              </p>
+            </AnimatedSection>
+          </div>
+
           {/* Category Filters */}
           <AnimatedSection className="mb-12">
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
@@ -232,10 +341,12 @@ export default function GalleryPage() {
             </div>
           </AnimatedSection>
 
-          {/* Photo Grid */}
+          {/* Photo Grid - only non-featured items */}
           <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
-              {filteredItems.map((item, index) => (
+              {filteredItems.map((item, index) => {
+                const isFeatured = featuredPhotos.some((f) => f.src === item.src);
+                return (
                 <motion.div
                   key={`${item.src}-${activeCategory}`}
                   layout
@@ -243,10 +354,15 @@ export default function GalleryPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="group cursor-pointer"
+                  className={`group cursor-pointer ${isFeatured ? 'ring-2 ring-[#16a34a]/30 rounded-2xl' : ''}`}
                   onClick={() => openLightbox(index)}
                 >
                   <div className="relative overflow-hidden rounded-2xl bg-gray-100 aspect-[16/10]">
+                    {isFeatured && (
+                      <div className="absolute top-3 left-3 z-10 bg-[#16a34a] text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                        Featured
+                      </div>
+                    )}
                     <Image
                       src={item.src}
                       alt={item.alt}
@@ -269,7 +385,8 @@ export default function GalleryPage() {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </AnimatePresence>
           </motion.div>
 
