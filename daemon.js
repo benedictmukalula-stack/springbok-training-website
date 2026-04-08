@@ -10,11 +10,12 @@ const log = (msg) => {
 };
 
 function startServer() {
-  log('Starting Next.js server...');
-  const child = spawn('node', ['node_modules/.bin/next', 'start', '-p', '3000'], {
+  log('Starting Next.js dev server...');
+  const child = spawn('node', ['node_modules/.bin/next', 'dev', '-p', '3000'], {
     cwd: __dirname,
+    detached: true,
     stdio: ['ignore', 'pipe', 'pipe'],
-    env: { ...process.env, NODE_ENV: 'production' }
+    env: { ...process.env }
   });
 
   child.stdout.on('data', (data) => log(`STDOUT: ${data}`));
@@ -29,6 +30,8 @@ function startServer() {
     log(`Server error: ${err.message}. Restarting in 2s...`);
     setTimeout(startServer, 2000);
   });
+
+  child.unref();
 }
 
 startServer();
