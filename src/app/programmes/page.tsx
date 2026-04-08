@@ -1,210 +1,106 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
+  Search,
+  Sparkles,
+  ChevronDown,
+  ChevronRight,
+  Clock,
+  Users,
+  ArrowRight,
+  CheckCircle2,
+  X,
+  SlidersHorizontal,
+  BookOpen,
+  Building2,
   Crown,
   TrendingUp,
   UserCheck,
   Settings,
-  Users,
-  Building2,
-  ArrowRight,
-  ChevronDown,
-  ChevronRight,
-  CheckCircle2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { getAllCourses, getAllCategories, searchCourses, getRelevanceInsight } from '@/lib/courses-data';
+import type { Course, CategoryInfo } from '@/lib/courses-data';
 
-const programmes = [
-  {
-    id: 'leadership',
-    icon: Crown,
-    title: 'Leadership & Management',
-    description: 'Develop strong leaders who can inspire teams, drive performance, and manage people effectively across your organisation.',
-    color: 'from-[#16a34a] to-[#22c55e]',
-    courses: [
-      {
-        title: 'Leadership and Team Building',
-        description: 'Designed to improve leadership skills and allow delegates to lead successful and high performing teams. Our team building workshops are packed full of useful teamwork training exercises, tips and techniques that new and experienced managers will find essential.',
-      },
-      {
-        title: 'Coaching for Managers',
-        description: 'Shows delegates tried and tested methods about 1-2-1 training, executive coaching and how to develop people in order to improve productivity and motivation. We explain through discussion, role-play and case study how to coach staff.',
-      },
-      {
-        title: 'Delegation Skills',
-        description: 'Enables delegates to understand the techniques and strategies that will allow them to use delegation as a tool to achieve greater personal productivity, hit organizational deadlines, increase motivation and decrease stress levels.',
-      },
-      {
-        title: 'Stress Management',
-        description: 'Over the years we have trained thousands of people to enable them to recognize stress symptoms and causes. Our training has a proven track record in stress reduction and managing stress at work with practical tips and techniques.',
-      },
-      {
-        title: 'Managing Meetings',
-        description: 'Enables people to organize and chair meetings that are more effective and more motivating for those that attend. Learn to involve and focus the group, use the power of persuasion and reach agreement constructively.',
-      },
-      {
-        title: 'Appraisal Skills',
-        description: 'Teaches delegates how to raise the motivation of employees and improve performance through setting objectives, giving effective feedback and praise. Includes tips for managing conflict in appraisals and writing effective performance reviews.',
-      },
-      {
-        title: 'Project Management for Non-Project Managers',
-        description: 'Presents delegates with useful strategies for organizing projects, improving project management skills, managing projects effectively, project planning and becoming a great project manager.',
-      },
-    ],
-  },
-  {
-    id: 'sales',
-    icon: TrendingUp,
-    title: 'Sales & Customer Service',
-    description: 'Equip your team with proven sales techniques and exceptional customer service skills to drive business growth and client satisfaction.',
-    color: 'from-[#16a34a] to-[#22c55e]',
-    courses: [
-      {
-        title: 'Customer Service and Customer Care',
-        description: 'Essential for developing a Customer Caring or \'Customers First\' attitude to delivering service effectively and consistently. Learn tips and techniques on how to handle different customers in face-to-face and telephone interactions.',
-      },
-      {
-        title: 'Introduction to Selling',
-        description: 'A highly structured, interactive foundation training that focuses on bringing out the best of delegates in a supportive environment. Our trainers use their 20 years of selling and training experience to increase confidence and competence.',
-      },
-      {
-        title: 'Telesales and Telemarketing',
-        description: 'Developed for telemarketers who make a significant number of prospecting calls and telesales professionals who handle large volumes of incoming sales calls. Written with both the customer and organization in mind.',
-      },
-      {
-        title: 'Telephone Skills and Customer Care',
-        description: 'For those wishing to learn telephone etiquette and handling customers on the telephone. Develop effective Customer Care training that enables you to deliver service consistently.',
-      },
-      {
-        title: 'Account Management',
-        description: 'Covers fostering client relationships, working with sales and marketing teams to prepare presentations and sales pitches, designing marketing strategies, handling client communications and writing client reports.',
-      },
-    ],
-  },
-  {
-    id: 'personal',
-    icon: UserCheck,
-    title: 'Personal Development',
-    description: 'Build confidence, communication skills, and personal effectiveness with our comprehensive personal development programmes.',
-    color: 'from-[#16a34a] to-[#22c55e]',
-    courses: [
-      {
-        title: 'Assertiveness Skills',
-        description: 'Allows delegates to develop confidence and self-esteem so that their opinions will no longer go unnoticed in the workplace. Provides effective tactics to build courage and defy work bullies.',
-      },
-      {
-        title: 'Dealing with Difficult People',
-        description: 'Effectively demonstrates how to neutralize problem situations in the workplace. Covers scenarios such as working with aggressive people, handling bullies at work, and dealing with unreasonable people.',
-      },
-      {
-        title: 'Time Management',
-        description: 'Created to ensure that delegates can make their time keeping as efficient and effective as possible. Supplies a time management training course full of tools and tips for improving time management and time planning.',
-      },
-      {
-        title: 'Time Management with Microsoft Outlook',
-        description: 'Learn to use Outlook as a tool to manage your tasks, calendar, meetings, delegations, contacts and emails, while also being introduced to the latest features.',
-      },
-      {
-        title: 'Advanced Presentation Skills',
-        description: 'Gives you a platform to demonstrate your leadership qualities, communication skills, sales ability, influence and promotion potential. We teach proven skills that will enable you to perform at an advanced level.',
-      },
-      {
-        title: 'PowerPoint Presentation Skills',
-        description: 'Teaches the skills and techniques which will give you both the confidence and competence to enjoy making PowerPoint presentations, sharpen your image and increase your credibility with colleagues and clients.',
-      },
-      {
-        title: 'Training the Trainer',
-        description: 'Essential if you have just been promoted to a training or coaching role or wish to refresh your training skills. Benefits Training Managers who want to know the fundamentals of developing organizational training programmes.',
-      },
-    ],
-  },
-  {
-    id: 'admin',
-    icon: Settings,
-    title: 'Administration & Operations',
-    description: 'Strengthen operational efficiency with expert training in document management, financial modeling, and professional reporting.',
-    color: 'from-[#16a34a] to-[#22c55e]',
-    courses: [
-      {
-        title: 'Document Control and Records Management',
-        description: 'Conveys practical methods for identifying and developing systems of records management and document control that every organization needs. Each participant will develop a plan of action and skills to implement an appropriate program.',
-      },
-      {
-        title: 'Electronic Records Management',
-        description: 'Tailor-made to provide detailed in-depth understanding of modern electronic records management for employees involved in records management across a wide range of organizations from private to public sectors.',
-      },
-      {
-        title: 'Letter and Report Writing',
-        description: 'Allows delegates to gain useful letter writing tools, tips and techniques including constructive letter and report templates. Also demonstrates the particulars of writing effective emails while improving punctuation and grammar.',
-      },
-      {
-        title: 'Excel Dashboards and Reporting',
-        description: 'Dashboards provide at-a-glance views of KPIs relevant to particular objectives or business processes. Business Intelligence is a highly sought-after commodity in today\'s world and dashboards are the most frequently used method.',
-      },
-      {
-        title: 'Financial Modeling Using Excel',
-        description: 'Effectively prepare and build financial models for different investment alternatives, understand time value of money, WACC, construct forecasted financial statement models, perform sensitivity analysis and use free cash flow techniques.',
-      },
-    ],
-  },
-  {
-    id: 'hr',
-    icon: Users,
-    title: 'Human Resources',
-    description: 'Develop critical HR competencies including interviewing, performance management, and disciplinary procedures to build stronger teams.',
-    color: 'from-[#16a34a] to-[#22c55e]',
-    courses: [
-      {
-        title: 'Interviewing Skills',
-        description: 'Tailored for delegates who would like to gain better interviewing skills and learn how to conduct successful interviews for choosing the right employees. Also covers recruitment and employment law.',
-      },
-      {
-        title: 'Disciplinary Procedures',
-        description: 'Addresses the finding that 75% of managers were unaware of the correct procedures for disciplining employees. Covers how to deal with under-performing staff and conduct disciplinary meetings effectively.',
-      },
-    ],
-  },
-  {
-    id: 'corporate',
-    icon: Building2,
-    title: 'Corporate Solutions',
-    description: 'Bespoke in-house training programmes designed to meet your organization\'s specific learning objectives and business goals.',
-    color: 'from-[#16a34a] to-[#22c55e]',
-    courses: [
-      {
-        title: 'Existing Standard Course (In-House)',
-        description: 'Our standard courses delivered at your location. Cost effective with no travel, lodging, or location expenses. A team building experience with the synergistic effect of being trained together.',
-      },
-      {
-        title: 'Tailor-Made Training Course',
-        description: 'Completely bespoke training courses developed to suit your specific learning objectives. Our team of experienced consultants can develop entirely new training courses that meet your training needs.',
-      },
-      {
-        title: 'Customized Existing Standard Course',
-        description: 'Our standard courses adapted and customized to align with your organizational goals and specific requirements while maintaining proven course structures.',
-      },
-      {
-        title: 'Springbok Creating Training Partnership',
-        description: 'A long-term training partnership model where we work closely with your organization to continuously develop and deliver training programmes aligned with your evolving business needs.',
-      },
-    ],
-  },
-];
+const ICON_MAP: Record<string, React.ElementType> = {
+  Crown, TrendingUp, UserCheck, Settings, Users, Building2,
+};
+
+const LEVEL_COLORS: Record<string, { bg: string; text: string; border: string }> = {
+  Foundation: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  Intermediate: { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+  Advanced: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  Custom: { bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' },
+};
 
 export default function ProgrammesPage() {
+  const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeLevel, setActiveLevel] = useState<string | null>(null);
+  const [expandedCourses, setExpandedCourses] = useState<Set<string>>(new Set());
+  const [showFilters, setShowFilters] = useState(false);
 
-  const filteredProgrammes = activeCategory
-    ? programmes.filter((p) => p.id === activeCategory)
-    : programmes;
+  const categories = getAllCategories();
+
+  const filteredCourses = useMemo(() => {
+    let courses = getAllCourses();
+
+    if (searchQuery.trim()) {
+      const results = searchCourses(searchQuery);
+      courses = results.map((r) => r.course);
+    }
+
+    if (activeCategory) {
+      courses = courses.filter((c) => c.categoryId === activeCategory);
+    }
+
+    if (activeLevel) {
+      courses = courses.filter((c) => c.level === activeLevel);
+    }
+
+    return courses;
+  }, [searchQuery, activeCategory, activeLevel]);
+
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    return searchCourses(searchQuery);
+  }, [searchQuery]);
+
+  const toggleCourse = useCallback((slug: string) => {
+    setExpandedCourses((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) next.delete(slug);
+      else next.add(slug);
+      return next;
+    });
+  }, []);
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setActiveCategory(null);
+    setActiveLevel(null);
+    setExpandedCourses(new Set());
+  };
+
+  const hasActiveFilters = searchQuery.trim() || activeCategory || activeLevel;
+
+  // Group filtered courses by category
+  const groupedCourses = useMemo(() => {
+    const groups: Record<string, Course[]> = {};
+    for (const course of filteredCourses) {
+      if (!groups[course.categoryId]) groups[course.categoryId] = [];
+      groups[course.categoryId].push(course);
+    }
+    return groups;
+  }, [filteredCourses]);
 
   return (
     <div className="page-transition min-h-screen bg-white">
-      {/* Page Header with Image */}
+      {/* Hero */}
       <section className="relative py-32 sm:py-40 overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
           <Image
@@ -233,121 +129,359 @@ export default function ProgrammesPage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#4ade80]">Programmes</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-              Comprehensive training programmes across 6 categories designed to address every aspect of organisational and personal development. Each course is developed by industry professionals with years of practical experience.
+              {filteredCourses.length} courses across 6 categories designed to address every aspect
+              of organisational and personal development. Each course is developed by industry
+              professionals with years of practical experience.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Filters */}
-      <section className="sticky top-16 md:top-20 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-2">
+      {/* Search Bar */}
+      <section className="sticky top-16 md:top-20 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          {/* Search */}
+          <div className="relative max-w-2xl">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="AI-powered search: try 'course for supervisors' or 'customer complaints training'..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-12 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#16a34a]/30 focus:border-[#16a34a] focus:bg-white transition-all duration-200"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+            <div className="absolute right-12 top-1/2 -translate-y-1/2 flex items-center gap-1 text-[#16a34a]">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-semibold tracking-wider uppercase">AI</span>
+            </div>
+          </div>
+
+          {/* Filter Row */}
+          <div className="flex items-center gap-3 mt-3 overflow-x-auto pb-1">
             <button
-              onClick={() => setActiveCategory(null)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                activeCategory === null
-                  ? 'bg-[#16a34a] text-white shadow-lg shadow-green-600/20'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-gray-500 bg-gray-100 hover:bg-gray-200 transition-colors whitespace-nowrap"
             >
-              All Programmes
+              <SlidersHorizontal className="w-3.5 h-3.5" />
+              Filters
             </button>
-            {programmes.map((programme) => {
-              const Icon = programme.icon;
+
+            {/* Category pills */}
+            {categories.map((cat) => {
+              const Icon = ICON_MAP[cat.icon] || BookOpen;
+              const isActive = activeCategory === cat.id;
               return (
                 <button
-                  key={programme.id}
-                  onClick={() => setActiveCategory(activeCategory === programme.id ? null : programme.id)}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    activeCategory === programme.id
-                      ? 'bg-[#16a34a] text-white shadow-lg shadow-green-600/20'
+                  key={cat.id}
+                  onClick={() => setActiveCategory(isActive ? null : cat.id)}
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#16a34a] text-white shadow-sm'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">{programme.title}</span>
+                  <Icon className="w-3 h-3" />
+                  {cat.title}
                 </button>
               );
             })}
+
+            {hasActiveFilters && (
+              <button
+                onClick={clearFilters}
+                className="flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-colors whitespace-nowrap"
+              >
+                <X className="w-3 h-3" />
+                Clear all
+              </button>
+            )}
+
+            <div className="ml-auto text-xs text-gray-400 whitespace-nowrap">
+              {filteredCourses.length} course{filteredCourses.length !== 1 ? 's' : ''}
+            </div>
           </div>
+
+          {/* Expanded filters */}
+          <AnimatePresence>
+            {showFilters && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="pt-4 pb-2 border-t border-gray-100 mt-3">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                    Level
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Foundation', 'Intermediate', 'Advanced', 'Custom'].map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setActiveLevel(activeLevel === level ? null : level)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
+                          activeLevel === level
+                            ? 'bg-[#16a34a] text-white'
+                            : LEVEL_COLORS[level]
+                            ? `${LEVEL_COLORS[level].bg} ${LEVEL_COLORS[level].text} border ${LEVEL_COLORS[level].border}`
+                            : 'bg-gray-100 text-gray-600'
+                        }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* Programme Listing */}
-      <section className="py-16 sm:py-20">
+      {/* Course Listing */}
+      <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatePresence mode="wait">
+          {filteredCourses.length === 0 ? (
             <motion.div
-              key={activeCategory || 'all'}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
             >
-              {filteredProgrammes.map((programme, pIndex) => {
-                const Icon = programme.icon;
-                return (
-                  <motion.div
-                    key={programme.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: pIndex * 0.05 }}
-                    className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#16a34a]/20 transition-all duration-500 hover:shadow-lg hover:shadow-green-600/5"
-                  >
-                    {/* Category Header */}
-                    <div className="p-6 sm:p-8 border-b border-gray-100">
-                      <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-7 h-7 text-[#16a34a]" />
+              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                <Search className="w-7 h-7 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No courses found</h3>
+              <p className="text-sm text-gray-500 mb-6">
+                Try adjusting your search or filters to find what you&apos;re looking for.
+              </p>
+              <Button onClick={clearFilters} variant="outline" className="gap-2">
+                <X className="w-4 h-4" />
+                Clear Filters
+              </Button>
+            </motion.div>
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${activeCategory}-${activeLevel}-${searchQuery}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-10"
+              >
+                {Object.entries(groupedCourses).map(([catId, courses]) => {
+                  const cat = categories.find((c) => c.id === catId);
+                  const CatIcon = cat ? ICON_MAP[cat.icon] || BookOpen : BookOpen;
+                  return (
+                    <div key={catId}>
+                      {/* Category header */}
+                      <div className="flex items-center gap-3 mb-5">
+                        <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">
+                          <CatIcon className="w-5 h-5 text-[#16a34a]" />
                         </div>
                         <div>
-                          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                            {programme.title}
+                          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                            {cat?.title || catId}
                           </h2>
-                          <p className="text-gray-500 leading-relaxed">
-                            {programme.description}
+                          <p className="text-xs text-gray-500">
+                            {courses.length} course{courses.length !== 1 ? 's' : ''} available
                           </p>
-                          <div className="mt-3 inline-flex items-center gap-1.5 text-sm text-[#16a34a] font-medium">
-                            <CheckCircle2 className="w-4 h-4" />
-                            {programme.courses.length} course{programme.courses.length !== 1 ? 's' : ''} available
-                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Course Cards */}
-                    <div className="divide-y divide-gray-100">
-                      {programme.courses.map((course, cIndex) => (
-                        <motion.div
-                          key={course.title}
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: cIndex * 0.05 }}
-                          className="p-6 sm:p-8 hover:bg-green-50/30 transition-colors duration-300"
-                        >
-                          <div className="flex items-start gap-3">
-                            <ChevronRight className="w-5 h-5 text-[#16a34a] mt-0.5 flex-shrink-0" />
-                            <div>
-                              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                {course.title}
-                              </h3>
-                              <p className="text-sm text-gray-500 leading-relaxed">
-                                {course.description}
-                              </p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
+                      {/* Course cards */}
+                      <div className="space-y-3">
+                        {courses.map((course, cIndex) => {
+                          const isExpanded = expandedCourses.has(course.slug);
+                          const levelColor = LEVEL_COLORS[course.level] || LEVEL_COLORS.Foundation;
+                          const searchScore = searchQuery.trim()
+                            ? searchResults.find((r) => r.course.slug === course.slug)?.score || 0
+                            : 0;
+
+                          return (
+                            <motion.div
+                              key={course.slug}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3, delay: cIndex * 0.03 }}
+                              className={`bg-white border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md hover:border-[#16a34a]/20 ${
+                                isExpanded ? 'border-[#16a34a]/30 shadow-md' : 'border-gray-200'
+                              }`}
+                            >
+                              <div className="p-5 sm:p-6">
+                                <div className="flex items-start justify-between gap-4">
+                                  <div className="flex-1 min-w-0">
+                                    {/* Title row */}
+                                    <div className="flex items-center gap-2 flex-wrap mb-2">
+                                      <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                                        {course.title}
+                                      </h3>
+                                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider ${levelColor.bg} ${levelColor.text} border ${levelColor.border}`}>
+                                        {course.level}
+                                      </span>
+                                    </div>
+
+                                    {/* Meta badges */}
+                                    <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-gray-500">
+                                      <span className="flex items-center gap-1">
+                                        <Clock className="w-3.5 h-3.5" />
+                                        {course.duration}
+                                      </span>
+                                      <span className="flex items-center gap-1">
+                                        <Users className="w-3.5 h-3.5" />
+                                        {course.deliveryModes.join(' / ')}
+                                      </span>
+                                      <span className="font-semibold text-[#16a34a]">
+                                        From {course.basePricePerDay.toLocaleString()} ZMW/day
+                                      </span>
+                                    </div>
+
+                                    {/* Description */}
+                                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                      {course.shortDescription}
+                                    </p>
+
+                                    {/* AI relevance */}
+                                    {searchScore > 0 && (
+                                      <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-50 text-[10px] font-medium text-[#16a34a]">
+                                        <Sparkles className="w-3 h-3" />
+                                        {getRelevanceInsight(searchScore)} · Score: {searchScore.toFixed(0)}
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  {/* Actions */}
+                                  <div className="flex items-center gap-2 flex-shrink-0">
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => toggleCourse(course.slug)}
+                                      className="hidden sm:flex gap-1 text-xs"
+                                    >
+                                      {isExpanded ? (
+                                        <>
+                                          <ChevronDown className="w-3.5 h-3.5" />
+                                          Less
+                                        </>
+                                      ) : (
+                                        <>
+                                          <ChevronRight className="w-3.5 h-3.5" />
+                                          Outline
+                                        </>
+                                      )}
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      className="bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-xs gap-1 shadow-sm"
+                                      asChild
+                                    >
+                                      <Link href={`/programmes/${course.slug}`}>
+                                        View Details
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                      </Link>
+                                    </Button>
+                                  </div>
+                                </div>
+
+                                {/* Expandable outline (mobile + click) */}
+                                <AnimatePresence>
+                                  {isExpanded && (
+                                    <motion.div
+                                      initial={{ height: 0, opacity: 0 }}
+                                      animate={{ height: 'auto', opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      transition={{ duration: 0.3 }}
+                                      className="overflow-hidden"
+                                    >
+                                      <div className="mt-5 pt-5 border-t border-gray-100">
+                                        {/* Target audience */}
+                                        <div className="mb-4">
+                                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                                            Who Should Attend
+                                          </p>
+                                          <div className="flex flex-wrap gap-1.5">
+                                            {course.targetAudience.map((ta) => (
+                                              <span key={ta} className="px-2.5 py-1 bg-gray-50 rounded-md text-xs text-gray-600">
+                                                {ta}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </div>
+
+                                        {/* Learning outcomes */}
+                                        <div className="mb-4">
+                                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                                            Key Outcomes
+                                          </p>
+                                          <ul className="space-y-1.5">
+                                            {course.learningOutcomes.slice(0, 4).map((lo) => (
+                                              <li key={lo} className="flex items-start gap-2 text-xs text-gray-600">
+                                                <CheckCircle2 className="w-3.5 h-3.5 text-[#16a34a] mt-0.5 flex-shrink-0" />
+                                                <span>{lo}</span>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+
+                                        {/* Modules accordion */}
+                                        <div>
+                                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                                            Course Outline
+                                          </p>
+                                          <div className="space-y-2">
+                                            {course.modules.map((mod, mi) => (
+                                              <div key={mi} className="bg-gray-50 rounded-lg p-3">
+                                                <p className="text-xs font-semibold text-gray-700 mb-1.5">
+                                                  {mi + 1}. {mod.title}
+                                                </p>
+                                                <div className="flex flex-wrap gap-1">
+                                                  {mod.topics.map((topic) => (
+                                                    <span key={topic} className="text-[10px] text-gray-500 bg-white px-2 py-0.5 rounded">
+                                                      {topic}
+                                                    </span>
+                                                  ))}
+                                                </div>
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+
+                                        <div className="mt-4">
+                                          <Button
+                                            size="sm"
+                                            className="w-full sm:w-auto bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-xs gap-1"
+                                            asChild
+                                          >
+                                            <Link href={`/programmes/${course.slug}`}>
+                                              View Full Details & Register
+                                              <ArrowRight className="w-3.5 h-3.5" />
+                                            </Link>
+                                          </Button>
+                                        </div>
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+          )}
         </div>
       </section>
 
@@ -358,7 +492,8 @@ export default function ProgrammesPage() {
             Need a Customized Programme?
           </h2>
           <p className="max-w-2xl mx-auto text-gray-500 mb-8">
-            We design training programmes tailored specifically to your organization. Contact us to discuss your requirements.
+            We design training programmes tailored specifically to your organization. Contact us to
+            discuss your requirements.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -370,14 +505,6 @@ export default function ProgrammesPage() {
                 Corporate Training Solutions
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-gray-300 text-gray-700 hover:bg-green-50 hover:border-green-300 hover:text-[#16a34a] font-semibold text-base px-8 py-6"
-              asChild
-            >
-              <Link href="/pricing">View Pricing</Link>
             </Button>
           </div>
         </div>
