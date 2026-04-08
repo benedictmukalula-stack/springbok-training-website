@@ -78,8 +78,8 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 3. Public assets: /images/*, /favicon*, etc.
-  if (urlPath.startsWith('/images/') || urlPath.includes('favicon') || urlPath.startsWith('/icons/')) {
+  // 3. Public assets: /images/*, /logo*, /favicon*, etc.
+  if (urlPath.startsWith('/images/') || urlPath.startsWith('/logo') || urlPath.includes('favicon') || urlPath.startsWith('/icons/')) {
     const filePath = path.join(PUBLIC, urlPath);
     sendFile(res, filePath);
     return;

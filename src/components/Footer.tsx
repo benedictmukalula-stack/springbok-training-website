@@ -39,23 +39,15 @@ export default function Footer() {
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 relative overflow-hidden rounded-lg bg-white flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
+            <Link href="/" className="inline-flex items-center mb-6 group">
+              <div className="w-16 h-16 relative overflow-hidden rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <Image
-                  src="/logo.png"
+                  src="/logo-cropped-hd.png"
                   alt="Springbok Training and Business Solutions"
-                  width={48}
-                  height={48}
+                  width={64}
+                  height={64}
                   className="w-full h-full object-contain"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base font-bold tracking-wide text-white leading-tight">
-                  SPRINGBOK
-                </span>
-                <span className="text-xs text-[#16a34a] tracking-widest uppercase leading-tight">
-                  Training &amp; Business Solutions
-                </span>
               </div>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-sm">

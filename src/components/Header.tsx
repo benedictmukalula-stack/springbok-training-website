@@ -53,24 +53,16 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3.5 group">
-            <div className="w-14 h-14 relative overflow-hidden rounded-lg bg-white border border-gray-200 flex items-center justify-center group-hover:border-green-300 transition-colors duration-300">
+          <Link href="/" className="flex items-center group">
+            <div className="w-16 h-16 md:w-20 md:h-20 relative overflow-hidden rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
               <Image
-                src="/logo.png"
+                src="/logo-cropped-hd.png"
                 alt="Springbok Training and Business Solutions"
-                width={56}
-                height={56}
+                width={80}
+                height={80}
                 className="w-full h-full object-contain"
                 priority
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm md:text-base font-bold tracking-wide text-gray-900 leading-tight">
-                SPRINGBOK
-              </span>
-              <span className="text-[8px] md:text-[10px] text-[#16a34a] tracking-widest uppercase leading-tight font-medium">
-                Training &amp; Business Solutions
-              </span>
             </div>
           </Link>
 
