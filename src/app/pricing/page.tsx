@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import PricingCalculator from '@/components/PricingCalculator';
-import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Phone, Mail, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const tiers = [
@@ -238,6 +238,42 @@ export default function PricingPage() {
                 Call Us Now
               </a>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Payment & Invoice Info */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-[#16a34a]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 text-sm">Need an Invoice?</h3>
+                  <p className="text-xs text-gray-500">Payment confirmations, receipts & billing queries</p>
+                </div>
+              </div>
+              <a href="mailto:accounts@springboktraining.net" className="text-sm font-medium text-[#16a34a] hover:underline">
+                accounts@springboktraining.net
+              </a>
+            </div>
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center">
+                  <CreditCard className="w-5 h-5 text-[#16a34a]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 text-sm">Registration Queries?</h3>
+                  <p className="text-xs text-gray-500">Signup confirmations & delegate details</p>
+                </div>
+              </div>
+              <a href="mailto:registration@springboktraining.net" className="text-sm font-medium text-[#16a34a] hover:underline">
+                registration@springboktraining.net
+              </a>
+            </div>
           </div>
         </div>
       </section>

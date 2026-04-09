@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -7,6 +8,7 @@ import {
   Mail,
   MapPin,
   ArrowUpRight,
+  Send,
 } from 'lucide-react';
 
 const programmeLinks = [
@@ -29,6 +31,13 @@ const companyLinks = [
   { label: 'Our Facilitators', href: '/about' },
   { label: 'Accreditation', href: '/about' },
   { label: 'Mission & Vision', href: '/about' },
+];
+
+const departmentEmails = [
+  { label: 'General Enquiries', email: 'info@springboktraining.net', icon: Mail },
+  { label: 'Programme Registration', email: 'registration@springboktraining.net' },
+  { label: 'Newsletter Signup', email: 'subscribe@springboktraining.net' },
+  { label: 'Payments & Invoices', email: 'accounts@springboktraining.net' },
 ];
 
 export default function Footer() {
@@ -87,6 +96,37 @@ export default function Footer() {
                   Lusaka, Zambia
                 </span>
               </div>
+            </div>
+
+            {/* Newsletter Signup */}
+            <div className="mt-6">
+              <p className="text-sm font-medium text-gray-300 mb-3">Subscribe to Our Newsletter</p>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const email = (e.target as HTMLFormElement).querySelector('input')?.value || '';
+                  if (email) {
+                    const subject = encodeURIComponent('Newsletter Subscription');
+                    const body = encodeURIComponent(`Please subscribe me to the Springbok Training newsletter.\n\nEmail: ${email}`);
+                    window.location.href = `mailto:subscribe@springboktraining.net?subject=${subject}&body=${body}`;
+                  }
+                }}
+                className="flex gap-2"
+              >
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  required
+                  className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#16a34a]/40 focus:border-[#16a34a] transition-all"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#16a34a] hover:bg-[#15803d] text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Subscribe</span>
+                </button>
+              </form>
             </div>
           </div>
 
@@ -148,6 +188,26 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Department Email Directory */}
+        <div className="py-8 border-t border-gray-800">
+          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-4">Reach the Right Department</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <a href="mailto:info@springboktraining.net" className="text-xs text-gray-400 hover:text-[#16a34a] transition-colors">
+              <Mail className="w-3 h-3 inline mr-1" />
+              info@springboktraining.net
+            </a>
+            <a href="mailto:registration@springboktraining.net" className="text-xs text-gray-400 hover:text-[#16a34a] transition-colors">
+              registration@springboktraining.net
+            </a>
+            <a href="mailto:subscribe@springboktraining.net" className="text-xs text-gray-400 hover:text-[#16a34a] transition-colors">
+              subscribe@springboktraining.net
+            </a>
+            <a href="mailto:accounts@springboktraining.net" className="text-xs text-gray-400 hover:text-[#16a34a] transition-colors">
+              accounts@springboktraining.net
+            </a>
           </div>
         </div>
 

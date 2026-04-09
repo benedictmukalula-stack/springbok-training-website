@@ -384,3 +384,26 @@ Stage Summary:
 - 4 broken/non-functional elements found and fixed across 2 files
 - All links, navigation, tabs, accordions, filters, buttons verified working
 - 0 remaining dead links or missing handlers
+---
+Task ID: 1
+Agent: Main Agent
+Task: Add email routing to all relevant pages and audit all website links
+
+Work Log:
+- Explored full codebase to find all email addresses, mailto links, and internal/external links
+- Found 4 departmental emails already partially implemented: info@ (contact form, footer), registration@ (CourseDetailClient), subscribe@ (contact page email directory only), accounts@ (CourseDetailClient)
+- Updated Footer.tsx: Added newsletter signup form (mailto:subscribe@springboktraining.net), added "Reach the Right Department" email directory section with all 4 emails
+- Updated pricing/page.tsx: Added "Payment & Invoice Info" section with accounts@ and registration@ email cards
+- Updated corporate/page.tsx: Added "Email Contact Cards" section with registration@ and info@ email cards
+- Audited all internal links across 8 pages: all Link hrefs point to valid routes (/, /about, /programmes, /corporate, /pricing, /gallery, /contact)
+- Audited all external links: all mailto and tel links use correct addresses
+- Built Next.js static export (45 pages) successfully
+- Restarted PM2 - all 7 pages returning HTTP 200
+
+Stage Summary:
+- Email routing now fully integrated across Footer, Contact, Pricing, Corporate, Gallery, and Course Detail pages
+- Newsletter signup form added to Footer for subscribe@springboktraining.net
+- All 4 departmental emails visible in footer "Reach the Right Department" directory
+- Pricing page has payment/invoice email reference (accounts@springboktraining.net)
+- Corporate page has registration email reference (registration@springboktraining.net)
+- All website links verified functional - no broken links found

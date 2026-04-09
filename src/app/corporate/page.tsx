@@ -15,6 +15,8 @@ import {
   Handshake,
   BarChart3,
   Settings,
+  Mail,
+  ClipboardList,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -332,6 +334,42 @@ export default function CorporatePage() {
             >
               <Link href="/pricing">View Pricing</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Email Contact Cards */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center">
+                  <ClipboardList className="w-5 h-5 text-[#16a34a]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 text-sm">Ready to Register?</h3>
+                  <p className="text-xs text-gray-500">Programme registration & delegate details</p>
+                </div>
+              </div>
+              <a href="mailto:registration@springboktraining.net" className="text-sm font-medium text-[#16a34a] hover:underline">
+                registration@springboktraining.net
+              </a>
+            </div>
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-[#16a34a]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 text-sm">General Enquiries</h3>
+                  <p className="text-xs text-gray-500">Questions about our training solutions</p>
+                </div>
+              </div>
+              <a href="mailto:info@springboktraining.net" className="text-sm font-medium text-[#16a34a] hover:underline">
+                info@springboktraining.net
+              </a>
+            </div>
           </div>
         </div>
       </section>
