@@ -228,9 +228,9 @@ export default function PricingPage() {
               </Link>
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               size="lg"
-              className="border-white/40 text-white hover:bg-white/15 hover:border-white/60 font-semibold text-base px-8 py-6 backdrop-blur-sm transition-all duration-300 group"
+              className="border border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base px-8 py-6 transition-all duration-300 group"
               asChild
             >
               <a href="tel:+260966135560">
