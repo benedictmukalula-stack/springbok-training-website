@@ -211,6 +211,28 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Powered By Signature */}
+        <div className="py-6 border-t border-gray-800">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+            <span className="text-xs text-gray-600">Powered by:</span>
+            <span className="text-sm font-semibold text-gray-400 tracking-wide">Knowledge Camp Corporate Solutions</span>
+            <a
+              href="mailto:info@knowledgecampglobal.co.za"
+              className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#16a34a] transition-colors"
+            >
+              <Mail className="w-3 h-3" />
+              info@knowledgecampglobal.co.za
+            </a>
+            <a
+              href="tel:+27833910863"
+              className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#16a34a] transition-colors"
+            >
+              <Phone className="w-3 h-3" />
+              +27 833 910 863
+            </a>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="py-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
