@@ -93,9 +93,9 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base px-8 py-6 transition-all duration-300"
+              className="border border-white/30 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base px-8 py-6 transition-all duration-300"
               asChild
             >
               <Link href="/contact">Contact Us</Link>

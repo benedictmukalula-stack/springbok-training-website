@@ -307,9 +307,9 @@ export default function AboutPage() {
               </Link>
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               size="lg"
-              className="border-gray-300 text-gray-700 hover:bg-green-50 hover:border-green-300 hover:text-[#16a34a] font-semibold text-base px-8 py-6"
+              className="border border-gray-300 text-gray-700 hover:bg-green-50 hover:border-green-300 hover:text-[#16a34a] font-semibold text-base px-8 py-6"
               asChild
             >
               <Link href="/contact">Contact Us</Link>

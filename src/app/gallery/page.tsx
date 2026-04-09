@@ -543,9 +543,9 @@ export default function GalleryPage() {
               </Link>
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 transition-all duration-300 group"
+              className="border border-white/30 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 transition-all duration-300 group"
               asChild
             >
               <Link href="/contact">

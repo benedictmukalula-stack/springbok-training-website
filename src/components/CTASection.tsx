@@ -43,6 +43,7 @@ export default function CTASection() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <Button
+                variant="ghost"
                 size="lg"
                 className="border-2 border-white/50 text-white hover:bg-white/10 hover:border-white/80 font-bold text-base px-10 py-6 transition-all duration-300 group"
                 asChild
@@ -53,9 +54,9 @@ export default function CTASection() {
                 </Link>
               </Button>
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="border-white/40 text-white hover:bg-white/10 hover:border-white/70 font-semibold text-base px-8 py-6 transition-all duration-300 group"
+                className="border border-white/40 text-white hover:bg-white/10 hover:border-white/70 font-semibold text-base px-8 py-6 transition-all duration-300 group"
                 asChild
               >
                 <Link href="/pricing">
