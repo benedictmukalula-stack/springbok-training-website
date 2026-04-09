@@ -407,3 +407,34 @@ Stage Summary:
 - Pricing page has payment/invoice email reference (accounts@springboktraining.net)
 - Corporate page has registration email reference (registration@springboktraining.net)
 - All website links verified functional - no broken links found
+---
+Task ID: ai-assistant-phase1
+Agent: Main Agent
+Task: Implement AI Assistant widget, WhatsApp button, API routes, and database schema
+
+Work Log:
+- Updated prisma/schema.prisma: Added Lead, AssistantConversation, WhatsappHandoff models
+- Ran prisma db push to create new tables in SQLite
+- API routes already existed from previous agent attempt, verified them:
+  - /api/assistant/chat/route.ts: AI chat using z-ai-web-dev-sdk, loads programme data from DB, detects handoff triggers
+  - /api/assistant/leads/route.ts: Lead capture with name, email, phone, company, source tracking
+  - /api/assistant/handoff/route.ts: WhatsApp handoff logging with prefilled message generation
+- Created /src/components/AIAssistant.tsx: Floating widget with green sparkle button, compact panel, context-aware quick actions, lead capture form, WhatsApp handoff card
+- Created /src/components/WhatsAppButton.tsx: WhatsApp floating button with prefilled messages per page
+- Created /src/components/FloatingWidgets.tsx: Wrapper component for both widgets
+- Updated /src/app/layout.tsx: Added FloatingWidgets import and render after Toaster
+- Switched from static server.js to `next start` (standalone mode) to support API routes
+- Updated next.config.ts: enabled output: "standalone"
+- Updated PM2 to use `npx next start -p 3000` instead of server.js
+- All 3 API routes tested and working (leads, chat, handoff)
+- All 7 pages returning HTTP 200
+
+Stage Summary:
+- AI assistant widget deployed globally on all pages
+- WhatsApp button with page-context-aware prefilled messages
+- 3 new API routes for chat, lead capture, and WhatsApp handoff
+- 3 new database tables for leads, conversations, and handoffs
+- Lead capture form appears after 4 messages in assistant
+- Handoff detection for keywords: quote, proposal, discount, invoice, urgent, etc.
+- Quick actions change based on current page (homepage vs programme vs corporate vs gallery)
+- Zero changes to existing pages, components, navigation, or flows

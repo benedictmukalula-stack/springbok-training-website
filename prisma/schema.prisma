@@ -134,3 +134,59 @@ model PromoCode {
   expiresAt DateTime?
   createdAt DateTime @default(now())
 }
+
+// ═══════════════════════════════════════════════
+// LEAD CAPTURE (from AI assistant interactions)
+// ═══════════════════════════════════════════════
+
+model Lead {
+  id                String   @id @default(cuid())
+  name              String   @default("")
+  email             String   @default("")
+  phone             String   @default("")
+  company           String   @default("")
+  sourcePage        String   @default("")
+  programmeInterest String   @default("")
+  delegatesCount    Int      @default(0)
+  enquiryType       String   @default("") // general | pricing | proposal | registration | custom
+  message           String   @default("")
+  status            String   @default("new") // new | contacted | qualified | converted | lost
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  conversations     AssistantConversation[]
+  whatsappHandoffs  WhatsappHandoff[]
+}
+
+// ═══════════════════════════════════════════════
+// ASSISTANT CONVERSATIONS
+// ═══════════════════════════════════════════════
+
+model AssistantConversation {
+  id               String   @id @default(cuid())
+  sessionId        String   @unique
+  leadId           String?
+  lead             Lead?    @relation(fields: [leadId], references: [id])
+  lastPage         String   @default("")
+  intent           String   @default("") // programme_recommendation | pricing | proposal | general | handoff
+  status           String   @default("active") // active | handoff | completed
+  handoffRequested Boolean  @default(false)
+  messageCount     Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// ═══════════════════════════════════════════════
+// WHATSAPP HANDOFFS
+// ═══════════════════════════════════════════════
+
+model WhatsappHandoff {
+  id                String   @id @default(cuid())
+  leadId            String?
+  lead              Lead?    @relation(fields: [leadId], references: [id])
+  programmeInterest String   @default("")
+  handoffReason     String   @default("") // pricing_negotiation | large_group | custom_request | frustrated | complex
+  prefilledMessage  String   @default("")
+  conversationId    String   @default("")
+  createdAt         DateTime @default(now())
+}
