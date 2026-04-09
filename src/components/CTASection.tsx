@@ -44,7 +44,7 @@ export default function CTASection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <Button
                 size="lg"
-                className="bg-white hover:bg-gray-50 text-[#16a34a] font-bold text-base px-10 py-6 shadow-2xl shadow-black/15 hover:shadow-black/25 ring-2 ring-white/30 hover:ring-white/60 transition-all duration-300 group"
+                className="border-2 border-white/50 text-white hover:bg-white/10 hover:border-white/80 font-bold text-base px-10 py-6 transition-all duration-300 group"
                 asChild
               >
                 <Link href="/contact">
